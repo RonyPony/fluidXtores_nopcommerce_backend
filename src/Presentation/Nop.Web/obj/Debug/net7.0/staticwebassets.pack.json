@@ -1565,6 +1565,14 @@
       "PackagePath": "staticwebassets/images/samples/product_macbook_2.jpeg"
     },
     {
+      "Id": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000001_banner_1.webp",
+      "PackagePath": "staticwebassets/images/thumbs/0000001_banner_1.webp"
+    },
+    {
+      "Id": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000002_banner_2.webp",
+      "PackagePath": "staticwebassets/images/thumbs/0000002_banner_2.webp"
+    },
+    {
       "Id": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/placeholder.txt",
       "PackagePath": "staticwebassets/images/thumbs/placeholder.txt"
     },

@@ -1,0 +1,12 @@
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Plugins/Misc.FluidApi/net7.0/Nop.Plugin.Misc.FluidApi.deps.json
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Plugins/Misc.FluidApi/net7.0/Nop.Plugin.Misc.FluidApi.dll
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Plugins/Misc.FluidApi/net7.0/Nop.Plugin.Misc.FluidApi.pdb
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/obj/Debug/net7.0/Nop.Plugin.Misc.FluidApi.csproj.AssemblyReference.cache
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/obj/Debug/net7.0/Nop.Plugin.Misc.FluidApi.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/obj/Debug/net7.0/Nop.Plugin.Misc.FluidApi.AssemblyInfoInputs.cache
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/obj/Debug/net7.0/Nop.Plugin.Misc.FluidApi.AssemblyInfo.cs
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/obj/Debug/net7.0/Nop.Plugin.Misc.FluidApi.csproj.CoreCompileInputs.cache
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/obj/Debug/net7.0/Nop.Plugin.Misc.FluidApi.dll
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/obj/Debug/net7.0/refint/Nop.Plugin.Misc.FluidApi.dll
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/obj/Debug/net7.0/Nop.Plugin.Misc.FluidApi.pdb
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/obj/Debug/net7.0/ref/Nop.Plugin.Misc.FluidApi.dll
