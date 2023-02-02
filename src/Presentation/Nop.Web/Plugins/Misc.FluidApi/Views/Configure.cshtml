@@ -1,0 +1,34 @@
+﻿@model ConfigurationModel
+
+@using Nop.Plugin.Misc.FluidApi
+@using Nop.Plugin.Misc.FluidApi.Models
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+<link rel="stylesheet" href="~/Plugins/Misc.FluidApi/Content/styles.css" />
+
+@await Component.InvokeAsync(typeof(StoreScopeConfigurationViewComponent))
+
+<form asp-controller="FluidApi" asp-action="Configure" method="post">
+    <nop-cards id="FluidApi-cards">
+        <nop-card asp-name="FluidApi-general" asp-icon="fas fa-info" asp-title="@T("Plugins.Misc.FluidApi.General")" asp-hide-block-attribute-name="@FluidApiDefaults.SystemName" asp-hide="false" asp-advanced="false">
+            <div class="card-body">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <h4>Activar Api</h4>
+                        <input asp-for="@Model.enable">
+                        <input asp-for="@Model.enable" type="checkbox" id="enable" name="vehicle1" value="true" checked="@Model.enable">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-9 offset-md-3">
+                        <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                    </div>
+                </div>
+            </div>
+        </nop-card>
+    </nop-cards>
+</form>

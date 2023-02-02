@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OfvwNY5ylDfYTPpAgNGEKfL+7oHortQi8P4lTQtTuc/16IbE9bcGlT4ucApSo3GzVAySbYf3q9QqCP/PNL3iHg==",
+  "dgSpecHash": "nrphRCjwYmObUVIhHIJpcSxp90njjjaCQzZbOkbGjKh/a7sKwB7g8qazwZNyqVoJp7+xetVQmqmnK26+RXbC6A==",
   "success": true,
   "projectFilePath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Tax.FixedOrByCountryStateZip/Nop.Plugin.Tax.FixedOrByCountryStateZip.csproj",
   "expectedPackageFiles": [

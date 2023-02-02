@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "J73beyD+IZdzulK6ittJ3IaH30LCa1m9weGaf3BlqdrJxiVozUsIqe2YWsHVFbySz9PTxuShVdmRb4jrMMrkhQ==",
+  "dgSpecHash": "BvJ4XRAhZ8sYY17vN+3tNPjmZrTBS9QSM5sQQyIwVGVIR7gLPHuROS2di/xKaiDGI79RX2wZ9bfzqzCi2scpcg==",
   "success": true,
   "projectFilePath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.ExternalAuth.Facebook/Nop.Plugin.ExternalAuth.Facebook.csproj",
   "expectedPackageFiles": [

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Y6SYtgh3lZz1d8OtOmOrfngKQ+lvCHjT4qT6z3YDfM3N2QO2tZkP0LfchaEwDmITMvtmdeC2en+WGMUOFEx2sA==",
+  "dgSpecHash": "IVBWhUKgFuSxS2aCgYqjWmdva4B/cILs8cKbrY8AOA+oDtuYn2anH16LOqoRT/LmePrTdNnElYpBrUXlHeX0Cg==",
   "success": true,
   "projectFilePath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Tax.Avalara/Nop.Plugin.Tax.Avalara.csproj",
   "expectedPackageFiles": [

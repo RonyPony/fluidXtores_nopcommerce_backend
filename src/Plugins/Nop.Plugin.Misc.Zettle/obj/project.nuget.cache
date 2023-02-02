@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2F0sTw2nxRcXDS7UO7DOBR4UlJtvEzh/kkjcOF4zf+Da8mMJkCkRjAHqTUo8d3MrVbU+qq60R02IfCAIeC7Kag==",
+  "dgSpecHash": "Ch7pjeUmg/s02kvfBPEEMg4R+EZIk9o+e/CiVnU2uBKDS+++pLR3VHLYKRZ5t+4ccyjg2Yl87oW6d1RZZULPqw==",
   "success": true,
   "projectFilePath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.Zettle/Nop.Plugin.Misc.Zettle.csproj",
   "expectedPackageFiles": [

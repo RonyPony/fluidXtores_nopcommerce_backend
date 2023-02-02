@@ -17,34 +17,39 @@ using Nop.Web.Framework.Infrastructure;
 
 namespace Nop.Plugin.Misc.FluidApi
 {
-	public class FluidApiPlugin: BasePlugin, IMiscPlugin, IWidgetPlugin
+	public class FluidApiPlugin: BasePlugin, IMiscPlugin
     {
         #region Fields
         private readonly ISettingService _settingService;
         private readonly WidgetSettings _widgetSettings;
         private readonly ILocalizationService _localizationService;
+        private readonly IWebHelper _webHelper;
         #endregion
         #region Ctor
-        public FluidApiPlugin(ISettingService srv, WidgetSettings wset, ILocalizationService loc)
+        public FluidApiPlugin(ISettingService srv, WidgetSettings wset, ILocalizationService loc, IWebHelper whpl)
         {
             _settingService = srv;
             _widgetSettings = wset;
             _localizationService = loc;
+            _webHelper = whpl;
         }
 
         public bool HideInWidgetList => throw new NotImplementedException();
 
-        public Type GetWidgetViewComponent(string widgetZone)
-        {
-            throw new NotImplementedException();
-        }
-
+       
         public Task<IList<string>> GetWidgetZonesAsync()
         {
-            throw new NotImplementedException();
+            return Task.FromResult<IList<string>>(new List<string> { PublicWidgetZones.HeadHtmlTag });
         }
         #endregion
         #region Methods
+        /// <summary>
+        /// Gets a configuration page URL
+        /// </summary>
+        public override string GetConfigurationPageUrl()
+        {
+            return $"{_webHelper.GetStoreLocation()}Admin/FluidApi/Configure";
+        }
         public override async Task InstallAsync()
         {
             //settings

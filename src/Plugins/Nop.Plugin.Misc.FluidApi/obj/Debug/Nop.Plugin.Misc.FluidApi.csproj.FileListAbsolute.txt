@@ -5,6 +5,9 @@
 /Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Plugins/Misc.FluidApi/Nop.Web
 /Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Plugins/Misc.FluidApi/logo.png
 /Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Plugins/Misc.FluidApi/plugin.json
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Plugins/Misc.FluidApi/Views/_ViewImports.cshtml
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Plugins/Misc.FluidApi/Views/Configure.cshtml
+/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Plugins/Misc.FluidApi/Views/PublicInfo.cshtml
 /Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Plugins/Misc.FluidApi/Nop.Plugin.Misc.FluidApi.deps.json
 /Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Plugins/Misc.FluidApi/Nop.Plugin.Misc.FluidApi.dll
 /Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Plugins/Misc.FluidApi/Nop.Plugin.Misc.FluidApi.pdb

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "gfQJpLcS4CQonZuRns/ktQEvz8auWSYhVpdcX1oqM1UI43Sgms7SFHupqi2Thvq460B04epF2aVi2fjz123dFQ==",
+  "dgSpecHash": "MxchIA6XSsAFa6OR/9j+cuRcLeva/8kORZkthP8AQO9zMvu2NNObFHo1NZF3rK0ZJqh0R4vu7nSUgqRkQkhDXA==",
   "success": true,
   "projectFilePath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.Sendinblue/Nop.Plugin.Misc.Sendinblue.csproj",
   "expectedPackageFiles": [

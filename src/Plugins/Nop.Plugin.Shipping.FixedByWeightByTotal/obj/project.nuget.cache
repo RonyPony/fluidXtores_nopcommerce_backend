@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hLBraHEat3jPnD13d/tQJnN6/QK1bVysnWLgDUUK5LZ4yctbrIAmbXDeIqkQGu4OqBle4UAJ1VfhSqRRyRxNYA==",
+  "dgSpecHash": "5Bo45KrPyZBdPne/JZJm+vC/yWDfXPcxokHT3/72SxlYYsncWfEA8R60hPyg8K61xlX5vSbuIjVVHQ78ixRC6g==",
   "success": true,
   "projectFilePath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Shipping.FixedByWeightByTotal/Nop.Plugin.Shipping.FixedByWeightByTotal.csproj",
   "expectedPackageFiles": [

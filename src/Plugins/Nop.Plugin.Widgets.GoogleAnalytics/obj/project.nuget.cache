@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lZCjdnLN+p8n/6pG1YqfEpTbBM6/JKeMW+WTTz6Nredif0zuJbmGVXTRkEvytM/nQZ9Vrb5a0rufe52P6Y3JdQ==",
+  "dgSpecHash": "JE3/6RiH6RyXWAuCS1LvqgtZb61Dp84loHd7yx5dO29oQOb7gsq45BrA9zKMVhzzWUUvLCThMhpXnszpHRSiYg==",
   "success": true,
   "projectFilePath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Widgets.GoogleAnalytics/Nop.Plugin.Widgets.GoogleAnalytics.csproj",
   "expectedPackageFiles": [

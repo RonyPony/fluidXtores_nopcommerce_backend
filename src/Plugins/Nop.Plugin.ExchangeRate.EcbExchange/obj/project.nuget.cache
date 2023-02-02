@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "l5GRqCWJT4ZMU6rMi7PWEL9uNf00hZpfwjK2dpiSXwkS3kIOr136z/PTL+NdbL52d9PUqT1Kk6KIIqVKRC9BAQ==",
+  "dgSpecHash": "sN4cKUUDB/ze0pJExpqjoCH+qt7X5O7ax+bgOxBMVod0jQ92RezxLTqB3guXdHq3THJfwR0jB+xfBEmEzZJVew==",
   "success": true,
   "projectFilePath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.ExchangeRate.EcbExchange/Nop.Plugin.ExchangeRate.EcbExchange.csproj",
   "expectedPackageFiles": [

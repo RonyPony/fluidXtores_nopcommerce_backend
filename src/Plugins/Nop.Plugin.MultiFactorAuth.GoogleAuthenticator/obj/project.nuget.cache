@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tR2Yi/Gp84KnQ3bdHgQ38v8T02JuIK3CwgKnHZxYYXbpML2Dweuy95qraejRViGBDX/Xi4tFHHIfcfXGfdbBgg==",
+  "dgSpecHash": "Hj7W3jtpWTrQBtuxLyfYJXf+eE19DKUmKhOTQ0aZlCSQZfk6f3c3zM7nq0syEk7yNjU3yC2g0vhKikKQnonh4g==",
   "success": true,
   "projectFilePath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.MultiFactorAuth.GoogleAuthenticator/Nop.Plugin.MultiFactorAuth.GoogleAuthenticator.csproj",
   "expectedPackageFiles": [

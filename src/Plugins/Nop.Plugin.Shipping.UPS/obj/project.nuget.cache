@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "odQqfr+CN293odXdJlxUI1jvdajUTgua5W7w7LTsdGZFQrVwmKr2xOWRatK8dEngL4Cf53njh//KeQq1Vo3cmQ==",
+  "dgSpecHash": "S98JblthZQEQ7JE2qUb8YjZ0g8FxHLVS5cYy+1lyr+XbOlKi3N7aHWmcNASznWtYGexkhB1Q67lBu3sYeBBMQA==",
   "success": true,
   "projectFilePath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Shipping.UPS/Nop.Plugin.Shipping.UPS.csproj",
   "expectedPackageFiles": [
