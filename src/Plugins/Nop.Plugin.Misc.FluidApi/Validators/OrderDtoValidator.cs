@@ -65,7 +65,6 @@ namespace Nop.Plugin.Misc.FluidApi.Validators
                         {
                             validator.HttpMethod = HttpMethod.Post;
                         }
-
                         var validationResult = validator.Validate(orderItemDto);
                         MergeValidationResult(validationContext, validationResult);
                     });

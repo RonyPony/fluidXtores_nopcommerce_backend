@@ -10,7 +10,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
     {
         int GetCustomersCount();
 
-        CustomerDto GetCustomerById(int id, bool showDeleted = false);
+        Task<CustomerDto> GetCustomerByIdAsync(int id, bool showDeleted = false);
 
         Customer GetCustomerEntityById(int id);
 

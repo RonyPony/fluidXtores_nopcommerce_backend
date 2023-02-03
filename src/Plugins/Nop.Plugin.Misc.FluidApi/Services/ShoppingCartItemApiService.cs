@@ -66,7 +66,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
             }
 
             // items for the current store only
-            var currentStoreId = _storeContext.CurrentStore.Id;
+            var currentStoreId = _storeContext.GetCurrentStore().Id;
             query = query.Where(c => c.StoreId == currentStoreId);
 
             query = query.OrderBy(shoppingCartItem => shoppingCartItem.Id);

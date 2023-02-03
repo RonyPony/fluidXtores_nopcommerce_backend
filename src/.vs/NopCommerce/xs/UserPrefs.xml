@@ -1,21 +1,16 @@
 ﻿<Properties StartupConfiguration="{4F1F649C-1020-45BE-A487-F416D9297FF3}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Plugins/Nop.Plugin.Misc.FluidApi/Views/Configure.cshtml">
+  <MonoDevelop.Ide.ItemProperties.Presentation.Nop.Web PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/OrdersController.cs">
     <Files>
-      <File FileName="Plugins/Nop.Plugin.Misc.Sendinblue/Controllers/SendinblueController.cs" />
-      <File FileName="Presentation/Nop.Web/Program.cs" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/CustomerController.cs" Line="10" Column="1" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Views/Configure.cshtml" Line="13" Column="1" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/OrdersController.cs" Line="128" Column="44" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="NopCommerce" expanded="True">
+            <Node name="Libraries" expanded="True" />
             <Node name="Plugins" expanded="True">
               <Node name="Nop.Plugin.Misc.FluidApi" expanded="True">
-                <Node name="Controllers" expanded="True" />
-                <Node name="Views" expanded="True" />
-              </Node>
-              <Node name="Nop.Plugin.Misc.Sendinblue" expanded="True">
                 <Node name="Controllers" expanded="True" />
               </Node>
             </Node>
@@ -31,11 +26,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Presentation.Nop.Web PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
 </Properties>

@@ -27,14 +27,14 @@ namespace Nop.Plugin.Misc.FluidApi.Services
             _downloadService = downloadService;           
         }
 
-        public string ConvertToXml(List<ProductItemAttributeDto> attributeDtos, int productId)
+        public async Task<string> ConvertToXmlAsync(List<ProductItemAttributeDto> attributeDtos, int productId)
         {
             var attributesXml = "";
 
             if (attributeDtos == null)
                 return attributesXml;
 
-            var productAttributes = _productAttributeService.GetProductAttributeMappingsByProductId(productId);
+            var productAttributes = await _productAttributeService.GetProductAttributeMappingsByProductIdAsync(productId);
             foreach (var attribute in productAttributes)
             {
                 switch (attribute.AttributeControlType)
@@ -81,7 +81,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
                     case AttributeControlType.ReadonlyCheckboxes:
                         {
                             //load read-only(already server - side selected) values
-                            var attributeValues = _productAttributeService.GetProductAttributeValues(attribute.Id);
+                            var attributeValues = await _productAttributeService.GetProductAttributeValuesAsync(attribute.Id);
                             foreach (var selectedAttributeId in attributeValues
                                 .Where(v => v.IsPreSelected)
                                 .Select(v => v.Id)
@@ -133,7 +133,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
                             {
                                 Guid downloadGuid;
                                 Guid.TryParse(selectedAttribute.Value, out downloadGuid);
-                                var download = _downloadService.GetDownloadByGuid(downloadGuid);
+                                var download = await _downloadService.GetDownloadByGuidAsync(downloadGuid);
                                 if (download != null)
                                 {
                                     attributesXml = _productAttributeParser.AddProductAttribute(attributesXml,

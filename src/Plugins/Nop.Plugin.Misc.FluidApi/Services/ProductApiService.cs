@@ -50,7 +50,12 @@ namespace Nop.Plugin.Misc.FluidApi.Services
             var query = GetProductsQuery(createdAtMin, createdAtMax, updatedAtMin, updatedAtMax, vendorName,
                                          publishedStatus, categoryId: categoryId);
 
-            return query.ToList().Count(p => _storeMappingService.Authorize(p));
+            //return query.ToList().Count(async p =>
+            //{
+            //    return await _storeMappingService.AuthorizeAsync(p);
+            //});
+
+            return query.ToList().Count();
         }
 
         public Product GetProductById(int productId)

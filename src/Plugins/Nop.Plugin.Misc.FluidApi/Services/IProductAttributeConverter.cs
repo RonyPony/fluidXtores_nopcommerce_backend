@@ -6,6 +6,6 @@ namespace Nop.Plugin.Misc.FluidApi.Services
     public interface IProductAttributeConverter
     {
         List<ProductItemAttributeDto> Parse(string attributesXml);
-        string ConvertToXml(List<ProductItemAttributeDto> attributeDtos, int productId);
+        Task<string> ConvertToXmlAsync(List<ProductItemAttributeDto> attributeDtos, int productId);
     }
 }

@@ -106,11 +106,11 @@ namespace Nop.Plugin.Misc.FluidApi.Validators
                     .Must(roles => roles.Count > 0)
                     .WithMessage("role_ids required")
                     .DependentRules(() => RuleFor(dto => dto.RoleIds)
-                    .Must(roleIds =>
+                    .Must( roleIds =>
                     {
                         if (customerRoles == null)
                         {
-                            customerRoles = _customerRolesHelper.GetValidCustomerRolesAsync(roleIds);
+                            //customerRoles =  _customerRolesHelper.GetValidCustomerRolesAsync(roleIds);
                         }
 
                         var isInGuestAndRegisterRoles = _customerRolesHelper.IsInGuestsRole(customerRoles) &&
@@ -125,7 +125,7 @@ namespace Nop.Plugin.Misc.FluidApi.Validators
                         {
                             if (customerRoles == null)
                             {
-                                customerRoles = _customerRolesHelper.GetValidCustomerRolesAsync(roleIds);
+                                //customerRoles = _customerRolesHelper.GetValidCustomerRolesAsync(roleIds);
                             }
 
                             var isInGuestOrRegisterRoles = _customerRolesHelper.IsInGuestsRole(customerRoles) ||

@@ -3,6 +3,8 @@ using FluentValidation.Results;
 using FluentValidation.Validators;
 using Microsoft.AspNetCore.Http;
 using Nop.Plugin.Misc.FluidApi.DTO.Base;
+using Nop.Plugin.Misc.FluidApi.DTO.Customers;
+using Nop.Plugin.Misc.FluidApi.DTO.Orders;
 using Nop.Plugin.Misc.FluidApi.Helpers;
 using System;
 using System.Collections.Generic;
@@ -165,6 +167,16 @@ namespace Nop.Plugin.Misc.FluidApi.Validators
     public class CustomContext
     {
         internal void AddFailure(ValidationFailure validationFailure)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static implicit operator CustomContext(ValidationContext<CustomerDto> v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static implicit operator CustomContext(ValidationContext<OrderDto> v)
         {
             throw new NotImplementedException();
         }

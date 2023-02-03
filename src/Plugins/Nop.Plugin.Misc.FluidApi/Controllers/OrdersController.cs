@@ -125,7 +125,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 parameters.Status, parameters.PaymentStatus, parameters.ShippingStatus,
                 parameters.CustomerId, storeId);
 
-            IList<OrderDto> ordersAsDtos = orders.Select(x => _dtoHelper.PrepareOrderDTOAsync(x)).ToList();
+            IList<OrderDto> ordersAsDtos = (IList<OrderDto>)orders.Select(async x => await _dtoHelper.PrepareOrderDTOAsync(x)).ToList();
 
             var ordersRootObject = new OrdersRootObject()
             {
@@ -179,7 +179,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetOrderById(int id, string fields = "")
+        public async Task<IActionResult> GetOrderByIdAsync(int id, string fields = "")
         {
             if (id <= 0)
             {
@@ -195,7 +195,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             var ordersRootObject = new OrdersRootObject();
 
-            var orderDto = _dtoHelper.PrepareOrderDTOAsync(order);
+            var orderDto = await _dtoHelper.PrepareOrderDTOAsync(order);
             ordersRootObject.Orders.Add(orderDto);
 
             var json = JsonFieldsSerializer.Serialize(ordersRootObject, fields);
@@ -214,9 +214,9 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(OrdersRootObject), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetOrdersByCustomerId(int customer_id)
+        public async Task<IActionResult> GetOrdersByCustomerIdAsync(int customer_id)
         {
-            IList<OrderDto> ordersForCustomer = _orderApiService.GetOrdersByCustomerId(customer_id).Select(x => _dtoHelper.PrepareOrderDTOAsync(x)).ToList();
+            IList<OrderDto> ordersForCustomer = (IList<OrderDto>)_orderApiService.GetOrdersByCustomerId(customer_id).Select(async x => await _dtoHelper.PrepareOrderDTOAsync(x)).ToList();
 
             var ordersRootObject = new OrdersRootObject()
             {
@@ -239,7 +239,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [GetRequestsErrorInterceptorActionFilter]
         public IActionResult GetOrdersPendingToDeliveryByCustomerId(int customer_id)
         {
-            IList<OrderDto> ordersForCustomer = _orderApiService.GetOrdersByCustomerId(customer_id)
+            IList<OrderDto> ordersForCustomer = (IList<OrderDto>)_orderApiService.GetOrdersByCustomerId(customer_id)
                                                                 .Where(x => x.OrderStatus != OrderStatus.Cancelled && x.ShippingStatus == ShippingStatus.NotYetShipped ||
                                                                        x.ShippingStatus == ShippingStatus.PartiallyShipped ||
                                                                        x.ShippingStatus == ShippingStatus.Shipped)
@@ -266,7 +266,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [GetRequestsErrorInterceptorActionFilter]
         public IActionResult GetOrdersShippedByCustomerId(int customer_id)
         {
-            IList<OrderDto> ordersForCustomer = _orderApiService.GetOrdersByCustomerId(customer_id)
+            IList<OrderDto> ordersForCustomer = (IList<OrderDto>)_orderApiService.GetOrdersByCustomerId(customer_id)
                                                                 .Where(x => x.ShippingStatus == ShippingStatus.Delivered)
                                                                 .Select(x => _dtoHelper.PrepareOrderDTOAsync(x))
                                                                 .ToList();
@@ -371,7 +371,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             var ordersRootObject = new OrdersRootObject();
 
-            var placedOrderDto = _dtoHelper.PrepareOrderDTOAsync(placeOrderResult.PlacedOrder);
+            var placedOrderDto = await _dtoHelper.PrepareOrderDTOAsync(placeOrderResult.PlacedOrder);
 
             ordersRootObject.Orders.Add(placedOrderDto);
 
@@ -475,7 +475,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             var ordersRootObject = new OrdersRootObject();
 
-            var placedOrderDto = _dtoHelper.PrepareOrderDTOAsync(currentOrder);
+            var placedOrderDto =await _dtoHelper.PrepareOrderDTOAsync(currentOrder);
             placedOrderDto.ShippingMethod = orderDelta.Dto.ShippingMethod;
 
             ordersRootObject.Orders.Add(placedOrderDto);
@@ -630,14 +630,14 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                         orderItem.RentalEndDateUtc = null;
                     }
 
-                    var attributesXml = _productAttributeConverter.ConvertToXml(orderItem.Attributes.ToList(), product.Id);
+                    var attributesXml = await _productAttributeConverter.ConvertToXmlAsync(orderItem.Attributes.ToList(), product.Id);
 
                     var errors = await _shoppingCartService.AddToCartAsync(customer, product,
                         ShoppingCartType.ShoppingCart, storeId, attributesXml,
                         0M, orderItem.RentalStartDateUtc, orderItem.RentalEndDateUtc,
                         orderItem.Quantity ?? 1);
 
-                    if (errors.Count > 0)
+                    if (errors.Count() > 0)
                     {
                         foreach (var error in errors)
                         {

@@ -90,7 +90,6 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             //load settings for active store scope
             var storeId = await _storeContext.GetActiveStoreScopeConfigurationAsync();
             var FluidApiSettings = await _settingService.LoadSettingAsync<FluidApiSettings>(storeId);
-
             //whether plugin is configured
             if (string.IsNullOrEmpty(FluidApiSettings.apiKey))
                 return;

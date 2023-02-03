@@ -116,7 +116,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
                 query = query
                     .Join(_genericAttributeRepository.Table, x => x.Id, y => y.EntityId, (x, y) => new { Customer = x, Attribute = y })
                     .Where(z => z.Attribute.KeyGroup == nameof(Customer) &&
-                                z.Attribute.Key == NopCustomerDefaults.FirstNameAttribute &&
+                                z.Attribute.Key == "firstname" &&
                                 z.Attribute.Value.Contains(firstName))
                     .Select(z => z.Customer);
             }
@@ -126,7 +126,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
                 query = query
                     .Join(_genericAttributeRepository.Table, x => x.Id, y => y.EntityId, (x, y) => new { Customer = x, Attribute = y })
                     .Where(z => z.Attribute.KeyGroup == nameof(Customer) &&
-                                z.Attribute.Key == NopCustomerDefaults.LastNameAttribute &&
+                                z.Attribute.Key == "lastname" &&
                                 z.Attribute.Value.Contains(lastName))
                     .Select(z => z.Customer);
             }
@@ -144,7 +144,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
                 query = query
                     .Join(_genericAttributeRepository.Table, x => x.Id, y => y.EntityId, (x, y) => new { Customer = x, Attribute = y })
                     .Where(z => z.Attribute.KeyGroup == nameof(Customer) &&
-                                z.Attribute.Key == NopCustomerDefaults.DateOfBirthAttribute &&
+                                z.Attribute.Key == "DateOfBirth" &&
                                 z.Attribute.Value.Substring(5, 5) == dateOfBirthStr)
                     .Select(z => z.Customer);
             }
@@ -158,7 +158,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
                 query = query
                     .Join(_genericAttributeRepository.Table, x => x.Id, y => y.EntityId, (x, y) => new { Customer = x, Attribute = y })
                     .Where(z => z.Attribute.KeyGroup == nameof(Customer) &&
-                                z.Attribute.Key == NopCustomerDefaults.DateOfBirthAttribute &&
+                                z.Attribute.Key == "DateOfBirth" &&
                                 z.Attribute.Value.Substring(8, 2) == dateOfBirthStr)
                     .Select(z => z.Customer);
             }
@@ -169,7 +169,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
                 query = query
                     .Join(_genericAttributeRepository.Table, x => x.Id, y => y.EntityId, (x, y) => new { Customer = x, Attribute = y })
                     .Where(z => z.Attribute.KeyGroup == nameof(Customer) &&
-                                z.Attribute.Key == NopCustomerDefaults.DateOfBirthAttribute &&
+                                z.Attribute.Key == "DateOfBirth" &&
                                 z.Attribute.Value.Contains(dateOfBirthStr))
                     .Select(z => z.Customer);
             }
@@ -179,7 +179,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
                 query = query
                     .Join(_genericAttributeRepository.Table, x => x.Id, y => y.EntityId, (x, y) => new { Customer = x, Attribute = y })
                     .Where(z => z.Attribute.KeyGroup == nameof(Customer) &&
-                                z.Attribute.Key == NopCustomerDefaults.CompanyAttribute &&
+                                z.Attribute.Key == "Company" &&
                                 z.Attribute.Value.Contains(company))
                     .Select(z => z.Customer);
             }
@@ -189,7 +189,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
                 query = query
                     .Join(_genericAttributeRepository.Table, x => x.Id, y => y.EntityId, (x, y) => new { Customer = x, Attribute = y })
                     .Where(z => z.Attribute.KeyGroup == nameof(Customer) &&
-                                z.Attribute.Key == NopCustomerDefaults.PhoneAttribute &&
+                                z.Attribute.Key == "Phone" &&
                                 z.Attribute.Value.Contains(phone))
                     .Select(z => z.Customer);
             }
@@ -199,7 +199,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
                 query = query
                     .Join(_genericAttributeRepository.Table, x => x.Id, y => y.EntityId, (x, y) => new { Customer = x, Attribute = y })
                     .Where(z => z.Attribute.KeyGroup == nameof(Customer) &&
-                                z.Attribute.Key == NopCustomerDefaults.ZipPostalCodeAttribute &&
+                                z.Attribute.Key == "ZipPostalCode" &&
                                 z.Attribute.Value.Contains(zipPostalCode))
                     .Select(z => z.Customer);
             }
@@ -239,7 +239,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
 
             result.AddRange(customerWithAttributes.Select(o => CreateCustomerDto(o.Customer, o.Attributes)));
 
-            result.ForEach(SimpleCustomerinfo);
+            //result.ForEach(SimpleCustomerinfoAsync());
 
 
 
@@ -249,9 +249,9 @@ namespace Nop.Plugin.Misc.FluidApi.Services
             return result;
         }
 
-        private void SimpleCustomerinfo(CustomerDto x)
+        private async Task SimpleCustomerinfoAsync(CustomerDto x)
         {
-            x.CustomerInfo = _customerModelFactory.PrepareCustomerInfoModel(new CustomerInfoModel(), _customerService.GetCustomerById(x.Id), false);
+            x.CustomerInfo = await _customerModelFactory.PrepareCustomerInfoModelAsync(new CustomerInfoModel(), await _customerService.GetCustomerByIdAsync(x.Id), false);
             x.CustomerInfo.AvailableTimeZones = new List<SelectListItem>();
         }
 
@@ -288,11 +288,16 @@ namespace Nop.Plugin.Misc.FluidApi.Services
         public int GetCustomersCount()
         {
             return _customerRepository.Table.Count(customer => !customer.Deleted
-                                      && (customer.RegisteredInStoreId == 0 || customer.RegisteredInStoreId == _storeContext.CurrentStore.Id));
+                                      && (customer.RegisteredInStoreId == 0 || customer.RegisteredInStoreId == _storeContext.GetCurrentStore().Id));
+        }
+
+        public IRepository<GenericAttribute> Get_genericAttributeRepository()
+        {
+            return _genericAttributeRepository;
         }
 
         // Need to work with dto object so we can map the first and last name from generic attributes table.
-        public IList<CustomerDto> Search(string queryParams = "", string order = Configurations.DefaultOrder,
+        public IList<CustomerDto> Search(IRepository<GenericAttribute> _genericAttributeRepository, string queryParams = "", string order = Configurations.DefaultOrder,
             int page = Configurations.DefaultPageValue, int limit = Configurations.DefaultLimit)
         {
             IList<CustomerDto> result = new List<CustomerDto>();
@@ -323,9 +328,9 @@ namespace Nop.Plugin.Misc.FluidApi.Services
 
                 foreach (var item in query.ToList())
                 {
-                    var nameCustomerAttributes = _genericAttributeRepository.Table.FirstOrDefault(o => o.KeyGroup == nameof(Customer) && o.EntityId == item.Id && o.Key == NopCustomerDefaults.FirstNameAttribute);
-                    var lastNameCustomerAttributes = _genericAttributeRepository.Table.FirstOrDefault(o => o.KeyGroup == nameof(Customer) && o.EntityId == item.Id && o.Key == NopCustomerDefaults.LastNameAttribute);
-                    var phoneNumberCustomer = _genericAttributeRepository.Table.FirstOrDefault(o => o.KeyGroup == nameof(Customer) && o.EntityId == item.Id && o.Key == NopCustomerDefaults.PhoneAttribute);
+                    var nameCustomerAttributes = _genericAttributeRepository.Table.FirstOrDefault(o => o.KeyGroup == nameof(Customer) && o.EntityId == item.Id && o.Key == "firstName");
+                    var lastNameCustomerAttributes = _genericAttributeRepository.Table.FirstOrDefault(o => o.KeyGroup == nameof(Customer) && o.EntityId == item.Id && o.Key == "lastName");
+                    var phoneNumberCustomer = _genericAttributeRepository.Table.FirstOrDefault(o => o.KeyGroup == nameof(Customer) && o.EntityId == item.Id && o.Key == "phone");
 
                     result.Add(new CustomerDto
                     {
@@ -354,7 +359,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
             return customer;
         }
 
-        public CustomerDto GetCustomerById(int id, bool showDeleted = false)
+        public async Task<CustomerDto> GetCustomerByIdAsync(int id, bool showDeleted = false)
         {
             if (id == 0)
                 return null;
@@ -380,7 +385,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
                 // The customer object is the same in all mappings.
                 customerDto = customer.ToDto();
 
-                var customerRoles = _customerService.GetCustomerRoles(customer);
+                var customerRoles = await _customerService.GetCustomerRolesAsync(customer);
                 foreach (var role in customerRoles)
                     customerDto.RoleIds.Add(role.Id);
 
@@ -452,7 +457,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
 
             SetNewsletterSubscriptionStatus(customerDto);
 
-            SimpleCustomerinfo(customerDto);
+            SimpleCustomerinfoAsync(customerDto);
 
             return customerDto;
         }
@@ -498,14 +503,14 @@ namespace Nop.Plugin.Misc.FluidApi.Services
         private int GetDefaultStoreLangaugeId()
         {
             // Get the default language id for the current store.
-            var defaultLanguageId = _storeContext.CurrentStore.DefaultLanguageId;
+            var defaultLanguageId = _storeContext.GetCurrentStore().DefaultLanguageId;
 
             if (defaultLanguageId == 0)
             {
                 var allLanguages = _languageService.GetAllLanguages();
 
                 var storeLanguages = allLanguages.Where(l =>
-                    _storeMappingService.Authorize(l, _storeContext.CurrentStore.Id)).ToList();
+                    _storeMappingService.Authorize(l, _storeContext.GetCurrentStore().Id)).ToList();
 
                 // If there is no language mapped to the current store, get all of the languages,
                 // and use the one with the first display order. This is a default nopCommerce workflow.
@@ -561,7 +566,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
             return _cacheManager.Get(Configurations.NEWSLETTER_SUBSCRIBERS_KEY, () =>
             {
                 IEnumerable<String> subscriberEmails = (from nls in _subscriptionRepository.Table
-                                                        where nls.StoreId == _storeContext.CurrentStore.Id
+                                                        where nls.StoreId == _storeContext.GetCurrentStore().Id
                                                               && nls.Active
                                                         select nls.Email).ToList();
 
@@ -570,6 +575,11 @@ namespace Nop.Plugin.Misc.FluidApi.Services
 
                 return subscriberEmails.Where(e => !String.IsNullOrEmpty(e)).Select(e => e.ToLowerInvariant());
             });
+        }
+
+        public IList<CustomerDto> Search(string query = "", string order = "Id", int page = 1, int limit = 50)
+        {
+            throw new NotImplementedException();
         }
     }
 }

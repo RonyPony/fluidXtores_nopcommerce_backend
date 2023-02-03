@@ -5,7 +5,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
 {
     public interface IOrderItemApiService
     {
-        IList<OrderItem> GetOrderItemsForOrder(Order order, int limit, int page, int sinceId);
-        int GetOrderItemsCount(Order order);
+        Task<IList<OrderItem>> GetOrderItemsForOrderAsync(Order order, int limit, int page, int sinceId);
+        Task<int> GetOrderItemsCountAsync(Order order);
     }
 }

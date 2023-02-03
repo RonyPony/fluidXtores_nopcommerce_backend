@@ -270,7 +270,7 @@ namespace Nop.Plugin.Misc.FluidApi.Helpers
                     orderDto.ShippingAddress = shippingAddress.ToDto();
                 }
                 
-                var customerDto = _customerApiService.GetCustomerById(order.CustomerId);
+                var customerDto = await _customerApiService.GetCustomerByIdAsync(order.CustomerId);
 
                 if (customerDto != null)
                 {
@@ -583,7 +583,7 @@ namespace Nop.Plugin.Misc.FluidApi.Helpers
                 manufacturerDto.Image = await imageDto;
             }
 
-            manufacturerDto.SeName = _urlRecordService.GetSeName(manufacturer);
+            manufacturerDto.SeName =await _urlRecordService.GetSeNameAsync(manufacturer);
             manufacturerDto.DiscountIds = (await _discountService.GetAppliedDiscountsAsync(manufacturer)).Select(discount => discount.Id).ToList();
             manufacturerDto.RoleIds = (await _aclService.GetAclRecordsAsync(manufacturer)).Select(acl => acl.CustomerRoleId).ToList();
             manufacturerDto.StoreIds = (await _storeMappingService.GetStoreMappingsAsync(manufacturer)).Select(mapping => mapping.StoreId)
