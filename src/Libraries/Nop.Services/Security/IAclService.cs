@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Nop.Core;
+using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Security;
 
@@ -96,5 +97,6 @@ namespace Nop.Services.Security
         /// The task result contains the rue - authorized; otherwise, false
         /// </returns>
         Task<bool> AuthorizeAsync<TEntity>(TEntity entity, Customer customer) where TEntity : BaseEntity, IAclSupported;
+        
     }
 }

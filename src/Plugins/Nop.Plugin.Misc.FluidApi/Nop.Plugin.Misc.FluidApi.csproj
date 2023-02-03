@@ -20,6 +20,11 @@
     <None Remove="Views\Configure.cshtml" />
     <None Remove="Views\PublicInfo.cshtml" />
     <None Remove="Views\" />
+    <None Remove="Services\" />
+    <None Remove="Infrastructure\" />
+    <None Remove="Helpers\" />
+    <None Remove="DTOs\" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.png">
@@ -50,5 +55,12 @@
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
     <Folder Include="Views\" />
+    <Folder Include="Services\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="DTOs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.2" />
   </ItemGroup>
 </Project>

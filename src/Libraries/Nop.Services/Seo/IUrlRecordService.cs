@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Nop.Core;
+using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Seo;
 
 namespace Nop.Services.Seo
@@ -155,5 +156,6 @@ namespace Nop.Services.Seo
         /// The task result contains the valid seName
         /// </returns>
         Task<string> ValidateSeNameAsync(int entityId, string entityName, string seName, string name, bool ensureNotEmpty);
+        
     }
 }

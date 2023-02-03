@@ -11,25 +11,19 @@ namespace Nop.Plugin.Misc.FluidApi.Models
     /// </summary>
     public record ConfigurationModel : BaseNopModel
     {
-        #region Ctor
+        [NopResourceDisplayName("Plugins.Api.Admin.EnableApi")]
+        public bool EnableApi { get; set; }
+        public bool EnableApi_OverrideForStore { get; set; }
 
-        public ConfigurationModel()
-        {
+        [NopResourceDisplayName("Plugins.Api.Admin.AllowRequestsFromSwagger")]
+        public bool AllowRequestsFromSwagger { get; set; }
+        public bool AllowRequestsFromSwagger_OverrideForStore { get; set; }
 
-        }
-
-        #endregion
-
-        #region Properties
+        [NopResourceDisplayName("Plugins.Api.Admin.EnableLogging")]
+        public bool EnableLogging { get; set; }
+        public bool EnableLogging_OverrideForStore { get; set; }
 
         public int ActiveStoreScopeConfiguration { get; set; }
 
-        [NopResourceDisplayName("Plugins.Misc.FluidApi.Fields.enable")]
-        public bool enable { get; set; }
-
-        [NopResourceDisplayName("Plugins.Misc.FluidApi.Fields.apikey")]
-        public string apiKey { get; set; }
-
-        #endregion
     }
 }

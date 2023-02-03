@@ -96,9 +96,9 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return;
 
             //prepare common properties
-            model.ActiveStoreScopeConfiguration = storeId;
-            model.enable = true;
-            model.apiKey = FluidApiSettings.apiKey;
+            // model.ActiveStoreScopeConfiguration = storeId;
+            model.EnableApi = FluidApiSettings.enabled;
+            
             
             var customer = await _workContext.GetCurrentCustomerAsync();
             
@@ -134,8 +134,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             var storeId = await _storeContext.GetActiveStoreScopeConfigurationAsync();
             var FluidApiSettings = await _settingService.LoadSettingAsync<FluidApiSettings>(storeId);
 
-            //set API key
-            FluidApiSettings.apiKey = model.apiKey;
+            FluidApiSettings.enabled = model.EnableApi;
             await _settingService.SaveSettingAsync(FluidApiSettings, settings => settings.apiKey, clearCache: false);
             await _settingService.ClearCacheAsync();
 
