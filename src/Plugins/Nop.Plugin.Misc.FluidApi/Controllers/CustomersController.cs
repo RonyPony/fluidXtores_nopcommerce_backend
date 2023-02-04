@@ -172,14 +172,14 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetCustomerById(int id, string fields = "")
+        public async Task<IActionResult> GetCustomerByIdAsync(int id, string fields = "")
         {
             if (id <= 0)
             {
                 return Error(HttpStatusCode.BadRequest, "id", "invalid id");
             }
 
-            var customer = _customerApiService.GetCustomerById(id);
+            var customer = await _customerApiService.GetCustomerByIdAsync(id);
 
             if (customer == null)
             {
@@ -258,7 +258,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(CustomersRootObject), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
-        public IActionResult CreateCustomer([ModelBinder(typeof(JsonModelBinder<CustomerDto>))] Delta<CustomerDto> customerDelta)
+        public async Task<IActionResult> CreateCustomerAsync([ModelBinder(typeof(JsonModelBinder<CustomerDto>))] Delta<CustomerDto> customerDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -266,14 +266,14 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error();
             }
 
-            var customer = CustomerService.GetCustomerByEmail(customerDelta.Dto.Email);
+            var customer = await CustomerService.GetCustomerByEmailAsync(customerDelta.Dto.Email);
             if (customer != null && !customer.Deleted)
                 return Error(HttpStatusCode.Conflict, nameof(Customer.Email), "Email is already registered");
 
             //If the validation has passed the customerDelta object won't be null for sure so we don't need to check for this.
 
             // Inserting the new customer
-            var newCustomer = _factory.Initialize();
+            var newCustomer = await _factory.InitializeAsync();
             customerDelta.Merge(newCustomer);
 
             foreach (var address in customerDelta.Dto.Addresses)
@@ -285,17 +285,17 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                     address.CreatedOnUtc = DateTime.UtcNow;
                 }
 
-                CustomerService.InsertCustomerAddress(newCustomer, address.ToEntity());
+                await CustomerService.InsertCustomerAddressAsync(newCustomer, address.ToEntity());
             }
 
-            CustomerService.InsertCustomer(newCustomer);
+            await CustomerService.InsertCustomerAsync(newCustomer);
 
-            InsertFirstAndLastNameGenericAttributes(customerDelta.Dto.FirstName, customerDelta.Dto.LastName, newCustomer);
+            InsertFirstAndLastNameGenericAttributesAsync(customerDelta.Dto.FirstName, customerDelta.Dto.LastName, newCustomer);
 
             if (!string.IsNullOrEmpty(customerDelta.Dto.LanguageId) && int.TryParse(customerDelta.Dto.LanguageId, out var languageId)
-                                                                    && _languageService.GetLanguageById(languageId) != null)
+                                                                    && await _languageService.GetLanguageByIdAsync(languageId) != null)
             {
-                _genericAttributeService.SaveAttribute(newCustomer, NopCustomerDefaults.LanguageIdAttribute, languageId);
+                await _genericAttributeService.SaveAttributeAsync(newCustomer, "LanguageId", languageId);
             }
 
             //password
@@ -309,12 +309,12 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             // TODO: move this before inserting the customer.
             if (customerDelta.Dto.RoleIds.Count > 0)
             {
-                AddValidRoles(customerDelta, newCustomer);
+                AddValidRolesAsync(customerDelta, newCustomer);
             }
 
             // Preparing the result dto of the new customer
             // We do not prepare the shopping cart items because we have a separate endpoint for them.
-            var newCustomerDto = _dtoHelper.PrepareCustomerDTO(newCustomer);
+            var newCustomerDto = await _dtoHelper.PrepareCustomerDTOAsync(newCustomer);
 
             // This is needed because the entity framework won't populate the navigation properties automatically
             // and the country will be left null. So we do it by hand here.
@@ -327,7 +327,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             newCustomerDto.LanguageId = customerDelta.Dto.LanguageId;
 
             //activity log
-            CustomerActivityService.InsertActivity("AddNewCustomer", LocalizationService.GetResource("ActivityLog.AddNewCustomer"), newCustomer);
+            await CustomerActivityService.InsertActivityAsync("AddNewCustomer", await LocalizationService.GetResourceAsync("ActivityLog.AddNewCustomer"), newCustomer);
 
             var customersRootObject = new CustomersRootObject();
 
@@ -345,7 +345,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
-        public IActionResult UpdateCustomer([ModelBinder(typeof(JsonModelBinder<CustomerDto>))] Delta<CustomerDto> customerDelta)
+        public async Task<IActionResult> UpdateCustomerAsync([ModelBinder(typeof(JsonModelBinder<CustomerDto>))] Delta<CustomerDto> customerDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -365,12 +365,12 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             if (customerDelta.Dto.RoleIds.Count > 0)
             {
-                AddValidRoles(customerDelta, currentCustomer);
+                AddValidRolesAsync(customerDelta, currentCustomer);
             }
 
             if (customerDelta.Dto.Addresses.Count > 0)
             {
-                var currentCustomerAddresses = CustomerService.GetAddressesByCustomerId(currentCustomer.Id).ToDictionary(address => address.Id, address => address);
+                var currentCustomerAddresses = (await CustomerService.GetAddressesByCustomerIdAsync(currentCustomer.Id)).ToDictionary(address => address.Id, address => address);
 
                 foreach (var passedAddress in customerDelta.Dto.Addresses)
                 {
@@ -382,20 +382,20 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                     }
                     else
                     {
-                        CustomerService.InsertCustomerAddress(currentCustomer, addressEntity);
+                        await CustomerService.InsertCustomerAddressAsync(currentCustomer, addressEntity);
                     }
                 }
             }
 
-            CustomerService.UpdateCustomer(currentCustomer);
+            await CustomerService.UpdateCustomerAsync(currentCustomer);
 
-            InsertFirstAndLastNameGenericAttributes(customerDelta.Dto.FirstName, customerDelta.Dto.LastName, currentCustomer);
+            InsertFirstAndLastNameGenericAttributesAsync(customerDelta.Dto.FirstName, customerDelta.Dto.LastName, currentCustomer);
 
 
             if (!string.IsNullOrEmpty(customerDelta.Dto.LanguageId) && int.TryParse(customerDelta.Dto.LanguageId, out var languageId)
-                                                                    && _languageService.GetLanguageById(languageId) != null)
+                                                                    && await _languageService.GetLanguageByIdAsync(languageId) != null)
             {
-                _genericAttributeService.SaveAttribute(currentCustomer, NopCustomerDefaults.LanguageIdAttribute, languageId);
+                await _genericAttributeService.SaveAttributeAsync(currentCustomer, "LanguageId", languageId);
             }
 
             //password
@@ -408,7 +408,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             // Preparing the result dto of the new customer
             // We do not prepare the shopping cart items because we have a separate endpoint for them.
-            var updatedCustomer = _dtoHelper.PrepareCustomerDTO(currentCustomer);
+            var updatedCustomer = await _dtoHelper.PrepareCustomerDTOAsync(currentCustomer);
 
             // This is needed because the entity framework won't populate the navigation properties automatically
             // and the country name will be left empty because the mapping depends on the navigation property
@@ -416,7 +416,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             PopulateAddressCountryNames(updatedCustomer);
 
             // Set the fist and last name separately because they are not part of the customer entity, but are saved in the generic attributes.
-            var firstNameGenericAttribute = _genericAttributeService.GetAttributesForEntity(currentCustomer.Id, typeof(Customer).Name)
+            var firstNameGenericAttribute = (await _genericAttributeService.GetAttributesForEntityAsync(currentCustomer.Id, typeof(Customer).Name))
                                                                     .FirstOrDefault(x => x.Key == "FirstName");
 
             if (firstNameGenericAttribute != null)
@@ -424,7 +424,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 updatedCustomer.FirstName = firstNameGenericAttribute.Value;
             }
 
-            var lastNameGenericAttribute = _genericAttributeService.GetAttributesForEntity(currentCustomer.Id, typeof(Customer).Name)
+            var lastNameGenericAttribute = (await _genericAttributeService.GetAttributesForEntityAsync(currentCustomer.Id, typeof(Customer).Name))
                                                                    .FirstOrDefault(x => x.Key == "LastName");
 
             if (lastNameGenericAttribute != null)
@@ -432,7 +432,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 updatedCustomer.LastName = lastNameGenericAttribute.Value;
             }
 
-            var languageIdGenericAttribute = _genericAttributeService.GetAttributesForEntity(currentCustomer.Id, typeof(Customer).Name)
+            var languageIdGenericAttribute = (await _genericAttributeService.GetAttributesForEntityAsync(currentCustomer.Id, typeof(Customer).Name))
                                                                      .FirstOrDefault(x => x.Key == "LanguageId");
 
             if (languageIdGenericAttribute != null)
@@ -441,7 +441,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             }
 
             //activity log
-            CustomerActivityService.InsertActivity("UpdateCustomer", LocalizationService.GetResource("ActivityLog.UpdateCustomer"), currentCustomer);
+            await CustomerActivityService.InsertActivityAsync("UpdateCustomer", await LocalizationService.GetResourceAsync("ActivityLog.UpdateCustomer"), currentCustomer);
 
             var customersRootObject = new CustomersRootObject();
 
@@ -459,7 +459,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
-        public IActionResult DeleteCustomer(int id)
+        public async Task<IActionResult> DeleteCustomerAsync(int id)
         {
             if (id <= 0)
             {
@@ -473,47 +473,47 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.NotFound, "customer", "not found");
             }
 
-            CustomerService.DeleteCustomer(customer);
+            await CustomerService.DeleteCustomerAsync(customer);
 
             //remove newsletter subscription (if exists)
             foreach (var store in StoreService.GetAllStores())
             {
-                var subscription = _newsLetterSubscriptionService.GetNewsLetterSubscriptionByEmailAndStoreId(customer.Email, store.Id);
+                var subscription = await _newsLetterSubscriptionService.GetNewsLetterSubscriptionByEmailAndStoreIdAsync(customer.Email, store.Id);
                 if (subscription != null)
-                    _newsLetterSubscriptionService.DeleteNewsLetterSubscription(subscription);
+                    await _newsLetterSubscriptionService.DeleteNewsLetterSubscriptionAsync(subscription);
             }
 
             //activity log
-            CustomerActivityService.InsertActivity("DeleteCustomer", LocalizationService.GetResource("ActivityLog.DeleteCustomer"), customer);
+            await CustomerActivityService.InsertActivityAsync("DeleteCustomer",await LocalizationService.GetResourceAsync("ActivityLog.DeleteCustomer"), customer);
 
             return new RawJsonActionResult("{}");
         }
 
-        private void InsertFirstAndLastNameGenericAttributes(string firstName, string lastName, Customer newCustomer)
+        private async Task InsertFirstAndLastNameGenericAttributesAsync(string firstName, string lastName, Customer newCustomer)
         {
             // we assume that if the first name is not sent then it will be null and in this case we don't want to update it
             if (firstName != null)
             {
-                _genericAttributeService.SaveAttribute(newCustomer, NopCustomerDefaults.FirstNameAttribute, firstName);
+                await _genericAttributeService.SaveAttributeAsync(newCustomer, "firstName", firstName);
             }
 
             if (lastName != null)
             {
-                _genericAttributeService.SaveAttribute(newCustomer, NopCustomerDefaults.LastNameAttribute, lastName);
+                await _genericAttributeService.SaveAttributeAsync(newCustomer, "lastName", lastName);
             }
         }
 
-        private void AddValidRoles(Delta<CustomerDto> customerDelta, Customer currentCustomer)
+        private async Task AddValidRolesAsync(Delta<CustomerDto> customerDelta, Customer currentCustomer)
         {
-            var allCustomerRoles = CustomerService.GetAllCustomerRoles(true);
+            var allCustomerRoles = await CustomerService.GetAllCustomerRolesAsync(true);
             foreach (var customerRole in allCustomerRoles)
             {
                 if (customerDelta.Dto.RoleIds.Contains(customerRole.Id))
                 {
                     //new role
-                    if (!CustomerService.IsInCustomerRole(currentCustomer, customerRole.SystemName))
+                    if (!await CustomerService.IsInCustomerRoleAsync(currentCustomer, customerRole.SystemName))
                     {
-                        CustomerService.AddCustomerRoleMapping(new CustomerCustomerRoleMapping()
+                        await CustomerService.AddCustomerRoleMappingAsync(new CustomerCustomerRoleMapping()
                         {
                             CustomerId = currentCustomer.Id,
                             CustomerRoleId = customerRole.Id
@@ -522,9 +522,9 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 }
                 else
                 {
-                    if (CustomerService.IsInCustomerRole(currentCustomer, customerRole.SystemName))
+                    if ( await CustomerService.IsInCustomerRoleAsync(currentCustomer, customerRole.SystemName))
                     {
-                        CustomerService.RemoveCustomerRoleMapping(currentCustomer, customerRole);
+                        await CustomerService.RemoveCustomerRoleMappingAsync(currentCustomer, customerRole);
                     }
                 }
             }
@@ -534,25 +534,25 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         {
             foreach (var address in newCustomerDto.Addresses)
             {
-                SetCountryName(address);
+                SetCountryNameAsync(address);
             }
 
             if (newCustomerDto.BillingAddress != null)
             {
-                SetCountryName(newCustomerDto.BillingAddress);
+                SetCountryNameAsync(newCustomerDto.BillingAddress);
             }
 
             if (newCustomerDto.ShippingAddress != null)
             {
-                SetCountryName(newCustomerDto.ShippingAddress);
+                SetCountryNameAsync(newCustomerDto.ShippingAddress);
             }
         }
 
-        private void SetCountryName(AddressDto address)
+        private async Task SetCountryNameAsync(AddressDto address)
         {
             if (string.IsNullOrEmpty(address.CountryName) && address.CountryId.HasValue)
             {
-                var country = _countryService.GetCountryById(address.CountryId.Value);
+                var country = await _countryService.GetCountryByIdAsync(address.CountryId.Value);
                 address.CountryName = country.Name;
             }
         }

@@ -45,7 +45,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
         [Route("/token")]
         [HttpGet]
-        public IActionResult Create(TokenRequest model)
+        public async Task<IActionResult> CreateAsync(TokenRequest model)
         {
             if (string.IsNullOrEmpty(model.Username))
             {
@@ -57,37 +57,37 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Json(new TokenResponse("Missing password"));
             }
 
-            var customer = ValidateUser(model);
+            var customer = await ValidateUserAsync(model);
 
             if (customer != null)
             {
-                return Json(GenerateToken(customer));
+                return Json(GenerateTokenAsync(customer));
             }
 
             return BadRequest(new TokenResponse("Access Denied"));// new HttpStatusCodeResult(HttpStatusCode.Forbidden);// Json(new TokenResponse("Access Denied"));
         }
 
-        private CustomerLoginResults LoginCustomer(TokenRequest model)
+        private async Task<CustomerLoginResults> LoginCustomerAsync(TokenRequest model)
         {
-            var loginResult = _customerRegistrationService
-                .ValidateCustomer(model.Username, model.Password);
+            var loginResult = await _customerRegistrationService
+                .ValidateCustomerAsync(model.Username, model.Password);
 
             return loginResult;
         }
 
-        private Customer ValidateUser(TokenRequest model)
+        private async Task<Customer> ValidateUserAsync(TokenRequest model)
         {
-            var result = LoginCustomer(model);
+            var result = await LoginCustomerAsync(model);
 
             if (result == CustomerLoginResults.Successful)
             {
                 var customer = _customerSettings.UsernamesEnabled
-                                   ? _customerService.GetCustomerByUsername(model.Username)
-                                   : _customerService.GetCustomerByEmail(model.Username);
+                                   ? await _customerService.GetCustomerByUsernameAsync(model.Username)
+                                   : await _customerService.GetCustomerByEmailAsync(model.Username);
 
 
                 //activity log
-                _customerActivityService.InsertActivity(customer, "Api.TokenRequest", "User API token request", customer);
+                await _customerActivityService.InsertActivityAsync(customer, "Api.TokenRequest", "User API token request", customer);
 
                 return customer;
             }
@@ -102,7 +102,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                        : _apiSettings.TokenExpiryInDays;
         }
 
-        private TokenResponse GenerateToken(Customer customer)
+        private async Task<TokenResponse> GenerateTokenAsync(Customer customer)
         {
             var expiresInSeconds = new DateTimeOffset(DateTime.Now.AddDays(GetTokenExpiryInDays())).ToUnixTimeSeconds();
 
@@ -118,7 +118,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
                          };
 
-            foreach (var customerRole in _customerService.GetCustomerRoles(customer, false))
+            foreach (var customerRole in await _customerService.GetCustomerRolesAsync(customer, false))
             {
                 claims.Add(new Claim(ClaimTypes.Role, customerRole.Name));
             }

@@ -2,6 +2,7 @@
 {
     public interface IFactory<T>
     {
+        object Initialize();
         Task<T> InitializeAsync();
     }
 }

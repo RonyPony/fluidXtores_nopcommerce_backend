@@ -274,5 +274,6 @@ namespace Nop.Services.Media
         /// <param name="fileExtension">The file extension</param>
         /// <returns>Picture's content type</returns>
         string GetPictureContentTypeByFileExtension(string fileExtension);
+        object GetPictureById(int pictureId);
     }
 }

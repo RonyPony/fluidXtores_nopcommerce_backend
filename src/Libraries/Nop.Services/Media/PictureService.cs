@@ -1244,6 +1244,11 @@ namespace Nop.Services.Media
             return contentType;
         }
 
+        public object GetPictureById(int pictureId)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }
