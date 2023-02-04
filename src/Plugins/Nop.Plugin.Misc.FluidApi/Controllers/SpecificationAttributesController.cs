@@ -169,7 +169,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             _specificationAttributeService.InsertSpecificationAttribute(specificationAttribute);
 
-            CustomerActivityService.InsertActivity("AddNewSpecAttribute", LocalizationService.GetResource("ActivityLog.AddNewSpecAttribute"), specificationAttribute);
+            CustomerActivityService.InsertActivity("AddNewSpecAttribute", LocalizationService.GetResourceAsync("ActivityLog.AddNewSpecAttribute"), specificationAttribute);
 
             // Preparing the result dto of the new product
             var specificationAttributeDto = _dtoHelper.PrepareSpecificationAttributeDto(specificationAttribute);
@@ -210,7 +210,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             _specificationAttributeService.UpdateSpecificationAttribute(specificationAttribute);
           
-            CustomerActivityService.InsertActivity("EditSpecAttribute", LocalizationService.GetResource("ActivityLog.EditSpecAttribute"), specificationAttribute);
+            CustomerActivityService.InsertActivity("EditSpecAttribute", LocalizationService.GetResourceAsync("ActivityLog.EditSpecAttribute"), specificationAttribute);
 
             // Preparing the result dto of the new product attribute
             var specificationAttributeDto = _dtoHelper.PrepareSpecificationAttributeDto(specificationAttribute);
@@ -246,7 +246,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             _specificationAttributeService.DeleteSpecificationAttribute(specificationAttribute);
 
             //activity log
-            CustomerActivityService.InsertActivity("DeleteSpecAttribute", LocalizationService.GetResource("ActivityLog.DeleteSpecAttribute"), specificationAttribute);
+            CustomerActivityService.InsertActivity("DeleteSpecAttribute", LocalizationService.GetResourceAsync("ActivityLog.DeleteSpecAttribute"), specificationAttribute);
 
             return new RawJsonActionResult("{}");
         }

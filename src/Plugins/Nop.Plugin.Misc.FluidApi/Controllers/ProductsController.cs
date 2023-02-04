@@ -223,7 +223,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             _productService.UpdateProduct(product);
 
-            CustomerActivityService.InsertActivity("APIService", LocalizationService.GetResource("ActivityLog.AddNewProduct"), product);
+            CustomerActivityService.InsertActivity("APIService", LocalizationService.GetResourceAsync("ActivityLog.AddNewProduct"), product);
 
             // Preparing the result dto of the new product
             var productDto = _dtoHelper.PrepareProductDTO(product);
@@ -291,7 +291,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             _productService.UpdateProduct(product);
 
-            CustomerActivityService.InsertActivity("APIService", LocalizationService.GetResource("ActivityLog.UpdateProduct"), product);
+            CustomerActivityService.InsertActivity("APIService", LocalizationService.GetResourceAsync("ActivityLog.UpdateProduct"), product);
 
             // Preparing the result dto of the new product
             var productDto = _dtoHelper.PrepareProductDTO(product);
@@ -362,7 +362,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             _productService.UpdateProduct(product);
 
-            CustomerActivityService.InsertActivity("APIService", LocalizationService.GetResource("ActivityLog.UpdateProduct"), product);
+            CustomerActivityService.InsertActivity("APIService", LocalizationService.GetResourceAsync("ActivityLog.UpdateProduct"), product);
 
             // Preparing the result dto of the new product
             var productDto = _dtoHelper.PrepareProductDTO(product);
@@ -404,7 +404,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             _productService.DeleteProduct(product);
 
             //activity log
-            CustomerActivityService.InsertActivity("APIService", string.Format(LocalizationService.GetResource("ActivityLog.DeleteProduct"), product.Name), product);
+            CustomerActivityService.InsertActivity("APIService", string.Format(LocalizationService.GetResourceAsync("ActivityLog.DeleteProduct"), product.Name), product);
 
             return new RawJsonActionResult("{}");
         }

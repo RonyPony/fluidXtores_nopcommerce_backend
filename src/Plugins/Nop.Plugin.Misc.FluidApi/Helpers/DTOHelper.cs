@@ -252,7 +252,7 @@ namespace Nop.Plugin.Misc.FluidApi.Helpers
             {
                 var orderDto = order.ToDto();
 
-                orderDto.OrderItems = (ICollection<OrderItemDto>)(await _orderService.GetOrderItemsAsync(order.Id)).Select(PrepareOrderItemDTO).ToList();
+                orderDto.OrderItems = (ICollection<OrderItemDto>)(await _orderService.GetOrderItemsAsync(order.Id)).Select(PrepareOrderItemDTOAsync).ToList();
                 orderDto.Shipments = (await _shipmentService.GetShipmentsByOrderIdAsync(order.Id)).Select(PrepareShippingItemDTO).ToList();
                 
                 var billingAddress = await _addressService.GetAddressByIdAsync(order.BillingAddressId);
@@ -357,7 +357,7 @@ namespace Nop.Plugin.Misc.FluidApi.Helpers
             };
 
         }
-        public async Task<OrderItemDto> PrepareOrderItemDTO(OrderItem orderItem)
+        public async Task<OrderItemDto> PrepareOrderItemDTOAsync(OrderItem orderItem)
         {
             var dto = orderItem.ToDto();
             dto.Product = await PrepareProductDTOAsync(await _productService.GetProductByIdAsync(orderItem.ProductId));
@@ -611,6 +611,7 @@ namespace Nop.Plugin.Misc.FluidApi.Helpers
         {
             return await PrepareProductImageDtoAsync(productPicture);
         }
+
     }
 }
 

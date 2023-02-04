@@ -27,7 +27,6 @@ namespace Nop.Plugin.Misc.FluidApi.Helpers
         Task<CategoryDto> PrepareCategoryDTOAsync(Category category);
         Task<OrderDto> PrepareOrderDTOAsync(Order order);
         Task<ShoppingCartItemDto> PrepareShoppingCartItemDTOAsync(ShoppingCartItem shoppingCartItem);
-        Task<OrderItemDto> PrepareOrderItemDTO(OrderItem orderItem);
         Task<StoreDto> PrepareStoreDTOAsync(Store store);
         Task<LanguageDto> PrepareLanguageDtoAsync(Language language);
         ProductAttributeDto PrepareProductAttributeDTO(ProductAttribute productAttribute);
@@ -36,7 +35,7 @@ namespace Nop.Plugin.Misc.FluidApi.Helpers
         Task<ManufacturerDto> PrepareManufacturerDto(Manufacturer manufacturer);
         TaxCategoryDto PrepareTaxCategoryDTO(TaxCategory taxCategory);
         Task<ImageMappingDto> PrepareProductPictureDTO(ProductPicture productPicture);
-        Task<object> PrepareOrderItemDTOAsync(OrderItem item);
+        Task<OrderItemDto> PrepareOrderItemDTOAsync(OrderItem item);
     }
 }
 

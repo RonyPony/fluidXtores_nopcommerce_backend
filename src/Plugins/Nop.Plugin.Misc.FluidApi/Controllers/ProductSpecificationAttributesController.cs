@@ -246,7 +246,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             _specificationAttributeService.DeleteProductSpecificationAttribute(productSpecificationAttribute);
 
             //activity log
-            CustomerActivityService.InsertActivity("DeleteProductSpecificationAttribute", LocalizationService.GetResource("ActivityLog.DeleteProductSpecificationAttribute"), productSpecificationAttribute);
+            CustomerActivityService.InsertActivity("DeleteProductSpecificationAttribute", LocalizationService.GetResourceAsync("ActivityLog.DeleteProductSpecificationAttribute"), productSpecificationAttribute);
 
             return new RawJsonActionResult("{}");
         }

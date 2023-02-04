@@ -65,7 +65,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         {
             var allLanguages = _languageService.GetAllLanguages();
 
-            IList<LanguageDto> languagesAsDto = allLanguages.Select(language => _dtoHelper.PrepareLanguageDto(language)).ToList();
+            IList<LanguageDto> languagesAsDto = (IList<LanguageDto>)allLanguages.Select(async language => await _dtoHelper.PrepareLanguageDtoAsync(language)).ToList();
 
             var languagesRootObject = new LanguagesRootObject()
             {

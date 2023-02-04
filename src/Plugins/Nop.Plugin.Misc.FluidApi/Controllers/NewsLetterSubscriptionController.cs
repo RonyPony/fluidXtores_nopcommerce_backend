@@ -96,14 +96,14 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
-        public IActionResult DeactivateNewsLetterSubscription(string email)
+        public async Task<IActionResult> DeactivateNewsLetterSubscriptionAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
             {
                 return Error(HttpStatusCode.BadRequest, "The email parameter could not be empty.");
             }
 
-            var existingSubscription = _newsLetterSubscriptionService.GetNewsLetterSubscriptionByEmailAndStoreId(email, _storeContext.CurrentStore.Id);
+            var existingSubscription = await _newsLetterSubscriptionService.GetNewsLetterSubscriptionByEmailAndStoreIdAsync(email, _storeContext.GetCurrentStore().Id);
 
             if (existingSubscription == null)
             {
@@ -112,7 +112,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             existingSubscription.Active = false;
 
-            _newsLetterSubscriptionService.UpdateNewsLetterSubscription(existingSubscription);
+            await _newsLetterSubscriptionService.UpdateNewsLetterSubscriptionAsync(existingSubscription);
 
             return Ok();
         }

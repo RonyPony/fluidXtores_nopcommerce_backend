@@ -236,7 +236,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult DeleteProductAttribute(int id)
+        public async Task<IActionResult> DeleteProductAttributeAsync(int id)
         {
             if (id <= 0)
             {
@@ -250,12 +250,12 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.NotFound, "product attribute", "not found");
             }
 
-            _productAttributeService.DeleteProductAttribute(productAttribute);
+            await _productAttributeService.DeleteProductAttributeAsync(productAttribute);
 
             //activity log
-            CustomerActivityService.InsertActivity("DeleteProductAttribute", LocalizationService.GetResource("ActivityLog.DeleteProductAttribute"), productAttribute);
+            await CustomerActivityService.InsertActivityAsync("DeleteProductAttribute", await LocalizationService.GetResourceAsync("ActivityLog.DeleteProductAttribute"), productAttribute);
 
-            return new RawJsonActionResult("{}");
+            //GetResource(awJsonActionResult("{}");
         }       
     }
 }

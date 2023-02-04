@@ -64,16 +64,16 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetCurrentStore(string fields = "")
+        public async Task<IActionResult> GetCurrentStore(string fields = "")
         {
-            var store = _storeContext.CurrentStore;
+            var store = _storeContext.GetCurrentStore();
 
             if (store == null)
             {
                 return Error(HttpStatusCode.NotFound, "store", "store not found");
             }
 
-            var storeDto = _dtoHelper.PrepareStoreDTO(store);
+            var storeDto =await _dtoHelper.PrepareStoreDTOAsync(store);
 
             var storesRootObject = new StoresRootObject();
 
@@ -96,7 +96,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetAllStores(string fields = "")
+        public async Task<IActionResult> GetAllStoresAsync(string fields = "")
         {
             var allStores = StoreService.GetAllStores();
         
@@ -104,7 +104,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             foreach (var store in allStores)
             {
-                var storeDto = _dtoHelper.PrepareStoreDTO(store);
+                var storeDto = await _dtoHelper.PrepareStoreDTOAsync(store);
 
                 storesAsDto.Add(storeDto);
             }

@@ -217,7 +217,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             var json = JsonFieldsSerializer.Serialize(productCategoryMappingsRootObject, string.Empty);
 
             //activity log 
-            CustomerActivityService.InsertActivity("AddNewProductCategoryMapping", LocalizationService.GetResource("ActivityLog.AddNewProductCategoryMapping"), newProductCategory);
+            CustomerActivityService.InsertActivity("AddNewProductCategoryMapping", LocalizationService.GetResourceAsync("ActivityLog.AddNewProductCategoryMapping"), newProductCategory);
 
             return new RawJsonActionResult(json);
         }
@@ -270,7 +270,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             _categoryService.UpdateProductCategory(productCategoryEntityToUpdate);
 
             //activity log
-            CustomerActivityService.InsertActivity("UpdateProdutCategoryMapping", LocalizationService.GetResource("ActivityLog.UpdateProdutCategoryMapping"), productCategoryEntityToUpdate);
+            CustomerActivityService.InsertActivity("UpdateProdutCategoryMapping", LocalizationService.GetResourceAsync("ActivityLog.UpdateProdutCategoryMapping"), productCategoryEntityToUpdate);
 
             var updatedProductCategoryDto = productCategoryEntityToUpdate.ToDto();
 
@@ -311,7 +311,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 var productCategory = _categoryService.GetProductCategoryById(productCategoryMappingDto.Id);
                 _categoryService.DeleteProductCategory(productCategory);
                 //activity log 
-                CustomerActivityService.InsertActivity("DeleteProductCategoryMapping", LocalizationService.GetResource("ActivityLog.DeleteProductCategoryMapping"), productCategory);
+                CustomerActivityService.InsertActivity("DeleteProductCategoryMapping", LocalizationService.GetResourceAsync("ActivityLog.DeleteProductCategoryMapping"), productCategory);
             }
 
 
@@ -325,7 +325,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             //_categoryService.DeleteProductCategory(productCategory);
 
             ////activity log 
-            //CustomerActivityService.InsertActivity("DeleteProductCategoryMapping", LocalizationService.GetResource("ActivityLog.DeleteProductCategoryMapping"), productCategory);
+            //CustomerActivityService.InsertActivity("DeleteProductCategoryMapping", LocalizationService.GetResourceAsync("ActivityLog.DeleteProductCategoryMapping"), productCategory);
 
             return new RawJsonActionResult("{}");
         }

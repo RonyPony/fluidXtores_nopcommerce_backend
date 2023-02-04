@@ -69,9 +69,9 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetTaxCategories(TaxCategoriesParametersModel parameters)
+        public async Task<IActionResult> GetTaxCategoriesAsync(TaxCategoriesParametersModel parameters)
         {
-            var allTaxCategories = _taxCategoryService.GetAllTaxCategories();
+            var allTaxCategories = await _taxCategoryService.GetAllTaxCategoriesAsync();
 
             IList<TaxCategoryDto> taxCategoriesAsDtos = allTaxCategories.Select(taxCategory => _dtoHelper.PrepareTaxCategoryDTO(taxCategory)).ToList();
 

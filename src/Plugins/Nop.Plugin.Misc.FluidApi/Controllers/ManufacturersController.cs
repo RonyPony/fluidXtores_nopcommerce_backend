@@ -85,13 +85,13 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.BadRequest, "page", "Invalid page parameter");
             }
 
-            var allManufacturers = _manufacturerApiService.GetManufacturers(parameters.Ids, parameters.CreatedAtMin, parameters.CreatedAtMax,
-                                                                             parameters.UpdatedAtMin, parameters.UpdatedAtMax,
-                                                                             parameters.Limit, parameters.Page, parameters.SinceId,
-                                                                             parameters.ProductId, parameters.PublishedStatus, parameters.LanguageId)
-                                                   .Where(c => StoreMappingService.Authorize(c));
+            var allManufacturers = new List<Manufacturer>();// _manufacturerApiService.GetManufacturers(parameters.Ids, parameters.CreatedAtMin, parameters.CreatedAtMax,
+                                                            //                          parameters.UpdatedAtMin, parameters.UpdatedAtMax,
+                                                            //                          parameters.Limit, parameters.Page, parameters.SinceId,
+                                                            //                          parameters.ProductId, parameters.PublishedStatus, parameters.LanguageId)
+                                                            //.Where(async c => await StoreMappingService.AuthorizeAsync(c));
 
-            IList<ManufacturerDto> manufacturersAsDtos = allManufacturers.Select(manufacturer => _dtoHelper.PrepareManufacturerDto(manufacturer)).ToList();
+            IList<ManufacturerDto> manufacturersAsDtos = (IList<ManufacturerDto>)allManufacturers.Select(manufacturer => _dtoHelper.PrepareManufacturerDto(manufacturer)).ToList();
 
             var manufacturersRootObject = new ManufacturersRootObject()
             {
@@ -142,7 +142,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetManufacturerById(int id, string fields = "")
+        public async Task<IActionResult> GetManufacturerByIdAsync(int id, string fields = "")
         {
             if (id <= 0)
             {
@@ -156,11 +156,11 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.NotFound, "manufacturer", "manufacturer not found");
             }
 
-            var manufacturerDto = _dtoHelper.PrepareManufacturerDto(manufacturer);
+            var manufacturerDto = await _dtoHelper.PrepareManufacturerDto(manufacturer);
 
             var manufacturersRootObject = new ManufacturersRootObject();
 
-            manufacturersRootObject.Manufacturers.Add(manufacturerDto);
+            manufacturersRootObject.Manufacturers.Add( manufacturerDto);
 
             var json = JsonFieldsSerializer.Serialize(manufacturersRootObject, fields);
 
@@ -173,7 +173,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
-        public IActionResult CreateManufacturer([ModelBinder(typeof(JsonModelBinder<ManufacturerDto>))] Delta<ManufacturerDto> manufacturerDelta)
+        public async Task<IActionResult> CreateManufacturerAsync([ModelBinder(typeof(JsonModelBinder<ManufacturerDto>))] Delta<ManufacturerDto> manufacturerDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -188,7 +188,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             // We need to insert the picture before the manufacturer so we can obtain the picture id and map it to the manufacturer.
             if (manufacturerDelta.Dto.Image != null && manufacturerDelta.Dto.Image.Binary != null)
             {
-                insertedPicture = PictureService.InsertPicture(manufacturerDelta.Dto.Image.Binary, manufacturerDelta.Dto.Image.MimeType, string.Empty);
+                insertedPicture = await PictureService.InsertPictureAsync(manufacturerDelta.Dto.Image.Binary, manufacturerDelta.Dto.Image.MimeType, string.Empty);
             }
 
             // Inserting the new manufacturer
@@ -197,10 +197,10 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             if (insertedPicture != null)
             {
-                manufacturer.PictureId = insertedPicture.Id;
+                 //manufacturer.PictureId = insertedPicture.Id;
             }
 
-            _manufacturerService.InsertManufacturer(manufacturer);
+            _manufacturerService.InsertManufacturerAsync(manufacturer);
 
             UpdateAclRoles(manufacturer, manufacturerDelta.Dto.RoleIds);
 
@@ -212,7 +212,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             var seName = _urlRecordService.ValidateSeName(manufacturer, manufacturerDelta.Dto.SeName, manufacturer.Name, true);
             _urlRecordService.SaveSlug(manufacturer, seName, 0);
             
-            CustomerActivityService.InsertActivity("AddNewManufacturer", LocalizationService.GetResource("ActivityLog.AddNewManufacturer"), manufacturer);
+            CustomerActivityService.InsertActivity("AddNewManufacturer", LocalizationService.GetResourceAsync("ActivityLog.AddNewManufacturer"), manufacturer);
 
             // Preparing the result dto of the new manufacturer
             var newManufacturerDto = _dtoHelper.PrepareManufacturerDto(manufacturer);
@@ -273,7 +273,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             _manufacturerService.UpdateManufacturer(manufacturer);
 
             CustomerActivityService.InsertActivity("UpdateManufacturer",
-                LocalizationService.GetResource("ActivityLog.UpdateManufacturer"), manufacturer);
+                LocalizationService.GetResourceAsync("ActivityLog.UpdateManufacturer"), manufacturer);
 
             var manufacturerDto = _dtoHelper.PrepareManufacturerDto(manufacturer);
 
@@ -310,7 +310,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             _manufacturerService.DeleteManufacturer(manufacturerToDelete);
 
             //activity log
-            CustomerActivityService.InsertActivity("DeleteManufacturer", LocalizationService.GetResource("ActivityLog.DeleteManufacturer"), manufacturerToDelete);
+            CustomerActivityService.InsertActivity("DeleteManufacturer", LocalizationService.GetResourceAsync("ActivityLog.DeleteManufacturer"), manufacturerToDelete);
 
             return new RawJsonActionResult("{}");
         }
