@@ -16,7 +16,7 @@ namespace Nop.Plugin.Misc.FluidApi.Factories
             _catalogSettings = catalogSettings;
         }
 
-        public async Task<Category> InitializeAsync()
+        public async Task<Category> Initialize()
         {
             // TODO: cache the default entity.
             var defaultCategory = new Category();

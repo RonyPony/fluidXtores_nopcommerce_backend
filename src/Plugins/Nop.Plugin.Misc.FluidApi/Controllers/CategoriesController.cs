@@ -202,7 +202,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             }
 
             // Inserting the new category
-            var category = await _factory.InitializeAsync();
+            var category = await _factory.Initialize();
             categoryDelta.Merge(ref category);
 
             if (insertedPicture != null)

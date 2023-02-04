@@ -338,7 +338,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 }
             }
 
-            var newOrder =await _factory.InitializeAsync();
+            var newOrder =await _factory.Initialize();
             orderDelta.Merge(newOrder);
 
             //customer.BillingAddressId = newOrder.BillingAddressId = orderDelta.Dto.BillingAddress.Id;

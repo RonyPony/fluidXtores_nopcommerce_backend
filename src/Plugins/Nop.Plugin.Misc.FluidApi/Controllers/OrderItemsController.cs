@@ -81,7 +81,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int) HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), (int) HttpStatusCode.Unauthorized)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetOrderItems(int orderId, OrderItemsParametersModel parameters)
+        public async Task<IActionResult> GetOrderItemsAsyncAsync(int orderId, OrderItemsParametersModel parameters)
         {
             if (parameters.Limit < Configurations.MinLimit || parameters.Limit > Configurations.MaxLimit)
             {
@@ -101,12 +101,12 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             }
 
             var allOrderItemsForOrder =
-                _orderItemApiService.GetOrderItemsForOrder(order, parameters.Limit, parameters.Page,
+                await _orderItemApiService.GetOrderItemsForOrderAsync(order, parameters.Limit, parameters.Page,
                     parameters.SinceId);
 
             var orderItemsRootObject = new OrderItemsRootObject
             {
-                OrderItems = allOrderItemsForOrder.Select(item => _dtoHelper.PrepareOrderItemDTO(item)).ToList()
+                OrderItems = (IList<OrderItemDto>)allOrderItemsForOrder.Select(async item => await _dtoHelper.PrepareOrderItemDTOAsync(item)).ToList()
             };
 
             var json = JsonFieldsSerializer.Serialize(orderItemsRootObject, parameters.Fields);
@@ -121,7 +121,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int) HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int) HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetOrderItemsCount(int orderId)
+        public async Task<IActionResult> GetOrderItemsAsyncCountAsync(int orderId)
         {
             var order = _orderApiService.GetOrderById(orderId);
 
@@ -130,7 +130,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.NotFound, "order", "not found");
             }
 
-            var orderItemsCountForOrder = _orderItemApiService.GetOrderItemsCount(order);
+            var orderItemsCountForOrder = await _orderItemApiService.GetOrderItemsCountAsync(order);
 
             var orderItemsCountRootObject = new OrderItemsCountRootObject
             {
@@ -147,7 +147,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int) HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int) HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetOrderItemByIdForOrder(int orderId, int orderItemId, string fields = "")
+        public async Task<IActionResult> GetOrderItemByIdAsyncForOrderAsync(int orderId, int orderItemId, string fields = "")
         {
             var order = _orderApiService.GetOrderById(orderId);
 
@@ -156,14 +156,14 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.NotFound, "order", "not found");
             }
 
-            var orderItem = _orderService.GetOrderItemById(orderItemId);
+            var orderItem = await _orderService.GetOrderItemByIdAsync(orderItemId);
 
             if (orderItem == null)
             {
                 return Error(HttpStatusCode.NotFound, "order_item", "not found");
             }
 
-            var orderItemDtos = new List<OrderItemDto> {_dtoHelper.PrepareOrderItemDTO(orderItem)};
+            var orderItemDtos = new List<OrderItemDto> {await _dtoHelper.PrepareOrderItemDTO(orderItem)};
 
             var orderItemsRootObject = new OrderItemsRootObject
             {
@@ -182,7 +182,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
-        public IActionResult CreateOrderItem(
+        public async Task<IActionResult> CreateOrderItemAsync(
              int orderId,
              [ModelBinder(typeof(JsonModelBinder<OrderItemDto>))]
             Delta<OrderItemDto> orderItemDelta)
@@ -231,14 +231,14 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 }
             }
 
-            var newOrderItem = PrepareDefaultOrderItemFromProduct(order, product);
+            var newOrderItem = await PrepareDefaultOrderItemFromProductAsync(order, product);
             orderItemDelta.Merge(newOrderItem);
-            _orderService.InsertOrderItem(newOrderItem);
+           await _orderService.InsertOrderItemAsync(newOrderItem);
 
-            _orderService.UpdateOrder(order);
+           await _orderService.UpdateOrderAsync(order);
 
-            CustomerActivityService.InsertActivity("AddNewOrderItem",
-                                                   LocalizationService.GetResource("ActivityLog.AddNewOrderItem"), newOrderItem);
+            await CustomerActivityService.InsertActivityAsync("AddNewOrderItem",
+                                                   await LocalizationService.GetResourceAsync("ActivityLog.AddNewOrderItem"), newOrderItem);
 
             var orderItemsRootObject = new OrderItemsRootObject();
 
@@ -256,7 +256,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int) HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int) HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), (int) HttpStatusCode.Unauthorized)]
-        public IActionResult UpdateOrderItem(int orderId, int orderItemId,
+        public async Task<IActionResult> UpdateOrderAsyncItemAsync(int orderId, int orderItemId,
             [ModelBinder(typeof(JsonModelBinder<OrderItemDto>))]
             Delta<OrderItemDto> orderItemDelta)
         {
@@ -266,7 +266,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error();
             }
 
-            var orderItemToUpdate = _orderService.GetOrderItemById(orderItemId);
+            var orderItemToUpdate = await _orderService.GetOrderItemByIdAsync(orderItemId);
 
             if (orderItemToUpdate == null)
             {
@@ -291,10 +291,10 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             orderItemToUpdate.RentalStartDateUtc = rentalStartDate;
             orderItemToUpdate.RentalEndDateUtc = rentalEndDate;
 
-            _orderService.UpdateOrder(order);
+           await _orderService.UpdateOrderAsync(order);
 
-            CustomerActivityService.InsertActivity("UpdateOrderItem",
-                LocalizationService.GetResource("ActivityLog.UpdateOrderItem"), orderItemToUpdate);
+            await CustomerActivityService.InsertActivityAsync("UpdateOrderAsyncItem",
+               await LocalizationService.GetResourceAsync("ActivityLog.UpdateOrderAsyncItem"), orderItemToUpdate);
 
             var orderItemsRootObject = new OrderItemsRootObject();
 
@@ -312,7 +312,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int) HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int) HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult DeleteOrderItemById(int orderId, int orderItemId)
+        public async Task<IActionResult> DeleteOrderItemAsyncById(int orderId, int orderItemId)
         {
             var order = _orderApiService.GetOrderById(orderId);
 
@@ -321,8 +321,8 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.NotFound, "order", "not found");
             }
 
-            var orderItem = _orderService.GetOrderItemById(orderItemId);
-            _orderService.DeleteOrderItem(orderItem);
+            var orderItem = await _orderService.GetOrderItemByIdAsync(orderItemId);
+            await _orderService.DeleteOrderItemAsync(orderItem);
 
             return new RawJsonActionResult("{}");
         }
@@ -334,7 +334,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult DeleteAllOrderItemsForOrder(int orderId)
+        public async Task<IActionResult> DeleteAllOrderItemsForOrderAsync(int orderId)
         {
             var order = _orderApiService.GetOrderById(orderId);
 
@@ -343,11 +343,11 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.NotFound, "order", "not found");
             }
 
-            var orderItemsList = _orderService.GetOrderItems(order.Id).ToList();
+            var orderItemsList = (await _orderService.GetOrderItemsAsync(order.Id)).ToList();
 
             foreach (var t in orderItemsList)
             {
-                _orderService.DeleteOrderItem(t);
+                _orderService.DeleteOrderItemAsync(t);
             }
 
             return new RawJsonActionResult("{}");
@@ -367,26 +367,24 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             return product;
         }
 
-        private OrderItem PrepareDefaultOrderItemFromProduct(Order order, Product product)
+        private async Task<OrderItem> PrepareDefaultOrderItemFromProductAsync(Order order, Product product)
         {
-            var customer = CustomerService.GetCustomerById(order.CustomerId);
+            var customer = await CustomerService.GetCustomerByIdAsync(order.CustomerId);
             var presetQty = 1;
-            var presetPrice =
-                _priceCalculationService.GetFinalPrice(product, customer, decimal.Zero, true, presetQty);
+            var presetPrice =await _priceCalculationService.GetFinalPriceAsync(product,customer,new Core.Domain.Stores.Store(), decimal.Zero, true, presetQty);
 
-            var presetPriceInclTax =
-                _taxService.GetProductPrice(product, presetPrice, true, customer, out _);
-            var presetPriceExclTax =
-                _taxService.GetProductPrice(product, presetPrice, false, customer, out _);
+            var presetPriceInclTax = await _taxService.GetProductPriceAsync(product, Convert.ToDecimal(presetPrice));
+            var presetPriceExclTax =await
+                _taxService.GetProductPriceAsync(product, Convert.ToDecimal(presetPrice));
 
             var orderItem = new OrderItem
             {
                 OrderItemGuid = new Guid(),
-                UnitPriceExclTax = presetPriceExclTax,
-                UnitPriceInclTax = presetPriceInclTax,
-                PriceInclTax = presetPriceInclTax,
-                PriceExclTax = presetPriceExclTax,
-                OriginalProductCost = _priceCalculationService.GetProductCost(product, null),
+                UnitPriceExclTax = presetPriceExclTax.price,
+                UnitPriceInclTax = presetPriceInclTax.price,
+                PriceInclTax = presetPriceInclTax.price,
+                PriceExclTax = presetPriceExclTax.price,
+                OriginalProductCost = await _priceCalculationService.GetProductCostAsync(product, null),
                 Quantity = presetQty,
                 ProductId = product.Id,
                 OrderId = order.Id

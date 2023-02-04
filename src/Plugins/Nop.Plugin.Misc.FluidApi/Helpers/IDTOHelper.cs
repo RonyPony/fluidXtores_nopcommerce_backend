@@ -36,7 +36,7 @@ namespace Nop.Plugin.Misc.FluidApi.Helpers
         Task<ManufacturerDto> PrepareManufacturerDto(Manufacturer manufacturer);
         TaxCategoryDto PrepareTaxCategoryDTO(TaxCategory taxCategory);
         Task<ImageMappingDto> PrepareProductPictureDTO(ProductPicture productPicture);
-      
+        Task<object> PrepareOrderItemDTOAsync(OrderItem item);
     }
 }
 

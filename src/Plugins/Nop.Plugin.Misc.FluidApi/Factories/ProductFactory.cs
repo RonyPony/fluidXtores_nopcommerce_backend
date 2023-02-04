@@ -16,7 +16,7 @@ namespace Nop.Plugin.Misc.FluidApi.Factories
             _measureSettings = measureSettings;
         }
 
-        async Task<Product> IFactory<Product>.InitializeAsync()
+        async Task<Product> IFactory<Product>.Initialize()
         {
             var defaultProduct = new Product();
             defaultProduct.Weight = 10;

@@ -6,7 +6,7 @@ namespace Nop.Plugin.Misc.FluidApi.Factories
     public class AddressFactory : IFactory<Address>
     {
 
-        async Task<Address> IFactory<Address>.InitializeAsync()
+        async Task<Address> IFactory<Address>.Initialize()
         {
             var address = new Address()
             {

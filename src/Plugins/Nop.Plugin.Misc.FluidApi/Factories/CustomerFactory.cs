@@ -5,7 +5,7 @@ namespace Nop.Plugin.Misc.FluidApi.Factories
 {
     public class CustomerFactory : IFactory<Customer>
     {
-        public async Task<Customer> InitializeAsync()
+        public async Task<Customer> Initialize()
         {
             var defaultCustomer = new Customer()
             {
@@ -16,5 +16,7 @@ namespace Nop.Plugin.Misc.FluidApi.Factories
             };
             return defaultCustomer;
         }
+  
+        
     }
 }

@@ -54,9 +54,9 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetAllCustomerRoles(string fields = "")
+        public async Task<IActionResult> GetAllCustomerRolesAsync(string fields = "")
         {
-            var allCustomerRoles = CustomerService.GetAllCustomerRoles();
+            var allCustomerRoles = await CustomerService.GetAllCustomerRolesAsync();
 
             IList<CustomerRoleDto> customerRolesAsDto = allCustomerRoles.Select(role => role.ToDto()).ToList();
 

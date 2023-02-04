@@ -5,7 +5,7 @@ namespace Nop.Plugin.Misc.FluidApi.Factories
 {
     public class ShoppingCartItemFactory : IFactory<ShoppingCartItem>
     {
-        public async Task<ShoppingCartItem> InitializeAsync()
+        public async Task<ShoppingCartItem> Initialize()
         {
             var newShoppingCartItem = new ShoppingCartItem();
             newShoppingCartItem.CreatedOnUtc = DateTime.UtcNow;

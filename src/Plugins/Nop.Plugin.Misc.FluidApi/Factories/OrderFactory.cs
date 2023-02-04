@@ -7,7 +7,7 @@ namespace Nop.Plugin.Misc.FluidApi.Factories
 {
     public class OrderFactory : IFactory<Order>
     {
-        public async Task<Order> InitializeAsync()
+        public async Task<Order> Initialize()
         {
             var order = new Order();
             order.CreatedOnUtc = DateTime.UtcNow;

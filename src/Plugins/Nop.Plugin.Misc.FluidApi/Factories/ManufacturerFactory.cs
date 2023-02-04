@@ -12,7 +12,7 @@ namespace Nop.Plugin.Misc.FluidApi.Factories
             _catalogSettings = catalogSettings;
         }
 
-        public async Task<Manufacturer> InitializeAsync()
+        public async Task<Manufacturer> Initialize()
         {
             // TODO: cache the default entity.
             var defaultManufacturer = new Manufacturer();

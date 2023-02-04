@@ -273,7 +273,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             //If the validation has passed the customerDelta object won't be null for sure so we don't need to check for this.
 
             // Inserting the new customer
-            var newCustomer = await _factory.InitializeAsync();
+            var newCustomer = await _factory.Initialize();
             customerDelta.Merge(newCustomer);
 
             foreach (var address in customerDelta.Dto.Addresses)
