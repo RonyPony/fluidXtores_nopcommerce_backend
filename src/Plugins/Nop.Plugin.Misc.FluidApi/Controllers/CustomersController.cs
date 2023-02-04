@@ -290,7 +290,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             await CustomerService.InsertCustomerAsync(newCustomer);
 
-            InsertFirstAndLastNameGenericAttributesAsync(customerDelta.Dto.FirstName, customerDelta.Dto.LastName, newCustomer);
+            await InsertFirstAndLastNameGenericAttributesAsync(customerDelta.Dto.FirstName, customerDelta.Dto.LastName, newCustomer);
 
             if (!string.IsNullOrEmpty(customerDelta.Dto.LanguageId) && int.TryParse(customerDelta.Dto.LanguageId, out var languageId)
                                                                     && await _languageService.GetLanguageByIdAsync(languageId) != null)
@@ -309,7 +309,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             // TODO: move this before inserting the customer.
             if (customerDelta.Dto.RoleIds.Count > 0)
             {
-                AddValidRolesAsync(customerDelta, newCustomer);
+                await AddValidRolesAsync(customerDelta, newCustomer);
             }
 
             // Preparing the result dto of the new customer
@@ -365,7 +365,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             if (customerDelta.Dto.RoleIds.Count > 0)
             {
-                AddValidRolesAsync(customerDelta, currentCustomer);
+                await AddValidRolesAsync(customerDelta, currentCustomer);
             }
 
             if (customerDelta.Dto.Addresses.Count > 0)
@@ -389,7 +389,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             await CustomerService.UpdateCustomerAsync(currentCustomer);
 
-            InsertFirstAndLastNameGenericAttributesAsync(customerDelta.Dto.FirstName, customerDelta.Dto.LastName, currentCustomer);
+            await InsertFirstAndLastNameGenericAttributesAsync(customerDelta.Dto.FirstName, customerDelta.Dto.LastName, currentCustomer);
 
 
             if (!string.IsNullOrEmpty(customerDelta.Dto.LanguageId) && int.TryParse(customerDelta.Dto.LanguageId, out var languageId)
@@ -588,9 +588,9 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                     break;
             }
 
-            CustomerService.InsertCustomerPassword(customerPassword);
+            CustomerService.InsertCustomerPasswordAsync(customerPassword);
 
-            CustomerService.UpdateCustomer(customer);
+            CustomerService.UpdateCustomerAsync(customer);
         }
     }
 }

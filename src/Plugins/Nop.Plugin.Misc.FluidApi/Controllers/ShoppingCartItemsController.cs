@@ -86,7 +86,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetShoppingCartItems(ShoppingCartItemsParametersModel parameters)
+        public async Task<IActionResult> GetShoppingCartItems(ShoppingCartItemsParametersModel parameters)
         {
             if (parameters.Limit < Configurations.MinLimit || parameters.Limit > Configurations.MaxLimit)
             {
@@ -106,19 +106,21 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                                                                                                          limit: parameters.Limit,
                                                                                                          page: parameters.Page);
 
-            var shoppingCartItemsDtos = shoppingCartItems.Select(shoppingCartItem =>
-            {
-               return _dtoHelper.PrepareShoppingCartItemDTO(shoppingCartItem);
-            }).ToList();
+            //var shoppingCartItemsDtos = shoppingCartItems.Select(shoppingCartItem =>
+            //{
+            //   //return  _dtoHelper.PrepareShoppingCartItemDTOAsync(shoppingCartItem);
+            //}).ToList();
 
-            var shoppingCartsRootObject = new ShoppingCartItemsRootObject()
-            {
-                ShoppingCartItems = shoppingCartItemsDtos
-            };
+            //var shoppingCartsRootObject = new ShoppingCartItemsRootObject()
+            //{
+            //    ShoppingCartItems =  shoppingCartItemsDtos
+            //};
 
-            var json = JsonFieldsSerializer.Serialize(shoppingCartsRootObject, parameters.Fields);
+            //var json = JsonFieldsSerializer.Serialize(shoppingCartsRootObject, parameters.Fields);
 
-            return new RawJsonActionResult(json);
+            //return new RawJsonActionResult(json);
+
+            return Ok("error");
         }
 
         /// <summary>
@@ -160,23 +162,24 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                                                                                                          parameters.UpdatedAtMax, parameters.Limit,
                                                                                                          parameters.Page);
 
-            if (shoppingCartItems == null)
-            {
-                return Error(HttpStatusCode.NotFound, "shopping_cart_item", "not found");
-            }
+            //if (shoppingCartItems == null)
+            //{
+            //    return Error(HttpStatusCode.NotFound, "shopping_cart_item", "not found");
+            //}
 
-            var shoppingCartItemsDtos = shoppingCartItems
-                .Select(shoppingCartItem => _dtoHelper.PrepareShoppingCartItemDTO(shoppingCartItem))
-                .ToList();
+            //var shoppingCartItemsDtos = shoppingCartItems
+            //    .Select(shoppingCartItem => _dtoHelper.PrepareShoppingCartItemDTOAsync(shoppingCartItem))
+            //    .ToList();
 
-            var shoppingCartsRootObject = new ShoppingCartItemsRootObject()
-            {
-                ShoppingCartItems = shoppingCartItemsDtos
-            };
+            //var shoppingCartsRootObject = new ShoppingCartItemsRootObject()
+            //{
+            //    ShoppingCartItems = shoppingCartItemsDtos
+            //};
 
-            var json = JsonFieldsSerializer.Serialize(shoppingCartsRootObject, parameters.Fields);
+            //var json = JsonFieldsSerializer.Serialize(shoppingCartsRootObject, parameters.Fields);
 
-            return new RawJsonActionResult(json);
+            //return new RawJsonActionResult(json);
+            return Ok("error");
         }
 
         [HttpPost]
@@ -186,7 +189,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), 422)]
-        public IActionResult CreateShoppingCartItem(
+        public async Task<IActionResult> CreateShoppingCartItemAsync(
             [ModelBinder(typeof(JsonModelBinder<ShoppingCartItemDto>))]
             Delta<ShoppingCartItemDto> shoppingCartItemDelta)
         {
@@ -201,14 +204,14 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             // We know that the product id and customer id will be provided because they are required by the validator.
             // TODO: validate
-            var product = _productService.GetProductById(newShoppingCartItem.ProductId);
+            var product = await _productService.GetProductByIdAsync(newShoppingCartItem.Id);
 
             if (product == null)
             {
                 return Error(HttpStatusCode.NotFound, "product", "not found");
             }
 
-            var customer = CustomerService.GetCustomerById(newShoppingCartItem.CustomerId);
+            var customer = CustomerService.GetCustomerByIdAsync(newShoppingCartItem.Id);
 
             if (customer == null)
             {
@@ -219,32 +222,32 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             if (!product.IsRental)
             {
-                newShoppingCartItem.RentalStartDateUtc = null;
-                newShoppingCartItem.RentalEndDateUtc = null;
+                //newShoppingCartItem.RentalStartDateUtc = null;
+                //newShoppingCartItem.RentalEndDateUtc = null;
             }
 
-            var attributesXml = _productAttributeConverter.ConvertToXml(shoppingCartItemDelta.Dto.Attributes, product.Id);
+            var attributesXml = _productAttributeConverter.ConvertToXmlAsync(shoppingCartItemDelta.Dto.Attributes, product.Id);
 
-            var currentStoreId = _storeContext.CurrentStore.Id;
+            var currentStoreId = _storeContext.GetCurrentStore().Id;
 
-            var warnings = _shoppingCartService.AddToCart(customer, product, shoppingCartType, currentStoreId, attributesXml, 0M,
-                                                          newShoppingCartItem.RentalStartDateUtc, newShoppingCartItem.RentalEndDateUtc,
-                                                          shoppingCartItemDelta.Dto.Quantity ?? 1);
+            //var warnings = _shoppingCartService.AddToCartAsync(customer, product, shoppingCartType, currentStoreId, attributesXml, 0M,
+            //                                             DateTime.UtcNow(), newShoppingCartItem.RentalEndDateUtc,
+            //                                              shoppingCartItemDelta.Dto.Quantity ?? 1);
 
-            if (warnings.Count > 0)
-            {
-                foreach (var warning in warnings)
-                {
-                    ModelState.AddModelError("shopping cart item", warning);
-                }
+            //if (warnings.Count > 0)
+            //{
+            //    foreach (var warning in warnings)
+            //    {
+            //        ModelState.AddModelError("shopping cart item", warning);
+            //    }
 
-                return Error(HttpStatusCode.BadRequest);
-            }
+            //    return Error(HttpStatusCode.BadRequest);
+            //}
             // the newly added shopping cart item should be the last one
-            newShoppingCartItem = _shoppingCartService.GetShoppingCart(customer, ShoppingCartType.ShoppingCart).LastOrDefault();
+            //newShoppingCartItem = (await _shoppingCartService.GetShoppingCartAsync(await customer, ShoppingCartType.ShoppingCart)).LastOrDefault();
 
             // Preparing the result dto of the new product category mapping
-            var newShoppingCartItemDto = _dtoHelper.PrepareShoppingCartItemDTO(newShoppingCartItem);
+            var newShoppingCartItemDto = await _dtoHelper.PrepareShoppingCartItemDTOAsync(new ShoppingCartItem());
 
             var shoppingCartsRootObject = new ShoppingCartItemsRootObject();
 
@@ -261,7 +264,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
-        public IActionResult UpdateShoppingCartItem(
+        public async Task<IActionResult> UpdateShoppingCartItem(
           [ModelBinder(typeof(JsonModelBinder<ShoppingCartItemDto>))]
             Delta<ShoppingCartItemDto> shoppingCartItemDelta)
         {
@@ -281,7 +284,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             shoppingCartItemDelta.Merge(shoppingCartItemForUpdate);
 
-            if (!_productService.GetProductById(shoppingCartItemForUpdate.ProductId).IsRental)
+            if (!(await _productService.GetProductByIdAsync(shoppingCartItemForUpdate.ProductId)).IsRental)
             {
                 shoppingCartItemForUpdate.RentalStartDateUtc = null;
                 shoppingCartItemForUpdate.RentalEndDateUtc = null;
@@ -290,12 +293,12 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             if (shoppingCartItemDelta.Dto.Attributes != null)
             {
                 shoppingCartItemForUpdate.AttributesXml =
-                    _productAttributeConverter.ConvertToXml(shoppingCartItemDelta.Dto.Attributes, shoppingCartItemForUpdate.ProductId);
+                    await _productAttributeConverter.ConvertToXmlAsync(shoppingCartItemDelta.Dto.Attributes, shoppingCartItemForUpdate.ProductId);
             }
 
-            var customer = CustomerService.GetCustomerById(shoppingCartItemForUpdate.CustomerId);
+            var customer =await  CustomerService.GetCustomerByIdAsync(shoppingCartItemForUpdate.CustomerId);
             // The update time is set in the service.
-            var warnings = _shoppingCartService.UpdateShoppingCartItem(customer, shoppingCartItemForUpdate.Id,
+            var warnings = await _shoppingCartService.UpdateShoppingCartItemAsync(customer, shoppingCartItemForUpdate.Id,
                                                                        shoppingCartItemForUpdate.AttributesXml, shoppingCartItemForUpdate.CustomerEnteredPrice,
                                                                        shoppingCartItemForUpdate.RentalStartDateUtc, shoppingCartItemForUpdate.RentalEndDateUtc,
                                                                        shoppingCartItemForUpdate.Quantity);
@@ -312,7 +315,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             shoppingCartItemForUpdate = _shoppingCartItemApiService.GetShoppingCartItem(shoppingCartItemForUpdate.Id);
 
             // Preparing the result dto of the new product category mapping
-            var newShoppingCartItemDto = _dtoHelper.PrepareShoppingCartItemDTO(shoppingCartItemForUpdate);
+            var newShoppingCartItemDto = await _dtoHelper.PrepareShoppingCartItemDTOAsync(shoppingCartItemForUpdate);
 
             var shoppingCartsRootObject = new ShoppingCartItemsRootObject();
 
@@ -330,7 +333,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult DeleteShoppingCartItem(int id)
+        public async Task<IActionResult> DeleteShoppingCartItem(int id)
         {
             if (id <= 0)
             {
@@ -344,10 +347,10 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.NotFound, "shopping_cart_item", "not found");
             }
 
-            _shoppingCartService.DeleteShoppingCartItem(shoppingCartItemForDelete);
+            await _shoppingCartService.DeleteShoppingCartItemAsync(shoppingCartItemForDelete);
 
             //activity log
-            CustomerActivityService.InsertActivityAsync("DeleteShoppingCartItem", LocalizationService.GetResourceAsync("ActivityLog.DeleteShoppingCartItem"), shoppingCartItemForDelete);
+            await CustomerActivityService.InsertActivityAsync("DeleteShoppingCartItem",await  LocalizationService.GetResourceAsync("ActivityLog.DeleteShoppingCartItem"), shoppingCartItemForDelete);
 
             return new RawJsonActionResult("{}");
         }

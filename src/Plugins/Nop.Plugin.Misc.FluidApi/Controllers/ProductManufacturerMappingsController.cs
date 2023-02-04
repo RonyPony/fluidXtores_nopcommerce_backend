@@ -173,7 +173,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
-        public IActionResult CreateProductManufacturerMapping([ModelBinder(typeof(JsonModelBinder<ProductManufacturerMappingsDto>))] Delta<ProductManufacturerMappingsDto> productManufacturerDelta)
+        public async Task<IActionResult> CreateProductManufacturerMapping([ModelBinder(typeof(JsonModelBinder<ProductManufacturerMappingsDto>))] Delta<ProductManufacturerMappingsDto> productManufacturerDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -204,7 +204,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             productManufacturerDelta.Merge(newProductManufacturer);
 
             //inserting new Manufacturer
-            _manufacturerService.InsertProductManufacturer(newProductManufacturer);
+            await _manufacturerService.InsertProductManufacturerAsync(newProductManufacturer);
 
             // Preparing the result dto of the new product Manufacturer mapping
             var newProductManufacturerMappingDto = newProductManufacturer.ToDto();
@@ -216,7 +216,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             var json = JsonFieldsSerializer.Serialize(productManufacturerMappingsRootObject, string.Empty);
 
             //activity log 
-            CustomerActivityService.InsertActivityAsync("AddNewProductManufacturerMapping", LocalizationService.GetResourceAsync("ActivityLog.AddNewProductManufacturerMapping"), newProductManufacturer);
+            await CustomerActivityService.InsertActivityAsync("AddNewProductManufacturerMapping",await  LocalizationService.GetResourceAsync("ActivityLog.AddNewProductManufacturerMapping"), newProductManufacturer);
 
             return new RawJsonActionResult(json);
         }
@@ -228,7 +228,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
-        public IActionResult UpdateProductManufacturerMapping([ModelBinder(typeof(JsonModelBinder<ProductManufacturerMappingsDto>))] Delta<ProductManufacturerMappingsDto> productManufacturerDelta)
+        public async Task<IActionResult> UpdateProductManufacturerMappingAsync([ModelBinder(typeof(JsonModelBinder<ProductManufacturerMappingsDto>))] Delta<ProductManufacturerMappingsDto> productManufacturerDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -257,7 +257,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             // We do not need to validate the Manufacturer id, because this will happen in the model binder using the dto validator.
             var updateProductManufacturerId = productManufacturerDelta.Dto.Id;
 
-            var productManufacturerEntityToUpdate = _manufacturerService.GetProductManufacturerById(updateProductManufacturerId);
+            var productManufacturerEntityToUpdate = await _manufacturerService.GetProductManufacturerByIdAsync(updateProductManufacturerId);
 
             if (productManufacturerEntityToUpdate == null)
             {
@@ -266,11 +266,11 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             productManufacturerDelta.Merge(productManufacturerEntityToUpdate);
 
-            _manufacturerService.UpdateProductManufacturer(productManufacturerEntityToUpdate);
+            await _manufacturerService.UpdateProductManufacturerAsync(productManufacturerEntityToUpdate);
 
             //activity log
-            CustomerActivityService.InsertActivityAsync("UpdateProdutManufacturerMapping",
-                LocalizationService.GetResourceAsync("ActivityLog.UpdateProdutManufacturerMapping"), productManufacturerEntityToUpdate);
+            await CustomerActivityService.InsertActivityAsync("UpdateProdutManufacturerMapping",
+                await LocalizationService.GetResourceAsync("ActivityLog.UpdateProdutManufacturerMapping"), productManufacturerEntityToUpdate);
 
             var updatedProductManufacturerDto = productManufacturerEntityToUpdate.ToDto();
 
@@ -290,24 +290,24 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult DeleteProductManufacturerMapping(int id)
+        public async Task<IActionResult> DeleteProductManufacturerMappingAsync(int id)
         {
             if (id <= 0)
             {
                 return Error(HttpStatusCode.BadRequest, "id", "invalid id");
             }
 
-            var productManufacturer = _manufacturerService.GetProductManufacturerById(id);
+            var productManufacturer = await _manufacturerService.GetProductManufacturerByIdAsync(id);
 
             if (productManufacturer == null)
             {
                 return Error(HttpStatusCode.NotFound, "product_manufacturer_mapping", "not found");
             }
 
-            _manufacturerService.DeleteProductManufacturer(productManufacturer);
+            await _manufacturerService.DeleteProductManufacturerAsync(productManufacturer);
 
             //activity log 
-            CustomerActivityService.InsertActivityAsync("DeleteProductManufacturerMapping", LocalizationService.GetResourceAsync("ActivityLog.DeleteProductManufacturerMapping"), productManufacturer);
+            await CustomerActivityService.InsertActivityAsync("DeleteProductManufacturerMapping",await  LocalizationService.GetResourceAsync("ActivityLog.DeleteProductManufacturerMapping"), productManufacturer);
 
             return new RawJsonActionResult("{}");
         }
