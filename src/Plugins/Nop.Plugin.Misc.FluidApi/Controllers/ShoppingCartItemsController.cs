@@ -347,7 +347,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             _shoppingCartService.DeleteShoppingCartItem(shoppingCartItemForDelete);
 
             //activity log
-            CustomerActivityService.InsertActivity("DeleteShoppingCartItem", LocalizationService.GetResourceAsync("ActivityLog.DeleteShoppingCartItem"), shoppingCartItemForDelete);
+            CustomerActivityService.InsertActivityAsync("DeleteShoppingCartItem", LocalizationService.GetResourceAsync("ActivityLog.DeleteShoppingCartItem"), shoppingCartItemForDelete);
 
             return new RawJsonActionResult("{}");
         }

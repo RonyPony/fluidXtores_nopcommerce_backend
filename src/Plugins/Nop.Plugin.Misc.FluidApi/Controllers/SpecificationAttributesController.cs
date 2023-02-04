@@ -60,7 +60,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetSpecificationAttributes(SpecifcationAttributesParametersModel parameters)
+        public IActionResult GetSpecificationAttributesAsync(SpecifcationAttributesParametersModel parameters)
         {
             if (parameters.Limit < Configurations.MinLimit || parameters.Limit > Configurations.MaxLimit)
             {
@@ -72,7 +72,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.BadRequest, "page", "invalid page parameter");
             }
 
-            var specificationAttribtues = _specificationAttributeApiService.GetSpecificationAttributes(limit: parameters.Limit, page: parameters.Page, sinceId: parameters.SinceId);
+            var specificationAttribtues = _specificationAttributeApiService.GetSpecificationAttributesAsync(limit: parameters.Limit, page: parameters.Page, sinceId: parameters.SinceId);
 
             var specificationAttributeDtos = specificationAttribtues.Select(x => _dtoHelper.PrepareSpecificationAttributeDto(x)).ToList();
 
@@ -97,9 +97,9 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetSpecificationAttributesCount(SpecifcationAttributesCountParametersModel parameters)
+        public async Task<IActionResult> GetSpecificationAttributesCountAsync(SpecifcationAttributesCountParametersModel parameters)
         {
-            var specificationAttributesCount = _specificationAttributeService.GetSpecificationAttributes().Count();
+            var specificationAttributesCount = (await _specificationAttributeService.GetSpecificationAttributesAsync()).Count();
 
             var specificationAttributesCountRootObject = new SpecificationAttributesCountRootObject()
             {
@@ -124,14 +124,14 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetSpecificationAttributeById(int id, string fields = "")
+        public async Task<IActionResult> GetSpecificationAttributeByIdAsync(int id, string fields = "")
         {
             if (id <= 0)
             {
                 return Error(HttpStatusCode.BadRequest, "id", "invalid id");
             }
 
-            var specificationAttribute = _specificationAttributeService.GetSpecificationAttributeById(id);
+            var specificationAttribute = await _specificationAttributeService.GetSpecificationAttributeByIdAsync(id);
 
             if (specificationAttribute == null)
             {
@@ -155,7 +155,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
-        public IActionResult CreateSpecificationAttribute([ModelBinder(typeof(JsonModelBinder<SpecificationAttributeDto>))] Delta<SpecificationAttributeDto> specificaitonAttributeDelta)
+        public async Task<IActionResult> CreateSpecificationAttributeAsync([ModelBinder(typeof(JsonModelBinder<SpecificationAttributeDto>))] Delta<SpecificationAttributeDto> specificaitonAttributeDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -167,9 +167,9 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             var specificationAttribute = new SpecificationAttribute();
             specificaitonAttributeDelta.Merge(specificationAttribute);
 
-            _specificationAttributeService.InsertSpecificationAttribute(specificationAttribute);
+            _specificationAttributeService.InsertSpecificationAttributeAsync(specificationAttribute);
 
-            CustomerActivityService.InsertActivity("AddNewSpecAttribute", LocalizationService.GetResourceAsync("ActivityLog.AddNewSpecAttribute"), specificationAttribute);
+            await CustomerActivityService.InsertActivityAsync("AddNewSpecAttribute", await LocalizationService.GetResourceAsync("ActivityLog.AddNewSpecAttribute"), specificationAttribute);
 
             // Preparing the result dto of the new product
             var specificationAttributeDto = _dtoHelper.PrepareSpecificationAttributeDto(specificationAttribute);
@@ -189,7 +189,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
-        public IActionResult UpdateSpecificationAttribute([ModelBinder(typeof(JsonModelBinder<SpecificationAttributeDto>))] Delta<SpecificationAttributeDto> specificationAttributeDelta)
+        public async Task<IActionResult> UpdateSpecificationAttributeAsync([ModelBinder(typeof(JsonModelBinder<SpecificationAttributeDto>))] Delta<SpecificationAttributeDto> specificationAttributeDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -200,7 +200,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             // We do not need to validate the product attribute id, because this will happen in the model binder using the dto validator.
             int specificationAttributeId = specificationAttributeDelta.Dto.Id;
 
-            var specificationAttribute = _specificationAttributeService.GetSpecificationAttributeById(specificationAttributeId);
+            var specificationAttribute = await _specificationAttributeService.GetSpecificationAttributeByIdAsync(specificationAttributeId);
             if (specificationAttribute == null)
             {
                 return Error(HttpStatusCode.NotFound, "specification attribute", "not found");
@@ -208,9 +208,9 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             specificationAttributeDelta.Merge(specificationAttribute);
 
-            _specificationAttributeService.UpdateSpecificationAttribute(specificationAttribute);
+            await _specificationAttributeService.UpdateSpecificationAttributeAsync(specificationAttribute);
           
-            CustomerActivityService.InsertActivity("EditSpecAttribute", LocalizationService.GetResourceAsync("ActivityLog.EditSpecAttribute"), specificationAttribute);
+            await CustomerActivityService.InsertActivityAsync("EditSpecAttribute",await LocalizationService.GetResourceAsync("ActivityLog.EditSpecAttribute"), specificationAttribute);
 
             // Preparing the result dto of the new product attribute
             var specificationAttributeDto = _dtoHelper.PrepareSpecificationAttributeDto(specificationAttribute);
@@ -230,25 +230,24 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
-        public IActionResult DeleteSpecificationAttribute(int id)
+        public async Task<IActionResult> DeleteSpecificationAttributeAsync(int id)
         {
             if (id <= 0)
             {
                 return Error(HttpStatusCode.BadRequest, "id", "invalid id");
             }
 
-            var specificationAttribute = _specificationAttributeService.GetSpecificationAttributeById(id);
-            if (specificationAttribute == null)
+            var specificationAttribute = await _specificationAttributeService.GetSpecificationAttributeByIdAsync(id);
             {
                 return Error(HttpStatusCode.NotFound, "specification attribute", "not found");
             }
 
-            _specificationAttributeService.DeleteSpecificationAttribute(specificationAttribute);
+            await _specificationAttributeService.DeleteSpecificationAttributeAsync(specificationAttribute);
 
             //activity log
-            CustomerActivityService.InsertActivity("DeleteSpecAttribute", LocalizationService.GetResourceAsync("ActivityLog.DeleteSpecAttribute"), specificationAttribute);
+            await CustomerActivityService.InsertActivityAsync("DeleteSpecAttribute",await LocalizationService.GetResourceAsync("ActivityLog.DeleteSpecAttribute"), specificationAttribute);
 
-            return new RawJsonActionResult("{}");
+         //InsertActivityRawJsonActionResult("{}");
         }
     }
 }

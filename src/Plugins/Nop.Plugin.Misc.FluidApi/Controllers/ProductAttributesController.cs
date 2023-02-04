@@ -156,7 +156,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult CreateProductAttribute([ModelBinder(typeof(JsonModelBinder<ProductAttributeDto>))] Delta<ProductAttributeDto> productAttributeDelta)
+        public async Task<IActionResult> CreateProductAttributeAsync([ModelBinder(typeof(JsonModelBinder<ProductAttributeDto>))] Delta<ProductAttributeDto> productAttributeDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -168,10 +168,10 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             var productAttribute = new ProductAttribute();
             productAttributeDelta.Merge(productAttribute);
 
-            _productAttributeService.InsertProductAttribute(productAttribute);       
+            await _productAttributeService.InsertProductAttributeAsync(productAttribute);       
 
-            CustomerActivityService.InsertActivity("AddNewProductAttribute",
-                LocalizationService.GetResource("ActivityLog.AddNewProductAttribute"), productAttribute);
+            CustomerActivityService.InsertActivityAsync("AddNewProductAttribute",
+                await LocalizationService.GetResourceAsync("ActivityLog.AddNewProductAttribute"), productAttribute);
 
             // Preparing the result dto of the new product
             var productAttributeDto = _dtoHelper.PrepareProductAttributeDTO(productAttribute);
@@ -193,7 +193,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult UpdateProductAttribute([ModelBinder(typeof(JsonModelBinder<ProductAttributeDto>))] Delta<ProductAttributeDto> productAttributeDelta)
+        public async Task<IActionResult> UpdateProductAttributeAsync([ModelBinder(typeof(JsonModelBinder<ProductAttributeDto>))] Delta<ProductAttributeDto> productAttributeDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -211,10 +211,10 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             productAttributeDelta.Merge(productAttribute);
 
 
-            _productAttributeService.UpdateProductAttribute(productAttribute);
+            await _productAttributeService.UpdateProductAttributeAsync(productAttribute);
           
-            CustomerActivityService.InsertActivity("EditProductAttribute",
-               LocalizationService.GetResource("ActivityLog.EditProductAttribute"), productAttribute);
+            await CustomerActivityService.InsertActivityAsync("EditProductAttribute",
+               await LocalizationService.GetResourceAsync("ActivityLog.EditProductAttribute"), productAttribute);
 
             // Preparing the result dto of the new product attribute
             var productAttributeDto = _dtoHelper.PrepareProductAttributeDTO(productAttribute);
@@ -256,6 +256,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             await CustomerActivityService.InsertActivityAsync("DeleteProductAttribute", await LocalizationService.GetResourceAsync("ActivityLog.DeleteProductAttribute"), productAttribute);
 
             //GetResource(awJsonActionResult("{}");
+            return Ok();
         }       
     }
 }

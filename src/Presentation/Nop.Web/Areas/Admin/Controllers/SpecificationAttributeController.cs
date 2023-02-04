@@ -335,7 +335,7 @@ namespace Nop.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public virtual async Task<IActionResult> DeleteSpecificationAttribute(int id)
+        public virtual async Task<IActionResult> DeleteSpecificationAttributeAsync(int id)
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageAttributes))
                 return AccessDeniedView();

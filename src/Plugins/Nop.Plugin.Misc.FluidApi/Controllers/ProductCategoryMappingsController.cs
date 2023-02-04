@@ -174,7 +174,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
         [AllowAnonymous]
-        public IActionResult CreateProductCategoryMapping(ProductCategoryMappingDto productCategoryDelta)
+        public async Task<IActionResult> CreateProductCategoryMapping(ProductCategoryMappingDto productCategoryDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -205,7 +205,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             productCategoryDelta.Merge(ref newProductCategory);
 
             //inserting new category
-            _categoryService.InsertProductCategory(newProductCategory);
+            await _categoryService.InsertProductCategoryAsync(newProductCategory);
 
             // Preparing the result dto of the new product category mapping
             var newProductCategoryMappingDto = newProductCategory.ToDto();
@@ -217,7 +217,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             var json = JsonFieldsSerializer.Serialize(productCategoryMappingsRootObject, string.Empty);
 
             //activity log 
-            CustomerActivityService.InsertActivity("AddNewProductCategoryMapping", LocalizationService.GetResourceAsync("ActivityLog.AddNewProductCategoryMapping"), newProductCategory);
+            await CustomerActivityService.InsertActivityAsync("AddNewProductCategoryMapping",await  LocalizationService.GetResourceAsync("ActivityLog.AddNewProductCategoryMapping"), newProductCategory);
 
             return new RawJsonActionResult(json);
         }
@@ -229,7 +229,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
-        public IActionResult UpdateProductCategoryMapping([ModelBinder(typeof(JsonModelBinder<ProductCategoryMappingDto>))] Delta<ProductCategoryMappingDto> productCategoryDelta)
+        public async Task<IActionResult> UpdateProductCategoryMappingAsync([ModelBinder(typeof(JsonModelBinder<ProductCategoryMappingDto>))] Delta<ProductCategoryMappingDto> productCategoryDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -258,7 +258,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             // We do not need to validate the category id, because this will happen in the model binder using the dto validator.
             var updateProductCategoryId = productCategoryDelta.Dto.Id;
 
-            var productCategoryEntityToUpdate = _categoryService.GetProductCategoryById(updateProductCategoryId);
+            var productCategoryEntityToUpdate = await _categoryService.GetProductCategoryByIdAsync(updateProductCategoryId);
 
             if (productCategoryEntityToUpdate == null)
             {
@@ -267,10 +267,10 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             productCategoryDelta.Merge(productCategoryEntityToUpdate);
 
-            _categoryService.UpdateProductCategory(productCategoryEntityToUpdate);
+            await _categoryService.UpdateProductCategoryAsync(productCategoryEntityToUpdate);
 
             //activity log
-            CustomerActivityService.InsertActivity("UpdateProdutCategoryMapping", LocalizationService.GetResourceAsync("ActivityLog.UpdateProdutCategoryMapping"), productCategoryEntityToUpdate);
+            await CustomerActivityService.InsertActivityAsync("UpdateProdutCategoryMapping", await LocalizationService.GetResourceAsync("ActivityLog.UpdateProdutCategoryMapping"), productCategoryEntityToUpdate);
 
             var updatedProductCategoryDto = productCategoryEntityToUpdate.ToDto();
 
@@ -291,7 +291,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [GetRequestsErrorInterceptorActionFilter]
         [AllowAnonymous]
-        public IActionResult DeleteProductCategoryMapping(int id)
+        public async Task<IActionResult> DeleteProductCategoryMappingAsync(int id)
         {
             if (id <= 0)
             {
@@ -308,24 +308,24 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             foreach (ProductCategoryMappingDto productCategoryMappingDto in mappingsAsDtos)
             {
-                var productCategory = _categoryService.GetProductCategoryById(productCategoryMappingDto.Id);
-                _categoryService.DeleteProductCategory(productCategory);
+                var productCategory = await _categoryService.GetProductCategoryByIdAsync(productCategoryMappingDto.Id);
+                await _categoryService.DeleteProductCategoryAsync(productCategory);
                 //activity log 
-                CustomerActivityService.InsertActivity("DeleteProductCategoryMapping", LocalizationService.GetResourceAsync("ActivityLog.DeleteProductCategoryMapping"), productCategory);
+                await CustomerActivityService.InsertActivityAsync("DeleteProductCategoryMapping",await  LocalizationService.GetResourceAsync("ActivityLog.DeleteProductCategoryMapping"), productCategory);
             }
 
 
-            //var productCategory = _categoryService.GetProductCategoryById(id);
+            //var productCategory = _categoryService.GetProductCategoryByIdAsync(id);
 
             //if (productCategory == null)
             //{
             //    return Error(HttpStatusCode.NotFound, "product_category_mapping", "not found");
             //}
 
-            //_categoryService.DeleteProductCategory(productCategory);
+            //_categoryService.DeleteProductCategoryAsync(productCategory);
 
             ////activity log 
-            //CustomerActivityService.InsertActivity("DeleteProductCategoryMapping", LocalizationService.GetResourceAsync("ActivityLog.DeleteProductCategoryMapping"), productCategory);
+            //CustomerActivityService.InsertActivityAsync("DeleteProductCategoryMapping", LocalizationService.GetResourceAsync("ActivityLog.DeleteProductCategoryMapping"), productCategory);
 
             return new RawJsonActionResult("{}");
         }

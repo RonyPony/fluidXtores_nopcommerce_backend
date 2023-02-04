@@ -99,21 +99,22 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.BadRequest, "page", "invalid page parameter");
             }
 
-            var allProducts = _productApiService.GetProducts(parameters.Ids, parameters.CreatedAtMin, parameters.CreatedAtMax, parameters.UpdatedAtMin,
-                                                                        parameters.UpdatedAtMax, parameters.Limit, parameters.Page, parameters.SinceId, parameters.CategoryId,
-                                                                        parameters.VendorName, parameters.PublishedStatus)
-                                                .Where(p => StoreMappingService.Authorize(p));
+            //var allProducts = _productApiService.GetProducts(parameters.Ids, parameters.CreatedAtMin, parameters.CreatedAtMax, parameters.UpdatedAtMin,
+            //                                                            parameters.UpdatedAtMax, parameters.Limit, parameters.Page, parameters.SinceId, parameters.CategoryId,
+            //                                                            parameters.VendorName, parameters.PublishedStatus)
+            //                                    .Where(async p => await StoreMappingService.AuthorizeAsync(p));
 
-            IList<ProductDto> productsAsDtos = allProducts.Select(product => _dtoHelper.PrepareProductDTO(product)).ToList();
+            //IList<ProductDto> productsAsDtos = allProducts.Select(product => _dtoHelper.PrepareProductDTOAsync(product)).ToList();
 
-            var productsRootObject = new ProductsRootObjectDto()
-            {
-                Products = productsAsDtos
-            };
+            //var productsRootObject = new ProductsRootObjectDto()
+            //{
+            //    Products = productsAsDtos
+            //};
 
-            var json = JsonFieldsSerializer.Serialize(productsRootObject, parameters.Fields);
+            //var json = JsonFieldsSerializer.Serialize(productsRootObject, parameters.Fields);
 
-            return new RawJsonActionResult(json);
+            //return new RawJsonActionResult(json);
+            return Ok("Error");
         }
 
         /// <summary>
@@ -157,7 +158,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetProductById(int id, string fields = "")
+        public async Task<IActionResult> GetProductByIdAsync(int id, string fields = "")
         {
             if (id <= 0)
             {
@@ -171,7 +172,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.NotFound, "product", "not found");
             }
 
-            var productDto = _dtoHelper.PrepareProductDTO(product);
+            var productDto = await _dtoHelper.PrepareProductDTOAsync(product);
 
             var productsRootObject = new ProductsRootObjectDto();
 
@@ -187,7 +188,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ProductsRootObjectDto), (int)HttpStatusCode.OK)]
         //[ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
-        public IActionResult CreateProduct( ProductDto productDelta)
+        public async Task<IActionResult> CreateProductAsync( ProductDto productDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -195,38 +196,38 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error();
             }
 
-            CustomerActivityService.InsertActivity("APIService", "Starting Product Create", null);
+            await CustomerActivityService.InsertActivityAsync("APIService", "Starting Product Create", null);
 
             // Inserting the new product
-            var product = _factory.Initialize();
+            var product = await _factory.Initialize();
             productDelta.Merge(ref product);
             
-            _productService.InsertProduct(product);
+            await _productService.InsertProductAsync(product);
 
-            UpdateProductPictures(product, productDelta.Images);
+            UpdateProductAsyncPictures(product, productDelta.Images);
 
-            UpdateProductTags(product, productDelta.Tags);
+            await UpdateProductAsyncTagsAsync(product, productDelta.Tags);
 
-            UpdateProductManufacturers(product, productDelta.ManufacturerIds);
+            await UpdateProductAsyncManufacturersAsync(product, productDelta.ManufacturerIds);
 
-            UpdateAssociatedProducts(product, productDelta.AssociatedProductIds);
+            await UpdateAssociatedProductsAsync(product, productDelta.AssociatedProductIds);
 
             //search engine name
-            var seName = _urlRecordService.ValidateSeName(product, productDelta.SeName, product.Name, true);
-            _urlRecordService.SaveSlug(product, seName, 0);
+            var seName = await _urlRecordService.ValidateSeNameAsync(product, productDelta.SeName, product.Name, true);
+            await _urlRecordService.SaveSlugAsync(product, seName, 0);
 
-            UpdateAclRoles(product, productDelta.RoleIds);
+            await UpdateAclRolesAsync(product, productDelta.RoleIds);
 
-            UpdateDiscountMappings(product, productDelta.DiscountIds);
+            await UpdateDiscountMappingsAsync(product, productDelta.DiscountIds);
 
             UpdateStoreMappings(product, productDelta.StoreIds);
 
-            _productService.UpdateProduct(product);
+            await _productService.UpdateProductAsync(product);
 
-            CustomerActivityService.InsertActivity("APIService", LocalizationService.GetResourceAsync("ActivityLog.AddNewProduct"), product);
+            await CustomerActivityService.InsertActivityAsync("APIService",await LocalizationService.GetResourceAsync("ActivityLog.AddNewProduct"), product);
 
             // Preparing the result dto of the new product
-            var productDto = _dtoHelper.PrepareProductDTO(product);
+            var productDto = await _dtoHelper.PrepareProductDTOAsync(product);
 
             var productsRootObject = new ProductsRootObjectDto();
 
@@ -245,14 +246,14 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [AllowAnonymous]
-        public IActionResult UpdateProduct([FromBody] ProductDto productDelta)
+        public async Task<IActionResult> UpdateProductAsync([FromBody] ProductDto productDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
             {
                 return Error();
             }
-            CustomerActivityService.InsertActivity("APIService", "Starting Product Update", null);
+            await CustomerActivityService.InsertActivityAsync("APIService", "Starting Product Update", null);
 
             var product = _productApiService.GetProductById(productDelta.Id);
 
@@ -264,37 +265,37 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             productDelta.Merge(ref product);
 
             product.UpdatedOnUtc = DateTime.UtcNow;
-            _productService.UpdateProduct(product);
+            await _productService.UpdateProductAsync(product);
 
-            //UpdateProductAttributes(product, productDelta);
+            //UpdateProductAsyncAttributes(product, productDelta);
 
-            UpdateProductPictures(product, productDelta.Images);
+            UpdateProductAsyncPictures(product, productDelta.Images);
 
-            UpdateProductTags(product, productDelta.Tags);
+            await UpdateProductAsyncTagsAsync(product, productDelta.Tags);
 
-            UpdateProductManufacturers(product, productDelta.ManufacturerIds);
+            await UpdateProductAsyncManufacturersAsync(product, productDelta.ManufacturerIds);
 
-            UpdateAssociatedProducts(product, productDelta.AssociatedProductIds);
+            await UpdateAssociatedProductsAsync(product, productDelta.AssociatedProductIds);
 
             // Update the SeName if specified
             if (productDelta.SeName != null)
             {
-                var seName = _urlRecordService.ValidateSeName(product, productDelta.SeName, product.Name, true);
-                _urlRecordService.SaveSlug(product, seName, 0);
+                var seName = await _urlRecordService.ValidateSeNameAsync(product, productDelta.SeName, product.Name, true);
+                await _urlRecordService.SaveSlugAsync(product, seName, 0);
             }
 
-            UpdateDiscountMappings(product, productDelta.DiscountIds);
+            await UpdateDiscountMappingsAsync(product, productDelta.DiscountIds);
 
             UpdateStoreMappings(product, productDelta.StoreIds);
 
-            UpdateAclRoles(product, productDelta.RoleIds);
+            await UpdateAclRolesAsync(product, productDelta.RoleIds);
 
-            _productService.UpdateProduct(product);
+            await _productService.UpdateProductAsync(product);
 
-            CustomerActivityService.InsertActivity("APIService", LocalizationService.GetResourceAsync("ActivityLog.UpdateProduct"), product);
+            await CustomerActivityService.InsertActivityAsync("APIService", await LocalizationService.GetResourceAsync("ActivityLog.UpdateProductAsync"), product);
 
             // Preparing the result dto of the new product
-            var productDto = _dtoHelper.PrepareProductDTO(product);
+            var productDto = await _dtoHelper.PrepareProductDTOAsync(product);
 
             var productsRootObject = new ProductsRootObjectDto();
 
@@ -316,14 +317,14 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [AllowAnonymous]
-        public IActionResult UpdateExistProduct([FromBody] ProductDto productDelta)
+        public async Task<IActionResult> UpdateExistProductAsync([FromBody] ProductDto productDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
             {
                 return Error();
             }
-            CustomerActivityService.InsertActivity("APIService", "Starting Product Update", null);
+            await CustomerActivityService.InsertActivityAsync("APIService", "Starting Product Update", null);
 
             var product = _productApiService.GetProductById(productDelta.Id);
 
@@ -335,37 +336,37 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             productDelta.Merge(ref product);
 
             product.UpdatedOnUtc = DateTime.UtcNow;
-            _productService.UpdateProduct(product);
+            await _productService.UpdateProductAsync(product);
 
-            //UpdateProductAttributes(product, productDelta);
+            //UpdateProductAsyncAttributes(product, productDelta);
 
-            UpdateProductPictures(product, productDelta.Images);
+            UpdateProductAsyncPictures(product, productDelta.Images);
 
-            UpdateProductTags(product, productDelta.Tags);
+            await UpdateProductAsyncTagsAsync(product, productDelta.Tags);
 
-            UpdateProductManufacturers(product, productDelta.ManufacturerIds);
+            await UpdateProductAsyncManufacturersAsync(product, productDelta.ManufacturerIds);
 
-            UpdateAssociatedProducts(product, productDelta.AssociatedProductIds);
+            await UpdateAssociatedProductsAsync(product, productDelta.AssociatedProductIds);
 
             // Update the SeName if specified
             if (productDelta.SeName != null)
             {
-                var seName = _urlRecordService.ValidateSeName(product, productDelta.SeName, product.Name, true);
-                _urlRecordService.SaveSlug(product, seName, 0);
+                var seName = await _urlRecordService.ValidateSeNameAsync(product, productDelta.SeName, product.Name, true);
+                await _urlRecordService.SaveSlugAsync(product, seName, 0);
             }
 
-            UpdateDiscountMappings(product, productDelta.DiscountIds);
+            await UpdateDiscountMappingsAsync(product, productDelta.DiscountIds);
 
             UpdateStoreMappings(product, productDelta.StoreIds);
 
-            UpdateAclRoles(product, productDelta.RoleIds);
+            await UpdateAclRolesAsync(product, productDelta.RoleIds);
 
-            _productService.UpdateProduct(product);
+            await _productService.UpdateProductAsync(product);
 
-            CustomerActivityService.InsertActivity("APIService", LocalizationService.GetResourceAsync("ActivityLog.UpdateProduct"), product);
+            await CustomerActivityService.InsertActivityAsync("APIService", await LocalizationService.GetResourceAsync("ActivityLog.UpdateProductAsync"), product);
 
             // Preparing the result dto of the new product
-            var productDto = _dtoHelper.PrepareProductDTO(product);
+            var productDto = await _dtoHelper.PrepareProductDTOAsync(product);
 
             var productsRootObject = new ProductsRootObjectDto();
 
@@ -387,7 +388,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult DeleteProduct(int id)
+        public async Task<IActionResult> DeleteProductAsync(int id)
         {
             if (id <= 0)
             {
@@ -401,15 +402,15 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.NotFound, "product", "not found");
             }
 
-            _productService.DeleteProduct(product);
+            await _productService.DeleteProductAsync(product);
 
             //activity log
-            CustomerActivityService.InsertActivity("APIService", string.Format(LocalizationService.GetResourceAsync("ActivityLog.DeleteProduct"), product.Name), product);
+            await CustomerActivityService.InsertActivityAsync("APIService", string.Format(await LocalizationService.GetResourceAsync("ActivityLog.DeleteProductAsync"), product.Name), product);
 
             return new RawJsonActionResult("{}");
         }
 
-        private void UpdateProductPictures(Product entityToUpdate, List<ImageMappingDto> setPictures)
+        private async void UpdateProductAsyncPictures(Product entityToUpdate, List<ImageMappingDto> setPictures)
         {
             // If no pictures are specified means we don't have to update anything
             if (setPictures == null)
@@ -418,16 +419,16 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             }
 
             // delete unused product pictures
-            var productPictures = _productService.GetProductPicturesByProductId(entityToUpdate.Id);
+            var productPictures =await  _productService.GetProductPicturesByProductIdAsync(entityToUpdate.Id);
             var unusedProductPictures = productPictures.Where(x => setPictures.All(y => y.Id != x.Id)).ToList();
             foreach (var unusedProductPicture in unusedProductPictures)
             {
-                var picture = PictureService.GetPictureById(unusedProductPicture.PictureId);
+                var picture = await PictureService.GetPictureByIdAsync(unusedProductPicture.PictureId);
                 if (picture == null)
                 {
                     throw new ArgumentException("No picture found with the specified id");
                 }
-                PictureService.DeletePicture(picture);
+                await PictureService.DeletePictureAsync(picture);
             }
 
             foreach (var imageDto in setPictures)
@@ -439,14 +440,14 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                     if (productPictureToUpdate != null && imageDto.Position > 0)
                     {
                         productPictureToUpdate.DisplayOrder = imageDto.Position;
-                        _productService.UpdateProductPicture(productPictureToUpdate);
+                        await _productService.UpdateProductPictureAsync(productPictureToUpdate);
                     }
                 }
                 else
                 {
                     // add new product picture
-                    var newPicture = PictureService.InsertPicture(imageDto.Binary, imageDto.MimeType, string.Empty);
-                    _productService.InsertProductPicture(new ProductPicture
+                    var newPicture = PictureService.InsertPictureAsync(imageDto.Binary, imageDto.MimeType, string.Empty);
+                    await _productService.InsertProductPictureAsync(new ProductPicture
                     {
                         PictureId = newPicture.Id,
                         ProductId = entityToUpdate.Id,
@@ -455,7 +456,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 }
             }
         }
-        private void UpdateProductAttributes(Product entityToUpdate, Delta<ProductDto> productDtoDelta)
+        private async Task UpdateProductAsyncAttributesAsync(Product entityToUpdate, Delta<ProductDto> productDtoDelta)
         {
             // If no product attribute mappings are specified means we don't have to update anything
             if (productDtoDelta.Dto.ProductAttributeMappings == null)
@@ -465,12 +466,12 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             // delete unused product attribute mappings
             var toBeUpdatedIds = productDtoDelta.Dto.ProductAttributeMappings.Where(y => y.Id != 0).Select(x => x.Id);
-            var productAttributeMappings = _productAttributeService.GetProductAttributeMappingsByProductId(entityToUpdate.Id);
+            var productAttributeMappings = await _productAttributeService.GetProductAttributeMappingsByProductIdAsync(entityToUpdate.Id);
             var unusedProductAttributeMappings = productAttributeMappings.Where(x => !toBeUpdatedIds.Contains(x.Id)).ToList();
 
             foreach (var unusedProductAttributeMapping in unusedProductAttributeMappings)
             {
-                _productAttributeService.DeleteProductAttributeMapping(unusedProductAttributeMapping);
+                await _productAttributeService.DeleteProductAttributeMappingAsync(unusedProductAttributeMapping);
             }
 
             foreach (var productAttributeMappingDto in productDtoDelta.Dto.ProductAttributeMappings)
@@ -483,9 +484,9 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                     {
                         productDtoDelta.Merge(productAttributeMappingDto, productAttributeMappingToUpdate, false);
 
-                        _productAttributeService.UpdateProductAttributeMapping(productAttributeMappingToUpdate);
+                        //_productAttributeService.UpdateProductAtributeMapping(productAttributeMappingToUpdate);
 
-                        UpdateProductAttributeValues(productAttributeMappingDto, productDtoDelta);
+                        //UpdateProductAsyncAttributeValues(productAttributeMappingDto, productDtoDelta);
                     }
                 }
                 else
@@ -498,12 +499,12 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                     productDtoDelta.Merge(productAttributeMappingDto, newProductAttributeMapping);
 
                     // add new product attribute
-                    _productAttributeService.InsertProductAttributeMapping(newProductAttributeMapping);
+                    //_productAttributeService.InsertProductAsyncAttributeMapping(newProductAttributeMapping);
                 }
             }
         }
 
-        private void UpdateProductAttributeValues(ProductAttributeMappingDto productAttributeMappingDto, Delta<ProductDto> productDtoDelta)
+        private async void UpdateProductAttributeValues(ProductAttributeMappingDto productAttributeMappingDto, Delta<ProductDto> productDtoDelta)
         {
             // If no product attribute values are specified means we don't have to update anything
             if (productAttributeMappingDto.ProductAttributeValues == null)
@@ -513,11 +514,11 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             var toBeUpdatedIds = productAttributeMappingDto.ProductAttributeValues.Where(y => y.Id != 0).Select(x => x.Id);
 
             var unusedProductAttributeValues =
-                _productAttributeService.GetProductAttributeValues(productAttributeMappingDto.Id).Where(x => !toBeUpdatedIds.Contains(x.Id)).ToList();
+               (await  _productAttributeService.GetProductAttributeValuesAsync(productAttributeMappingDto.Id)).Where(x => !toBeUpdatedIds.Contains(x.Id)).ToList();
 
             foreach (var unusedProductAttributeValue in unusedProductAttributeValues)
             {
-                _productAttributeService.DeleteProductAttributeValue(unusedProductAttributeValue);
+                await _productAttributeService.DeleteProductAttributeValueAsync(unusedProductAttributeValue);
             }
 
             foreach (var productAttributeValueDto in productAttributeMappingDto.ProductAttributeValues)
@@ -526,12 +527,12 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 {
                     // update existing product attribute mapping
                     var productAttributeValueToUpdate =
-                        _productAttributeService.GetProductAttributeValueById(productAttributeValueDto.Id);
+                        await _productAttributeService.GetProductAttributeValueByIdAsync(productAttributeValueDto.Id);
                     if (productAttributeValueToUpdate != null)
                     {
                         productDtoDelta.Merge(productAttributeValueDto, productAttributeValueToUpdate, false);
 
-                        _productAttributeService.UpdateProductAttributeValue(productAttributeValueToUpdate);
+                        await _productAttributeService.UpdateProductAttributeValueAsync(productAttributeValueToUpdate);
                     }
                 }
                 else
@@ -541,12 +542,12 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
                     newProductAttributeValue.ProductAttributeMappingId = productAttributeMappingDto.Id;
                     // add new product attribute value
-                    _productAttributeService.InsertProductAttributeValue(newProductAttributeValue);
+                    await _productAttributeService.InsertProductAttributeValueAsync(newProductAttributeValue);
                 }
             }
         }
 
-        private void UpdateProductTags(Product product, IReadOnlyCollection<string> productTags)
+        private async Task UpdateProductAsyncTagsAsync(Product product, IReadOnlyCollection<string> productTags)
         {
             if (productTags == null)
             {
@@ -558,7 +559,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 throw new ArgumentNullException(nameof(product));
             }
 
-            var existingProductTags = _productTagService.GetAllProductTagsByProductId(product.Id);
+            var existingProductTags = await _productTagService.GetAllProductTagsByProductIdAsync(product.Id);
             var productTagsToRemove = new List<ProductTag>();
             foreach (var existingProductTag in existingProductTags)
             {
@@ -582,12 +583,12 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             try
             {
-                this._productTagService.UpdateProductTags(product, productTagsToRemove.Select(o => o.Name).ToArray());
+                await this._productTagService.UpdateProductTagsAsync(product, productTagsToRemove.Select(o => o.Name).ToArray());
 
                 foreach (var productTagName in productTags)
                 {
                     ProductTag productTag;
-                    var productTag2 = _productTagService.GetProductTagByName(productTagName);
+                    var productTag2 = _productTagService.GetAllProductTagsAsync(productTagName);
                     if (productTag2 == null)
                     {
                         //add new product tag
@@ -595,26 +596,26 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                         {
                             Name = productTagName
                         };
-                        _productTagService.InsertProductTag(productTag);
+                        //_productTagService.InsertProductProductTagMappingAsync(productTag);
                     }
                     else
                     {
-                        productTag = productTag2;
+                        //productTag = productTag2;
                     }
 
-                    var seName = _urlRecordService.ValidateSeName(productTag, string.Empty, productTag.Name, true);
-                    _urlRecordService.SaveSlug(productTag, seName, 0);
+                    //var seName = _urlRecordService.ValidateSeNameAsync(productTag, string.Empty, productTag.Name, true);
+                    //_urlRecordService.SaveSlugAsync(productTag, seName, 0);
 
-                    //Perform a final check to deal with duplicates etc.
-                    var currentProductTags = _productTagService.GetAllProductTagsByProductId(product.Id);
-                    if (!currentProductTags.Any(o => o.Id == productTag.Id))
-                    {
-                        _productTagService.InsertProductProductTagMapping(new ProductProductTagMapping()
-                        {
-                            ProductId = product.Id,
-                            ProductTagId = productTag.Id
-                        });
-                    }
+                    ////Perform a final check to deal with duplicates etc.
+                    //var currentProductTags = _productTagService.GetAllProductTagsByProductId(product.Id);
+                    //if (!currentProductTags.Any(o => o.Id == productTag.Id))
+                    //{
+                    //    _productTagService.InsertProductAsyncProductTagMapping(new ProductProductTagMapping()
+                    //    {
+                    //        ProductId = product.Id,
+                    //        ProductTagId = productTag.Id
+                    //    });
+                    //}
 
                 }
             } 
@@ -623,15 +624,15 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 throw;
             }            
         }
-        private void UpdateDiscountMappings(Product product, List<int> passedDiscountIds)
+        private async Task UpdateDiscountMappingsAsync(Product product, List<int> passedDiscountIds)
         {
             if (passedDiscountIds == null)
             {
                 return;
             }
 
-            var allDiscounts = DiscountService.GetAllDiscounts(DiscountType.AssignedToSkus, showHidden: true);
-            var appliedProductDiscount = DiscountService.GetAppliedDiscounts(product);
+            var allDiscounts = await DiscountService.GetAllDiscountsAsync(DiscountType.AssignedToSkus, showHidden: true);
+            var appliedProductDiscount = await DiscountService.GetAppliedDiscountsAsync(product);
             foreach (var discount in allDiscounts)
             {
                 if (passedDiscountIds.Contains(discount.Id))
@@ -652,26 +653,26 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 }
             }
 
-            _productService.UpdateProduct(product);
-            _productService.UpdateHasDiscountsApplied(product);
+            await _productService.UpdateProductAsync(product);
+            await _productService.UpdateHasDiscountsAppliedAsync(product);
         }
 
 
 
-        private void UpdateProductManufacturers(Product product, List<int> passedManufacturerIds)
+        private async Task UpdateProductAsyncManufacturersAsync(Product product, List<int> passedManufacturerIds)
         {
             // If no manufacturers specified then there is nothing to map 
             if (passedManufacturerIds == null)
             {
                 return;
             }
-            var productmanufacturers = _manufacturerService.GetProductManufacturersByProductId(product.Id);
+            var productmanufacturers = await _manufacturerService.GetProductManufacturersByProductIdAsync(product.Id);
             var unusedProductManufacturers = productmanufacturers.Where(x => !passedManufacturerIds.Contains(x.Id)).ToList();
 
             // remove all manufacturers bindins that are not passed
             foreach (var unusedProductManufacturer in unusedProductManufacturers)
             {
-                _manufacturerService.DeleteProductManufacturer(unusedProductManufacturer);
+                await _manufacturerService.DeleteProductManufacturerAsync(unusedProductManufacturer);
             }
 
             foreach (var passedManufacturerId in passedManufacturerIds)
@@ -680,10 +681,10 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 if (productmanufacturers.All(x => x.Id != passedManufacturerId))
                 {
                     // if manufacturer does not exist we simply ignore it, otherwise add it to the product
-                    var manufacturer = _manufacturerService.GetManufacturerById(passedManufacturerId);
+                    var manufacturer = _manufacturerService.GetManufacturerByIdAsync(passedManufacturerId);
                     if (manufacturer != null)
                     {
-                        _manufacturerService.InsertProductManufacturer(new ProductManufacturer
+                        await _manufacturerService.InsertProductManufacturerAsync(new ProductManufacturer
                         {
                             ProductId = product.Id,
                             ManufacturerId = manufacturer.Id
@@ -692,28 +693,28 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 }
             }
         }
-        private void UpdateAssociatedProducts(Product product, List<int> passedAssociatedProductIds)
+        private async Task UpdateAssociatedProductsAsync(Product product, List<int> passedAssociatedProductIds)
         {
             // If no associated products specified then there is nothing to map 
             if (passedAssociatedProductIds == null)
                 return;
 
             var noLongerAssociatedProducts =
-                _productService.GetAssociatedProducts(product.Id, showHidden: true)
+                (await _productService.GetAssociatedProductsAsync(product.Id, showHidden: true))
                     .Where(p => !passedAssociatedProductIds.Contains(p.Id));
 
             // update all products that are no longer associated with our product
             foreach (var noLongerAssocuatedProduct in noLongerAssociatedProducts)
             {
                 noLongerAssocuatedProduct.ParentGroupedProductId = 0;
-                _productService.UpdateProduct(noLongerAssocuatedProduct);
+                await _productService.UpdateProductAsync(noLongerAssocuatedProduct);
             }
 
-            var newAssociatedProducts = _productService.GetProductsByIds(passedAssociatedProductIds.ToArray());
+            var newAssociatedProducts = await _productService.GetProductsByIdsAsync(passedAssociatedProductIds.ToArray());
             foreach (var newAssociatedProduct in newAssociatedProducts)
             {
                 newAssociatedProduct.ParentGroupedProductId = product.Id;
-                _productService.UpdateProduct(newAssociatedProduct);
+                await _productService.UpdateProductAsync(newAssociatedProduct);
             }
         }
     }

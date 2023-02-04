@@ -216,7 +216,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             var json = JsonFieldsSerializer.Serialize(productManufacturerMappingsRootObject, string.Empty);
 
             //activity log 
-            CustomerActivityService.InsertActivity("AddNewProductManufacturerMapping", LocalizationService.GetResourceAsync("ActivityLog.AddNewProductManufacturerMapping"), newProductManufacturer);
+            CustomerActivityService.InsertActivityAsync("AddNewProductManufacturerMapping", LocalizationService.GetResourceAsync("ActivityLog.AddNewProductManufacturerMapping"), newProductManufacturer);
 
             return new RawJsonActionResult(json);
         }
@@ -269,7 +269,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             _manufacturerService.UpdateProductManufacturer(productManufacturerEntityToUpdate);
 
             //activity log
-            CustomerActivityService.InsertActivity("UpdateProdutManufacturerMapping",
+            CustomerActivityService.InsertActivityAsync("UpdateProdutManufacturerMapping",
                 LocalizationService.GetResourceAsync("ActivityLog.UpdateProdutManufacturerMapping"), productManufacturerEntityToUpdate);
 
             var updatedProductManufacturerDto = productManufacturerEntityToUpdate.ToDto();
@@ -307,7 +307,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             _manufacturerService.DeleteProductManufacturer(productManufacturer);
 
             //activity log 
-            CustomerActivityService.InsertActivity("DeleteProductManufacturerMapping", LocalizationService.GetResourceAsync("ActivityLog.DeleteProductManufacturerMapping"), productManufacturer);
+            CustomerActivityService.InsertActivityAsync("DeleteProductManufacturerMapping", LocalizationService.GetResourceAsync("ActivityLog.DeleteProductManufacturerMapping"), productManufacturer);
 
             return new RawJsonActionResult("{}");
         }

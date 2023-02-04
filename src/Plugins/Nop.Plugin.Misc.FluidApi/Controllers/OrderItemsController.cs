@@ -163,7 +163,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.NotFound, "order_item", "not found");
             }
 
-            var orderItemDtos = new List<OrderItemDto> {await _dtoHelper.PrepareOrderItemDTO(orderItem)};
+            var orderItemDtos = new List<OrderItemDto> {await _dtoHelper.PrepareOrderItemDTOAsync(orderItem)};
 
             var orderItemsRootObject = new OrderItemsRootObject
             {

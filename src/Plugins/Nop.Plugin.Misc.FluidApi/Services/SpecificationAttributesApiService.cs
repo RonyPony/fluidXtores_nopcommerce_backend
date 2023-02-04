@@ -52,7 +52,7 @@ namespace Nop.Plugin.Misc.FluidApi.Services
             return new ApiList<ProductSpecificationAttribute>(query, page - 1, limit);
         }
 
-        public IList<SpecificationAttribute> GetSpecificationAttributes(int limit = Configurations.DefaultLimit, int page = Configurations.DefaultPageValue, int sinceId = Configurations.DefaultSinceId)
+        public IList<SpecificationAttribute> GetSpecificationAttributesAsync(int limit = Configurations.DefaultLimit, int page = Configurations.DefaultPageValue, int sinceId = Configurations.DefaultSinceId)
         {
             var query = _specificationAttributesRepository.Table;
 

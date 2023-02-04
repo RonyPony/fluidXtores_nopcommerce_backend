@@ -192,7 +192,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             }
 
             // Inserting the new manufacturer
-            var manufacturer = _factory.Initialize();
+            var manufacturer = await _factory.Initialize();
             manufacturerDelta.Merge(manufacturer);
 
             if (insertedPicture != null)
@@ -200,22 +200,22 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                  //manufacturer.PictureId = insertedPicture.Id;
             }
 
-            _manufacturerService.InsertManufacturerAsync(manufacturer);
+            await _manufacturerService.InsertManufacturerAsync(manufacturer);
 
-            UpdateAclRoles(manufacturer, manufacturerDelta.Dto.RoleIds);
+            await UpdateAclRolesAsync(manufacturer, manufacturerDelta.Dto.RoleIds);
 
-            UpdateDiscounts(manufacturer, manufacturerDelta.Dto.DiscountIds);
+            UpdateDiscountsAsync(manufacturer, manufacturerDelta.Dto.DiscountIds);
 
             UpdateStoreMappings(manufacturer, manufacturerDelta.Dto.StoreIds);
 
             //search engine name
-            var seName = _urlRecordService.ValidateSeName(manufacturer, manufacturerDelta.Dto.SeName, manufacturer.Name, true);
-            _urlRecordService.SaveSlug(manufacturer, seName, 0);
+            var seName = await _urlRecordService.ValidateSeNameAsync(manufacturer, manufacturerDelta.Dto.SeName, manufacturer.Name, true);
+            await _urlRecordService.SaveSlugAsync(manufacturer, seName, 0);
             
-            CustomerActivityService.InsertActivity("AddNewManufacturer", LocalizationService.GetResourceAsync("ActivityLog.AddNewManufacturer"), manufacturer);
+            await CustomerActivityService.InsertActivityAsync("AddNewManufacturer",await LocalizationService.GetResourceAsync("ActivityLog.AddNewManufacturer"), manufacturer);
 
             // Preparing the result dto of the new manufacturer
-            var newManufacturerDto = _dtoHelper.PrepareManufacturerDto(manufacturer);
+            var newManufacturerDto = await _dtoHelper.PrepareManufacturerDto(manufacturer);
 
             var manufacturersRootObject = new ManufacturersRootObject();
 
@@ -233,7 +233,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
-        public IActionResult UpdateManufacturer([ModelBinder(typeof(JsonModelBinder<ManufacturerDto>))] Delta<ManufacturerDto> manufacturerDelta)
+        public async Task<IActionResult> UpdateManufacturerAsync([ModelBinder(typeof(JsonModelBinder<ManufacturerDto>))] Delta<ManufacturerDto> manufacturerDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -252,13 +252,13 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             manufacturer.UpdatedOnUtc = DateTime.UtcNow;
 
-            _manufacturerService.UpdateManufacturer(manufacturer);
+            _manufacturerService.UpdateManufacturerAsync(manufacturer);
 
-            UpdatePicture(manufacturer, manufacturerDelta.Dto.Image);
+            UpdatePictureAsync(manufacturer, manufacturerDelta.Dto.Image);
 
-            UpdateAclRoles(manufacturer, manufacturerDelta.Dto.RoleIds);
+            await UpdateAclRolesAsync(manufacturer, manufacturerDelta.Dto.RoleIds);
 
-            UpdateDiscounts(manufacturer, manufacturerDelta.Dto.DiscountIds);
+            UpdateDiscountsAsync(manufacturer, manufacturerDelta.Dto.DiscountIds);
 
             UpdateStoreMappings(manufacturer, manufacturerDelta.Dto.StoreIds);
 
@@ -266,16 +266,16 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             if (manufacturerDelta.Dto.SeName != null)
             {
 
-                var seName = _urlRecordService.ValidateSeName(manufacturer, manufacturerDelta.Dto.SeName, manufacturer.Name, true);
-                _urlRecordService.SaveSlug(manufacturer, seName, 0);
+                //var seName = await _urlRecordService.ValidateSeNameAsync(manufacturerDelta.Dto.SeName, manufacturer.Name, true);
+                await _urlRecordService.SaveSlugAsync(manufacturer, "tmpval", 0);
             }
 
-            _manufacturerService.UpdateManufacturer(manufacturer);
+            await _manufacturerService.UpdateManufacturerAsync(manufacturer);
 
-            CustomerActivityService.InsertActivity("UpdateManufacturer",
-                LocalizationService.GetResourceAsync("ActivityLog.UpdateManufacturer"), manufacturer);
+            await CustomerActivityService.InsertActivityAsync("UpdateManufacturer",
+                await LocalizationService.GetResourceAsync("ActivityLog.UpdateManufacturer"), manufacturer);
 
-            var manufacturerDto = _dtoHelper.PrepareManufacturerDto(manufacturer);
+            var manufacturerDto = await _dtoHelper.PrepareManufacturerDto(manufacturer);
 
             var manufacturersRootObject = new ManufacturersRootObject();
 
@@ -293,7 +293,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult DeleteManufacturer(int id)
+        public async Task<IActionResult> DeleteManufacturerAsync(int id)
         {
             if (id <= 0)
             {
@@ -307,27 +307,27 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error(HttpStatusCode.NotFound, "manufacturer", "manufacturer not found");
             }
 
-            _manufacturerService.DeleteManufacturer(manufacturerToDelete);
+            await _manufacturerService.DeleteManufacturerAsync(manufacturerToDelete);
 
             //activity log
-            CustomerActivityService.InsertActivity("DeleteManufacturer", LocalizationService.GetResourceAsync("ActivityLog.DeleteManufacturer"), manufacturerToDelete);
+            await CustomerActivityService.InsertActivityAsync("DeleteManufacturer", await LocalizationService.GetResourceAsync("ActivityLog.DeleteManufacturer"), manufacturerToDelete);
 
             return new RawJsonActionResult("{}");
         }
 
-        private void UpdatePicture(Manufacturer manufacturerEntityToUpdate, ImageDto imageDto)
+        private async Task UpdatePictureAsync(Manufacturer manufacturerEntityToUpdate, ImageDto imageDto)
         {
             // no image specified then do nothing
             if (imageDto == null)
                 return;
 
             Picture updatedPicture;
-            var currentManufacturerPicture = PictureService.GetPictureById(manufacturerEntityToUpdate.PictureId);
+            var currentManufacturerPicture = await PictureService.GetPictureByIdAsync(manufacturerEntityToUpdate.PictureId);
 
             // when there is a picture set for the manufacturer
             if (currentManufacturerPicture != null)
             {
-                PictureService.DeletePicture(currentManufacturerPicture);
+                await PictureService.DeletePictureAsync(currentManufacturerPicture);
 
                 // When the image attachment is null or empty.
                 if (imageDto.Binary == null)
@@ -336,7 +336,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 }
                 else
                 {
-                    updatedPicture = PictureService.InsertPicture(imageDto.Binary, imageDto.MimeType, string.Empty);
+                    updatedPicture = await PictureService.InsertPictureAsync(imageDto.Binary, imageDto.MimeType, string.Empty);
                     manufacturerEntityToUpdate.PictureId = updatedPicture.Id;
                 }
             }
@@ -345,29 +345,29 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             {
                 if (imageDto.Binary != null)
                 {
-                    updatedPicture = PictureService.InsertPicture(imageDto.Binary, imageDto.MimeType, string.Empty);
+                    updatedPicture = await PictureService.InsertPictureAsync(imageDto.Binary, imageDto.MimeType, string.Empty);
                     manufacturerEntityToUpdate.PictureId = updatedPicture.Id;
                 }
             }
         }
 
-        private void UpdateDiscounts(Manufacturer manufacturer, List<int> passedDiscountIds)
+        private async Task UpdateDiscountsAsync(Manufacturer manufacturer, List<int> passedDiscountIds)
         {
             if (passedDiscountIds == null)
             {
                 return;
             }
 
-            var allDiscounts = DiscountService.GetAllDiscounts(DiscountType.AssignedToManufacturers, showHidden: true);
+            var allDiscounts = await DiscountService.GetAllDiscountsAsync(DiscountType.AssignedToManufacturers, showHidden: true);
             foreach (var discount in allDiscounts)
             {
-                var appliedDiscounts = DiscountService.GetAppliedDiscounts(manufacturer);
+                var appliedDiscounts = await DiscountService.GetAppliedDiscountsAsync(manufacturer);
                 if (passedDiscountIds.Contains(discount.Id))
                 {
                     //new discount
                     if (appliedDiscounts.Count(d => d.Id == discount.Id) == 0)
                     {
-                        _manufacturerService.InsertDiscountManufacturerMapping(
+                        await _manufacturerService.InsertDiscountManufacturerMappingAsync(
                             new DiscountManufacturerMapping
                             {
                                 DiscountId = discount.Id,
@@ -380,7 +380,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                     //remove discount
                     if (appliedDiscounts.Count(d => d.Id == discount.Id) > 0)
                     {
-                        _manufacturerService.DeleteDiscountManufacturerMapping(
+                        await _manufacturerService.DeleteDiscountManufacturerMappingAsync(
                             new DiscountManufacturerMapping
                             {
                                 DiscountId = discount.Id,
@@ -390,7 +390,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                     }
                 }
             }
-            _manufacturerService.UpdateManufacturer(manufacturer);
+            await _manufacturerService.UpdateManufacturerAsync(manufacturer);
         }
     }
 }

@@ -100,7 +100,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ProductPicturesRootObjectDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ErrorsRootObject), 422)]
-        public IActionResult CreateProductPicture([ModelBinder(typeof(JsonModelBinder<ImageMappingDto>))] Delta<ImageMappingDto> productPictureDelta)
+        public async Task<IActionResult> CreateProductPictureAsync([ModelBinder(typeof(JsonModelBinder<ImageMappingDto>))] Delta<ImageMappingDto> productPictureDelta)
         {
             // Here we display the errors if the validation has failed at some point.
             if (!ModelState.IsValid)
@@ -108,9 +108,9 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 return Error();
             }
 
-            CustomerActivityService.InsertActivity("APIService", string.Format("Attempting to create picture with name {0}.", productPictureDelta.Dto.SeoFilename), null);
+            await CustomerActivityService.InsertActivityAsync("APIService", string.Format("Attempting to create picture with name {0}.", productPictureDelta.Dto.SeoFilename), null);
 
-            var newPicture = PictureService.InsertPicture(Convert.FromBase64String(productPictureDelta.Dto.Attachment), productPictureDelta.Dto.MimeType, productPictureDelta.Dto.SeoFilename);
+            var newPicture = await PictureService.InsertPictureAsync(Convert.FromBase64String(productPictureDelta.Dto.Attachment), productPictureDelta.Dto.MimeType, productPictureDelta.Dto.SeoFilename);
 
             var productPicture = new ProductPicture()
             {
@@ -119,17 +119,17 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 DisplayOrder = productPictureDelta.Dto.Position
             };
 
-            _productService.InsertProductPicture(productPicture);
+            await _productService.InsertProductPictureAsync(productPicture);
 
-            var product = _productService.GetProductById(productPictureDelta.Dto.ProductId);
-            PictureService.SetSeoFilename(newPicture.Id, PictureService.GetPictureSeName(product.Name));
+            var product = await _productService.GetProductByIdAsync(productPictureDelta.Dto.ProductId);
+            await PictureService.SetSeoFilenameAsync(newPicture.Id, await PictureService.GetPictureSeNameAsync(product.Name));
             
             var productImagesRootObject = new ProductPicturesRootObjectDto();
-            productImagesRootObject.Image = _dtoHelper.PrepareProductPictureDTO(productPicture);
+            productImagesRootObject.Image = await _dtoHelper.PrepareProductPictureDTO(productPicture);
             
             var json = JsonFieldsSerializer.Serialize(productImagesRootObject, string.Empty);
 
-            CustomerActivityService.InsertActivity("APIService", string.Format("Successfully created and returned image {0}.", productPictureDelta.Dto.SeoFilename), null);
+            await CustomerActivityService.InsertActivityAsync("APIService", string.Format("Successfully created and returned image {0}.", productPictureDelta.Dto.SeoFilename), null);
 
             return new RawJsonActionResult(json);
         }
@@ -141,29 +141,29 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult DeletePicture(int id)
+        public async Task<IActionResult> DeletePictureAsync(int id)
         {
             if (id <= 0)
             {
                 return Error(HttpStatusCode.BadRequest, "id", "invalid id");
             }
 
-            CustomerActivityService.InsertActivity("APIService", string.Format("Attempting delete of picture {0}.", id), null);
+            await CustomerActivityService.InsertActivityAsync("APIService", string.Format("Attempting delete of picture {0}.", id), null);
 
-            var productPicture = _productService.GetProductPictureById(id);
+            var productPicture = await _productService.GetProductPictureByIdAsync(id);
             if (productPicture == null)
                 return Error(HttpStatusCode.NotFound, "product picture", "not found");
 
-            var picture = PictureService.GetPictureById(productPicture.PictureId);
+            var picture = await PictureService.GetPictureByIdAsync(productPicture.PictureId);
             if (picture == null)
                 return Error(HttpStatusCode.NotFound, "picture", "not found");
 
 
-            _productService.DeleteProductPicture(productPicture);
-            PictureService.DeletePicture(picture);
+            await _productService.DeleteProductPictureAsync(productPicture);
+            await PictureService.DeletePictureAsync(picture);
             
 
-            CustomerActivityService.InsertActivity("APIService", string.Format("Deleted picture {0}.", picture.Id), picture);
+            await CustomerActivityService.InsertActivityAsync("APIService", string.Format("Deleted picture {0}.", picture.Id), picture);
 
             return new RawJsonActionResult("{}");
         }
