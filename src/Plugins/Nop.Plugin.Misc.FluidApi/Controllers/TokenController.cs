@@ -31,16 +31,24 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             ICustomerService customerService,
             ICustomerRegistrationService customerRegistrationService,
             ICustomerActivityService customerActivityService,
-            CustomerSettings customerSettings,
-            ApiSettings apiSettings,
-            ApiConfiguration apiConfiguration)
+            CustomerSettings customerSettings
+            //ApiSettings apiSettings,
+            //ApiConfiguration apiConfiguration
+            )
         {
             _customerService = customerService;
             _customerRegistrationService = customerRegistrationService;
             _customerActivityService = customerActivityService;
             _customerSettings = customerSettings;
-            _apiSettings = apiSettings;
-            _apiConfiguration = apiConfiguration;
+            //_apiSettings = apiSettings;
+            //_apiConfiguration = apiConfiguration;
+        }
+
+        [Route("/klk")]
+        [HttpGet]
+        public async Task<IActionResult> saludo()
+        {
+            return Ok("klk");
         }
 
         [Route("/token")]

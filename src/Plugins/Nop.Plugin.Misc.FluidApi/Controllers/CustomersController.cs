@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Infrastructure;
@@ -118,6 +119,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [HttpGet]
         [Route("/api/customers")]
         [ProducesResponseType(typeof(CustomersRootObject), (int)HttpStatusCode.OK)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [AllowAnonymous]
         [GetRequestsErrorInterceptorActionFilter]

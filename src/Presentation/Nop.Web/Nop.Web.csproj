@@ -365,6 +365,9 @@
     <None Remove="Plugins\Misc.FluidApi\Views\PublicInfo.cshtml" />
     <None Remove="Plugins\Misc.FluidApi\Views\_ViewImports.cshtml" />
     <None Remove="Plugins\Misc.FluidApi\Views\Configure.cshtml" />
+    <None Remove="Plugins\Misc.FluidApi\Nop.Plugin.Misc.FluidApi.deps.json" />
+    <None Remove="Plugins\Misc.FluidApi\Nop.Plugin.Misc.FluidApi.deps.json" />
+    <None Remove="Plugins\Misc.FluidApi\Nop.Plugin.Misc.FluidApi.deps.json" />
   </ItemGroup>
 
   <ItemGroup>
