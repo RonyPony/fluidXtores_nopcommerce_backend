@@ -9,6 +9,10 @@ namespace Nop.Plugin.Misc.FluidApi
         public string apiKey { get; set; } 
 
         public bool enabled { get; set; }
+
+        public int AllowedClockSkewInMinutes { get; set; } = 5;
+
+        public string SecurityKey { get; set; } = "NowIsTheTimeForAllGoodMenToComeToTheAideOfTheirCountry";
     }
 }
 

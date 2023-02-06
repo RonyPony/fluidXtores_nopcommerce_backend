@@ -1,49 +1,44 @@
 ﻿<Properties StartupConfiguration="{4F1F649C-1020-45BE-A487-F416D9297FF3}|Default">
   <MonoDevelop.Ide.ItemProperties.Presentation.Nop.Web PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Libraries/Nop.Services/Logging/CustomerActivityService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Presentation/Nop.Web/Program.cs">
     <Files>
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Services/ProductApiService.cs" Line="53" Column="49" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Helpers/DTOHelper.cs" Line="611" Column="10" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/OrdersController.cs" Line="638" Column="50" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/CustomerController.cs" Line="1" Column="1" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/CategoriesController.cs" Line="79" Column="12" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/TokenController.cs" Line="116" Column="23" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/BaseApiController.cs" Line="1" Column="1" />
-      <File FileName="Libraries/Nop.Services/Media/PictureService.cs" Line="407" Column="1" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/CustomersController.cs" Line="183" Column="1" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Factories/CustomerFactory.cs" Line="19" Column="3" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Factories/AddressFactory.cs" Line="6" Column="35" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Factories/OrderFactory.cs" Line="8" Column="39" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Factories/ManufacturerFactory.cs" Line="15" Column="37" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/CustomerRolesController.cs" Line="59" Column="52" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/OrderItemsController.cs" Line="104" Column="78" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/FluidApiController.cs" Line="1" Column="1" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/LanguagesController.cs" Line="73" Column="15" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/ManufacturersController.cs" Line="36" Column="30" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Factories/IFactory.cs" Line="5" Column="27" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Helpers/IDTOHelper.cs" Line="29" Column="102" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/NewsLetterSubscriptionController.cs" Line="115" Column="44" />
-      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/ProductAttributesController.cs" Line="256" Column="109" />
-      <File FileName="Presentation/Nop.Web/Views/Install/_Install.ConnectionString.cshtml" Line="15" Column="53" />
-      <File FileName="Libraries/Nop.Services/Logging/CustomerActivityService.cs" Line="13" Column="18" />
-      <File FileName="Libraries/Nop.Services/Logging/ICustomerActivityService.cs" Line="108" Column="40" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Services/ProductApiService.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Helpers/DTOHelper.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/OrdersController.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/CustomerController.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/CategoriesController.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/TokenController.cs" Line="116" Column="1" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/BaseApiController.cs" />
+      <File FileName="Libraries/Nop.Services/Media/PictureService.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/CustomersController.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Factories/CustomerFactory.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Factories/AddressFactory.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Factories/OrderFactory.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Factories/ManufacturerFactory.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/CustomerRolesController.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/OrderItemsController.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/FluidApiController.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/LanguagesController.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/ManufacturersController.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Factories/IFactory.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Helpers/IDTOHelper.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/NewsLetterSubscriptionController.cs" />
+      <File FileName="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/ProductAttributesController.cs" />
+      <File FileName="Presentation/Nop.Web/Views/Install/_Install.ConnectionString.cshtml" />
+      <File FileName="Libraries/Nop.Services/Logging/CustomerActivityService.cs" Line="18" Column="21" />
+      <File FileName="Libraries/Nop.Services/Logging/ICustomerActivityService.cs" />
+      <File FileName="Presentation/Nop.Web/Program.cs" Line="48" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="NopCommerce" expanded="True">
-            <Node name="Libraries" expanded="True" />
             <Node name="Plugins" expanded="True">
               <Node name="Nop.Plugin.Misc.FluidApi" expanded="True">
                 <Node name="Controllers" expanded="True" />
                 <Node name="Factories" expanded="True" />
                 <Node name="Helpers" expanded="True" />
+                <Node name="Services" expanded="True" />
               </Node>
             </Node>
             <Node name="Presentation" expanded="True">
@@ -61,4 +56,12 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/Controllers/TokenController.cs" relfile="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/TokenController.cs" line="58" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
