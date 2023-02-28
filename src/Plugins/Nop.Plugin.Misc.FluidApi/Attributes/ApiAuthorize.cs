@@ -25,7 +25,7 @@
 //            get => base.AuthenticationSchemes;
 //            set => base.AuthenticationSchemes = GetAuthenticationSchemeName(value);
 //        }
-        
+
 //        private string GetAuthenticationSchemeName(string value)
 //        {
 //            var pluginService = EngineContext.Current.Resolve<IPluginService>();

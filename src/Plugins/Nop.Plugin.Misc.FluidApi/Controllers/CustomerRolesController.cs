@@ -18,28 +18,18 @@ using System.Net;
 
 namespace Nop.Plugin.Misc.FluidApi.Controllers
 {
-    public class CustomerRolesController : BaseApiController
+    public class CustomerRolesController 
     {
+        CustomerService _customerServ;
+        JsonFieldsSerializer _jsonFieldsSerializer;
         public CustomerRolesController(
-            IJsonFieldsSerializer jsonFieldsSerializer,
-            IAclService aclService, 
-            ICustomerService customerService, 
-            IStoreMappingService storeMappingService, 
-            IStoreService storeService, 
-            IDiscountService discountService,
-            ICustomerActivityService customerActivityService, 
-            ILocalizationService localizationService,
-            IPictureService pictureService) 
-            : base(jsonFieldsSerializer, 
-                  aclService, 
-                  customerService, 
-                  storeMappingService, 
-                  storeService, 
-                  discountService,
-                  customerActivityService,
-                  localizationService, 
-                  pictureService)
+            JsonFieldsSerializer jsonFieldsSerializer,
+            CustomerService customerService
+            ) 
+           
         {
+            _customerServ = customerService;
+            _jsonFieldsSerializer = jsonFieldsSerializer;
         }
 
         /// <summary>
@@ -56,7 +46,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [GetRequestsErrorInterceptorActionFilter]
         public async Task<IActionResult> GetAllCustomerRolesAsync(string fields = "")
         {
-            var allCustomerRoles = await CustomerService.GetAllCustomerRolesAsync();
+            var allCustomerRoles = await _customerServ.GetAllCustomerRolesAsync();
 
             IList<CustomerRoleDto> customerRolesAsDto = allCustomerRoles.Select(role => role.ToDto()).ToList();
 
@@ -65,7 +55,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                 CustomerRoles = customerRolesAsDto
             };
 
-            var json = JsonFieldsSerializer.Serialize(customerRolesRootObject, fields);
+            var json = _jsonFieldsSerializer.Serialize(customerRolesRootObject, fields);
 
             return new RawJsonActionResult(json);
         }

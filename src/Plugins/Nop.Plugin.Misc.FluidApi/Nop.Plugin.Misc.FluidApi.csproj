@@ -24,7 +24,6 @@
     <None Remove="Infrastructure\" />
     <None Remove="Helpers\" />
     <None Remove="DTOs\" />
-    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <None Remove="AutoMapper" />
     <None Remove="Microsoft.AspNetCore.Authentication" />
     <None Remove="Microsoft.AspNetCore.Rewrite" />
@@ -48,9 +47,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Presentation\Nop.Web.Framework\Nop.Web.Framework.csproj" />
     <ProjectReference Include="..\..\Presentation\Nop.Web\Nop.Web.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Microsoft.AspNetCore.Authentication.JwtBearer.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="plugin.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -60,7 +63,6 @@
     <Folder Include="Models\" />
     <Folder Include="Views\" />
     <Folder Include="Services\" />
-    <Folder Include="Infrastructure\" />
     <Folder Include="Helpers\" />
     <Folder Include="DTOs\" />
   </ItemGroup>
@@ -73,9 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Domain\ApiSettings.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Infrastructure\Constants.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Configuration\ApiConfiguration.cs">

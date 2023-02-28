@@ -27,7 +27,7 @@ namespace Nop.Plugin.Misc.FluidApi.Infrastructure
         {
             public const int DefaultAccessTokenExpirationInDays = 30; // 30 days
 
-
+            
             public const int DefaultLimit = 50;
             public const int DefaultPageValue = 1;
             public const int DefaultSinceId = 0;
@@ -38,11 +38,11 @@ namespace Nop.Plugin.Misc.FluidApi.Infrastructure
             public const int MinLimit = 1;
 
 
-
+       
             public const string PublishedStatus = "published";
             public const string UnpublishedStatus = "unpublished";
             public const string AnyStatus = "any";
-
+        
 
             public const string FixedRateSettingsKey = "Tax.TaxProvider.FixedOrByCountryStateZip.TaxCategoryId{0}";
 

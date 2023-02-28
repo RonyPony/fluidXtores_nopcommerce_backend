@@ -45,13 +45,6 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             //_apiConfiguration = apiConfiguration;
         }
 
-        [Route("/klk")]
-        [HttpGet]
-        public async Task<IActionResult> saludo()
-        {
-            return Ok("klk");
-        }
-
         [Route("/token")]
         [HttpGet]
         public async Task<IActionResult> CreateAsync(TokenRequest model)
@@ -70,7 +63,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             if (customer != null)
             {
-                return Json(GenerateTokenAsync(customer));
+                return Json(await GenerateTokenAsync(customer));
             }
 
             return BadRequest(new TokenResponse("Access Denied"));// new HttpStatusCodeResult(HttpStatusCode.Forbidden);// Json(new TokenResponse("Access Denied"));

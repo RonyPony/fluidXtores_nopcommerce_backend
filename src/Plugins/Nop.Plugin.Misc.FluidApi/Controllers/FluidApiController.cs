@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Messages;
+using Nop.Plugin.Misc.FluidApi.Infrastructure;
 using Nop.Plugin.Misc.FluidApi.Models;
 using Nop.Services.Common;
 using Nop.Services.Configuration;
@@ -25,7 +26,7 @@ using Nop.Web.Framework.Mvc.ModelBinding;
 
 namespace Nop.Plugin.Misc.FluidApi.Controllers
 {
-	public class FluidApiController: BasePluginController
+    public class FluidApiController: BasePluginController
     {
         #region Fields
 

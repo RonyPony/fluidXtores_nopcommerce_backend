@@ -34,7 +34,8 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         protected readonly ILocalizationService LocalizationService;
         protected readonly IPictureService PictureService;
 
-        public BaseApiController(IJsonFieldsSerializer jsonFieldsSerializer,
+        public BaseApiController(
+            IJsonFieldsSerializer jsonFieldsSerializer,
             IAclService aclService,
             ICustomerService customerService,
             IStoreMappingService storeMappingService,

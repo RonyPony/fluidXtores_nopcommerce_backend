@@ -10397,7 +10397,6 @@
       "path": "system.diagnostics.process/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -11650,7 +11649,6 @@
       "path": "system.net.nameresolution/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -12984,7 +12982,6 @@
       "path": "system.runtime.serialization.json/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -14425,7 +14422,6 @@
       "path": "system.threading.threadpool/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -14967,36 +14963,46 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.2",
       "Microsoft.AspNetCore.Rewrite >= 2.2.0",
       "Newtonsoft.Json >= 13.0.2",
-      "Nop.Web >= 4.5.0"
+      "Nop.Web >= 4.5.0",
+      "Nop.Web.Framework >= 4.5.0"
     ]
   },
   "packageFolders": {
-    "/Users/ron/.nuget/packages/": {}
+    "C:\\Users\\ronel\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/Nop.Plugin.Misc.FluidApi.csproj",
+      "projectUniqueName": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Plugins\\Nop.Plugin.Misc.FluidApi\\Nop.Plugin.Misc.FluidApi.csproj",
       "projectName": "Nop.Plugin.Misc.FluidApi",
-      "projectPath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/Nop.Plugin.Misc.FluidApi.csproj",
-      "packagesPath": "/Users/ron/.nuget/packages/",
-      "outputPath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/obj/",
+      "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Plugins\\Nop.Plugin.Misc.FluidApi\\Nop.Plugin.Misc.FluidApi.csproj",
+      "packagesPath": "C:\\Users\\ronel\\.nuget\\packages\\",
+      "outputPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Plugins\\Nop.Plugin.Misc.FluidApi\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "/Users/ron/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\ronel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Nop.Web.csproj": {
-              "projectPath": "/Users/ron/projects/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Nop.Web.csproj"
+            "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web.Framework\\Nop.Web.Framework.csproj": {
+              "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web.Framework\\Nop.Web.Framework.csproj"
+            },
+            "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\Nop.Web.csproj": {
+              "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\Nop.Web.csproj"
             }
           }
         }
@@ -15048,7 +15054,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
