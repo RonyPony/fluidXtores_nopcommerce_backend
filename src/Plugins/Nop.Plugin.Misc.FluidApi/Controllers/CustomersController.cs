@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -48,7 +49,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         private readonly IMappingHelper _mappingHelper;
         private readonly INewsLetterSubscriptionService _newsLetterSubscriptionService;
         private readonly ILanguageService _languageService;
-        private readonly Factory<Customer> _factory;
+        //private readonly Factory<Customer> _factory;
         private readonly IDTOHelper _dtoHelper;
         #endregion
 
@@ -82,7 +83,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             ICustomerRolesHelper customerRolesHelper,
             IGenericAttributeService genericAttributeService,
             IEncryptionService encryptionService,
-            Factory<Customer> factory,
+            //Factory<Customer> factory,
             ICountryService countryService,
             IMappingHelper mappingHelper,
             IPluginService pluginService,
@@ -104,7 +105,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
 
         {
-            //_customerApiService = customerApiService;
+            _customerApiService = customerApiService;
             //_factory = factory;
             //_countryService = countryService;
             //_mappingHelper = mappingHelper;
@@ -128,11 +129,11 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [AllowAnonymous]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetCustomers(CustomersParametersModel parameters)
+        public async Task<IActionResult> GetCustomersAsync(CustomersParametersModel parameters)
         {
             if (parameters.Limit < Configurations.MinLimit || parameters.Limit > Configurations.MaxLimit)
             {
-                //return Error(HttpStatusCode.BadRequest, "limit", "Invalid limit parameter");
+                return Error(HttpStatusCode.BadRequest, "limit", "Invalid limit parameter");
             }
 
             if (parameters.Page < Configurations.DefaultPageValue)
@@ -142,18 +143,23 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 
             try
             {
-                var allCustomers = _customerApiService.GetCustomersDtos(parameters.CreatedAtMin,
-                parameters.CreatedAtMax,
-                parameters.Limit,
-                parameters.Page,
-                parameters.SinceId);
+                var createAtMinField = parameters.CreatedAtMin;
+                var CreatedAtMaxField = parameters.CreatedAtMax;
+                var limitField = parameters.Limit;
+                var pageField = parameters.Page;
+                var sinceField = parameters.SinceId;
+                var allCustomers = _customerApiService.GetCustomersDtos(createAtMinField,
+                CreatedAtMaxField,
+                limitField,
+                pageField,
+                sinceField);
 
                 var customersRootObject = new CustomersRootObject()
                 {
                     Customers = allCustomers
                 };
 
-                var json = new object();// JsonFieldsSerializer.Serialize(customersRootObject, parameters.Fields);
+                var json = JsonFieldsSerializer.Serialize(customersRootObject, parameters.Fields);
 
                 return new RawJsonActionResult(json);
             }

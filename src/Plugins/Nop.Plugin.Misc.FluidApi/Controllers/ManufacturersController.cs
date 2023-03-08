@@ -51,15 +51,15 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             IDTOHelper dtoHelper,
             IManufacturerService manufacturerService,
             IManufacturerApiService manufacturerApiService,
-            IUrlRecordService urlRecordService,
-            Factory<Manufacturer> factory)
+            IUrlRecordService urlRecordService)
+            //Factory<Manufacturer> factory)
             : base(jsonFieldsSerializer, aclService, customerService, storeMappingService, storeService, discountService, customerActivityService, localizationService, pictureService)
         {
             _dtoHelper = dtoHelper;
             _manufacturerService = manufacturerService;
             _manufacturerApiService = manufacturerApiService;
             _urlRecordService = urlRecordService;
-            _factory = factory;
+            //_factory = factory;
         }
 
         /// <summary>

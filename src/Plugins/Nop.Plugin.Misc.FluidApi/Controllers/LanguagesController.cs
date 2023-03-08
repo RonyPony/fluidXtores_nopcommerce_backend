@@ -12,6 +12,7 @@ using Nop.Services.Logging;
 using Nop.Services.Media;
 using Nop.Services.Security;
 using Nop.Services.Stores;
+using NUglify.Helpers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -61,11 +62,15 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
-        public IActionResult GetAllLanguages(string fields = "")
+        public async Task<IActionResult> GetAllLanguagesAsync(string fields = "")
         {
             var allLanguages = _languageService.GetAllLanguages();
 
-            IList<LanguageDto> languagesAsDto = (IList<LanguageDto>)allLanguages.Select(async language => await _dtoHelper.PrepareLanguageDtoAsync(language)).ToList();
+            IList<LanguageDto> languagesAsDto = new List<LanguageDto>();
+            foreach (var item in allLanguages)
+            {
+                languagesAsDto.Add(await _dtoHelper.PrepareLanguageDtoAsync(item));
+            }
 
             var languagesRootObject = new LanguagesRootObject()
             {

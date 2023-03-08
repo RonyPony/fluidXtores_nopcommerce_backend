@@ -22,10 +22,13 @@ using Nop.Plugin.Misc.FluidApi.Helpers;
 using Nop.Plugin.Misc.FluidApi.JSON.Serializers;
 using Nop.Plugin.Misc.FluidApi.Services;
 using Nop.Services.Catalog;
+using Nop.Services.Common;
 using Nop.Services.Customers;
+using Nop.Services.Directory;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
 using Nop.Services.Media;
+using Nop.Services.Messages;
 using Nop.Services.Security;
 using Nop.Services.Seo;
 using Nop.Services.Stores;
@@ -91,6 +94,14 @@ namespace Nop.Plugin.Misc.FluidApi.Infrastructure
 					services.AddScoped<IApiTypeConverter, ApiTypeConverter>();
 					services.AddScoped<IObjectConverter, ObjectConverter>();
 					services.AddScoped<ICustomerRolesHelper, CustomerRolesHelper>();
+					services.AddScoped<IGenericAttributeService, GenericAttributeService>();
+					services.AddScoped<IEncryptionService, EncryptionService>();
+					services.AddScoped<ICountryService, CountryService>();
+					services.AddScoped<IMappingHelper, MappingHelper>();
+					services.AddScoped<INewsLetterSubscriptionService, NewsLetterSubscriptionService>();
+					services.AddScoped<ILanguageService, LanguageService>();
+					services.AddScoped<IManufacturerService, ManufacturerService>();
+					services.AddScoped<IManufacturerApiService, ManufacturerApiService>();
 				}
 			}
 
