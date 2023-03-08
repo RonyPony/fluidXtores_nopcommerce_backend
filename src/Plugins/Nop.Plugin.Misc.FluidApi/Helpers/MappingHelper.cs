@@ -64,7 +64,7 @@ namespace Nop.Plugin.Misc.FluidApi.Helpers
                     if (valueToUpdate == null)
                     {
                         // Check if there is registered factory for this type.
-                        var factoryType = typeof(IFactory<>);
+                        var factoryType = typeof(Factory<>);
                         var factoryTypeForCurrentProperty = factoryType.MakeGenericType(new Type[] { propertyToUpdate.PropertyType });
                         var initializerFactory = ((NopEngine)EngineContext.Current).ServiceProvider.GetService(factoryTypeForCurrentProperty);
 

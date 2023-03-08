@@ -48,7 +48,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         private readonly IMappingHelper _mappingHelper;
         private readonly INewsLetterSubscriptionService _newsLetterSubscriptionService;
         private readonly ILanguageService _languageService;
-        private readonly IFactory<Customer> _factory;
+        private readonly Factory<Customer> _factory;
         private readonly IDTOHelper _dtoHelper;
         #endregion
 
@@ -82,7 +82,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             ICustomerRolesHelper customerRolesHelper,
             IGenericAttributeService genericAttributeService,
             IEncryptionService encryptionService,
-            IFactory<Customer> factory,
+            Factory<Customer> factory,
             ICountryService countryService,
             IMappingHelper mappingHelper,
             IPluginService pluginService,

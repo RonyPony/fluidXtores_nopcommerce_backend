@@ -49,7 +49,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         private readonly IDTOHelper _dtoHelper;
         private readonly IProductAttributeConverter _productAttributeConverter;
         private readonly IStoreContext _storeContext;
-        private readonly IFactory<Order> _factory;
+        private readonly Factory<Order> _factory;
 
         // We resolve the order settings this way because of the tests.
         // The auto mocking does not support concreate types as dependencies. It supports only interfaces.
@@ -67,7 +67,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             ICustomerActivityService customerActivityService,
             ILocalizationService localizationService,
             IProductService productService,
-            IFactory<Order> factory,
+            Factory<Order> factory,
             IOrderProcessingService orderProcessingService,
             IOrderService orderService,
             IShoppingCartService shoppingCartService,

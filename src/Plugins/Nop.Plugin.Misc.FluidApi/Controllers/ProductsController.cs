@@ -38,7 +38,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         private readonly IProductService _productService;
         private readonly IUrlRecordService _urlRecordService;
         private readonly IManufacturerService _manufacturerService;
-        private readonly IFactory<Product> _factory;
+        private readonly Factory<Product> _factory;
         private readonly IProductTagService _productTagService;
         private readonly IProductAttributeService _productAttributeService;
         private readonly IDTOHelper _dtoHelper;
@@ -50,7 +50,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
                                   IUrlRecordService urlRecordService,
                                   ICustomerActivityService customerActivityService,
                                   ILocalizationService localizationService,
-                                  IFactory<Product> factory,
+                                  Factory<Product> factory,
                                   IAclService aclService,
                                   IStoreMappingService storeMappingService,
                                   IStoreService storeService,

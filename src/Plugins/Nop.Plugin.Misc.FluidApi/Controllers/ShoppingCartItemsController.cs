@@ -34,7 +34,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
         private readonly IShoppingCartItemApiService _shoppingCartItemApiService;
         private readonly IShoppingCartService _shoppingCartService;
         private readonly IProductService _productService;
-        private readonly IFactory<ShoppingCartItem> _factory;
+        private readonly Factory<ShoppingCartItem> _factory;
         private readonly IProductAttributeConverter _productAttributeConverter;
         private readonly IDTOHelper _dtoHelper;
         private readonly IStoreContext _storeContext;
@@ -50,7 +50,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             ILocalizationService localizationService,
             IShoppingCartService shoppingCartService,
             IProductService productService,
-            IFactory<ShoppingCartItem> factory,
+            Factory<ShoppingCartItem> factory,
             IPictureService pictureService,
             IProductAttributeConverter productAttributeConverter,
             IDTOHelper dtoHelper,

@@ -5,7 +5,7 @@ using Nop.Services.Catalog;
 
 namespace Nop.Plugin.Misc.FluidApi.Factories
 {
-    public class CategoryFactory : IFactory<Category>
+    public class CategoryFactory : Factory<Category>
     {
         private readonly ICategoryTemplateService _categoryTemplateService;
         private readonly CatalogSettings _catalogSettings;

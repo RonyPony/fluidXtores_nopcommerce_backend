@@ -3,7 +3,7 @@ using System;
 
 namespace Nop.Plugin.Misc.FluidApi.Factories
 {
-    public class ManufacturerFactory : IFactory<Manufacturer>
+    public class ManufacturerFactory : Factory<Manufacturer>
     {
         private readonly CatalogSettings _catalogSettings;
 

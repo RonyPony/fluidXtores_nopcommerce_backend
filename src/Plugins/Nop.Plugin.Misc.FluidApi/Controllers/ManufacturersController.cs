@@ -33,7 +33,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 {
     public class ManufacturersController : BaseApiController
     {
-        private readonly IFactory<Manufacturer> _factory;
+        private readonly Factory<Manufacturer> _factory;
         private readonly IDTOHelper _dtoHelper;
         private readonly IManufacturerService _manufacturerService;
         private readonly IManufacturerApiService _manufacturerApiService;
@@ -52,7 +52,7 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
             IManufacturerService manufacturerService,
             IManufacturerApiService manufacturerApiService,
             IUrlRecordService urlRecordService,
-            IFactory<Manufacturer> factory)
+            Factory<Manufacturer> factory)
             : base(jsonFieldsSerializer, aclService, customerService, storeMappingService, storeService, discountService, customerActivityService, localizationService, pictureService)
         {
             _dtoHelper = dtoHelper;

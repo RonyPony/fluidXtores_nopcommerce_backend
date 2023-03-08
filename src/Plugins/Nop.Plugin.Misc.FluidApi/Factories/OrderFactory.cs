@@ -5,7 +5,7 @@ using Nop.Core.Domain.Shipping;
 
 namespace Nop.Plugin.Misc.FluidApi.Factories
 {
-    public class OrderFactory : IFactory<Order>
+    public class OrderFactory : Factory<Order>
     {
         public async Task<Order> Initialize()
         {

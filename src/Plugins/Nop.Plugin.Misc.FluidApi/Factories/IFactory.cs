@@ -1,6 +1,6 @@
 ﻿namespace Nop.Plugin.Misc.FluidApi.Factories
 {
-    public interface IFactory<T>
+    public interface Factory<T>
     {
         Task<T> Initialize();
     }

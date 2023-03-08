@@ -5,7 +5,7 @@ using Nop.Services.Directory;
 
 namespace Nop.Plugin.Misc.FluidApi.Factories
 {
-    public class ProductFactory : IFactory<Product>
+    public class ProductFactory : Factory<Product>
     {
         private readonly IMeasureService _measureService;
         private readonly MeasureSettings _measureSettings;
@@ -16,7 +16,7 @@ namespace Nop.Plugin.Misc.FluidApi.Factories
             _measureSettings = measureSettings;
         }
 
-        async Task<Product> IFactory<Product>.Initialize()
+        async Task<Product> Factory<Product>.Initialize()
         {
             var defaultProduct = new Product();
             defaultProduct.Weight = 10;

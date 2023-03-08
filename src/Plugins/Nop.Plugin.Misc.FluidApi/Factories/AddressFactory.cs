@@ -3,10 +3,10 @@ using Nop.Core.Domain.Common;
 
 namespace Nop.Plugin.Misc.FluidApi.Factories
 {
-    public class AddressFactory : IFactory<Address>
+    public class AddressFactory : Factory<Address>
     {
 
-        async Task<Address> IFactory<Address>.Initialize()
+        async Task<Address> Factory<Address>.Initialize()
         {
             var address = new Address()
             {

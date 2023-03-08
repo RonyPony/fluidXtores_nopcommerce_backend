@@ -20,14 +20,15 @@ namespace Nop.Plugin.Misc.FluidApi.Controllers
 {
     public class CustomerRolesController 
     {
-        CustomerService _customerServ;
-        JsonFieldsSerializer _jsonFieldsSerializer;
-        public CustomerRolesController(
-            JsonFieldsSerializer jsonFieldsSerializer,
-            CustomerService customerService
-            ) 
+        ICustomerService _customerServ;
+        IJsonFieldsSerializer _jsonFieldsSerializer;
+        public CustomerRolesController(IJsonFieldsSerializer jsonFieldsSerializer,
+                                       ICustomerService customerService) 
            
         {
+            ArgumentNullException.ThrowIfNull(customerService, nameof(customerService));
+            ArgumentNullException.ThrowIfNull(jsonFieldsSerializer, nameof(jsonFieldsSerializer));
+
             _customerServ = customerService;
             _jsonFieldsSerializer = jsonFieldsSerializer;
         }

@@ -3,7 +3,7 @@ using Nop.Core.Domain.Customers;
 
 namespace Nop.Plugin.Misc.FluidApi.Factories
 {
-    public class CustomerFactory : IFactory<Customer>
+    public class CustomerFactory : Factory<Customer>
     {
         public async Task<Customer> Initialize()
         {

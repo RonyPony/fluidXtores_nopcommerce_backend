@@ -3,7 +3,7 @@ using Nop.Core.Domain.Orders;
 
 namespace Nop.Plugin.Misc.FluidApi.Factories
 {
-    public class ShoppingCartItemFactory : IFactory<ShoppingCartItem>
+    public class ShoppingCartItemFactory : Factory<ShoppingCartItem>
     {
         public async Task<ShoppingCartItem> Initialize()
         {
