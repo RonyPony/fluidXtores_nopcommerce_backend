@@ -1569,8 +1569,28 @@
       "PackagePath": "staticwebassets\\images\\thumbs\\0000001_banner_1.webp"
     },
     {
-      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000002_banner_2.webp",
-      "PackagePath": "staticwebassets\\images\\thumbs\\0000002_banner_2.webp"
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000002_desktops.jpg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000002_desktops.jpg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000002_desktops_450.jpg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000002_desktops_450.jpg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000003_notebooks.jpg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000003_notebooks.jpg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000003_notebooks_450.jpg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000003_notebooks_450.jpg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000004_software.jpg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000004_software.jpg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000004_software_450.jpg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000004_software_450.jpg"
     },
     {
       "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000005_electronics.jpeg",
@@ -1581,12 +1601,60 @@
       "PackagePath": "staticwebassets\\images\\thumbs\\0000005_electronics_450.jpeg"
     },
     {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000006_camera-photo.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000006_camera-photo.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000006_camera-photo_450.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000006_camera-photo_450.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000007_cell-phones.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000007_cell-phones.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000007_cell-phones_450.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000007_cell-phones_450.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000008_accessories.jpg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000008_accessories.jpg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000008_accessories_450.jpg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000008_accessories_450.jpg"
+    },
+    {
       "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000009_apparel.jpeg",
       "PackagePath": "staticwebassets\\images\\thumbs\\0000009_apparel.jpeg"
     },
     {
       "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000009_apparel_450.jpeg",
       "PackagePath": "staticwebassets\\images\\thumbs\\0000009_apparel_450.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000010_shoes.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000010_shoes.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000010_shoes_450.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000010_shoes_450.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000011_clothing.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000011_clothing.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000011_clothing_450.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000011_clothing_450.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000012_apparel-accessories.jpg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000012_apparel-accessories.jpg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000012_apparel-accessories_450.jpg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000012_apparel-accessories_450.jpg"
     },
     {
       "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000013_digital-downloads.jpeg",
@@ -1597,12 +1665,44 @@
       "PackagePath": "staticwebassets\\images\\thumbs\\0000013_digital-downloads_450.jpeg"
     },
     {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000017_apple.jpg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000017_apple.jpg"
+    },
+    {
       "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000020_build-your-own-computer.jpeg",
       "PackagePath": "staticwebassets\\images\\thumbs\\0000020_build-your-own-computer.jpeg"
     },
     {
       "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000020_build-your-own-computer_415.jpeg",
       "PackagePath": "staticwebassets\\images\\thumbs\\0000020_build-your-own-computer_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000022_digital-storm-vanquish-3-custom-performance-pc.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000022_digital-storm-vanquish-3-custom-performance-pc.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000022_digital-storm-vanquish-3-custom-performance-pc_100.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000022_digital-storm-vanquish-3-custom-performance-pc_100.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000022_digital-storm-vanquish-3-custom-performance-pc_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000022_digital-storm-vanquish-3-custom-performance-pc_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000022_digital-storm-vanquish-3-custom-performance-pc_550.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000022_digital-storm-vanquish-3-custom-performance-pc_550.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000022_digital-storm-vanquish-3-custom-performance-pc_64.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000022_digital-storm-vanquish-3-custom-performance-pc_64.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000023_lenovo-ideacentre-600-all-in-one-pc.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000023_lenovo-ideacentre-600-all-in-one-pc.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000023_lenovo-ideacentre-600-all-in-one-pc_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000023_lenovo-ideacentre-600-all-in-one-pc_415.jpeg"
     },
     {
       "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000024_apple-macbook-pro-13-inch.jpeg",
@@ -1613,12 +1713,320 @@
       "PackagePath": "staticwebassets\\images\\thumbs\\0000024_apple-macbook-pro-13-inch_415.jpeg"
     },
     {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000031_lenovo-thinkpad-x1-carbon-laptop.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000031_lenovo-thinkpad-x1-carbon-laptop.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000031_lenovo-thinkpad-x1-carbon-laptop_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000031_lenovo-thinkpad-x1-carbon-laptop_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000035_nikon-d5500-dslr.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000035_nikon-d5500-dslr.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000035_nikon-d5500-dslr_100.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000035_nikon-d5500-dslr_100.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000035_nikon-d5500-dslr_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000035_nikon-d5500-dslr_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000035_nikon-d5500-dslr_550.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000035_nikon-d5500-dslr_550.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000035_nikon-d5500-dslr_64.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000035_nikon-d5500-dslr_64.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000036_nikon-d5500-dslr.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000036_nikon-d5500-dslr.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000036_nikon-d5500-dslr_100.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000036_nikon-d5500-dslr_100.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000036_nikon-d5500-dslr_550.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000036_nikon-d5500-dslr_550.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000037_nikon-d5500-dslr-black.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000037_nikon-d5500-dslr-black.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000037_nikon-d5500-dslr-black_100.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000037_nikon-d5500-dslr-black_100.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000037_nikon-d5500-dslr-black_220.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000037_nikon-d5500-dslr-black_220.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000038_nikon-d5500-dslr-red.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000038_nikon-d5500-dslr-red.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000038_nikon-d5500-dslr-red_100.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000038_nikon-d5500-dslr-red_100.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000038_nikon-d5500-dslr-red_220.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000038_nikon-d5500-dslr-red_220.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000039_leica-t-mirrorless-digital-camera.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000039_leica-t-mirrorless-digital-camera.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000039_leica-t-mirrorless-digital-camera_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000039_leica-t-mirrorless-digital-camera_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000040_apple-icam.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000040_apple-icam.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000040_apple-icam_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000040_apple-icam_415.jpeg"
+    },
+    {
       "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000041_htc-one-m8-android-l-50-lollipop.jpeg",
       "PackagePath": "staticwebassets\\images\\thumbs\\0000041_htc-one-m8-android-l-50-lollipop.jpeg"
     },
     {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000041_htc-one-m8-android-l-50-lollipop_100.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000041_htc-one-m8-android-l-50-lollipop_100.jpeg"
+    },
+    {
       "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000041_htc-one-m8-android-l-50-lollipop_415.jpeg",
       "PackagePath": "staticwebassets\\images\\thumbs\\0000041_htc-one-m8-android-l-50-lollipop_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000041_htc-one-m8-android-l-50-lollipop_550.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000041_htc-one-m8-android-l-50-lollipop_550.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000041_htc-one-m8-android-l-50-lollipop_64.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000041_htc-one-m8-android-l-50-lollipop_64.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000042_htc-one-mini-blue.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000042_htc-one-mini-blue.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000042_htc-one-mini-blue_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000042_htc-one-mini-blue_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000044_nokia-lumia-1020.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000044_nokia-lumia-1020.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000044_nokia-lumia-1020_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000044_nokia-lumia-1020_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000045_beats-pill-20-wireless-speaker.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000045_beats-pill-20-wireless-speaker.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000045_beats-pill-20-wireless-speaker_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000045_beats-pill-20-wireless-speaker_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000048_portable-sound-speakers.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000048_portable-sound-speakers.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000048_portable-sound-speakers_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000048_portable-sound-speakers_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000057_nike-tailwind-loose-short-sleeve-running-shirt.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000057_nike-tailwind-loose-short-sleeve-running-shirt.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000057_nike-tailwind-loose-short-sleeve-running-shirt_100.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000057_nike-tailwind-loose-short-sleeve-running-shirt_100.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000057_nike-tailwind-loose-short-sleeve-running-shirt_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000057_nike-tailwind-loose-short-sleeve-running-shirt_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000057_nike-tailwind-loose-short-sleeve-running-shirt_550.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000057_nike-tailwind-loose-short-sleeve-running-shirt_550.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000057_nike-tailwind-loose-short-sleeve-running-shirt_64.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000057_nike-tailwind-loose-short-sleeve-running-shirt_64.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000058_oversized-women-t-shirt.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000058_oversized-women-t-shirt.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000058_oversized-women-t-shirt_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000058_oversized-women-t-shirt_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000059_custom-t-shirt.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000059_custom-t-shirt.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000059_custom-t-shirt_100.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000059_custom-t-shirt_100.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000059_custom-t-shirt_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000059_custom-t-shirt_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000059_custom-t-shirt_550.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000059_custom-t-shirt_550.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000059_custom-t-shirt_64.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000059_custom-t-shirt_64.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000060_levis-511-jeans.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000060_levis-511-jeans.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000060_levis-511-jeans_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000060_levis-511-jeans_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000062_obey-propaganda-hat.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000062_obey-propaganda-hat.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000062_obey-propaganda-hat_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000062_obey-propaganda-hat_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000065_night-visions.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000065_night-visions.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000065_night-visions_100.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000065_night-visions_100.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000065_night-visions_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000065_night-visions_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000065_night-visions_550.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000065_night-visions_550.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000065_night-visions_64.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000065_night-visions_64.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000066_if-you-wait-donation.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000066_if-you-wait-donation.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000066_if-you-wait-donation_100.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000066_if-you-wait-donation_100.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000066_if-you-wait-donation_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000066_if-you-wait-donation_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000066_if-you-wait-donation_550.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000066_if-you-wait-donation_550.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000066_if-you-wait-donation_64.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000066_if-you-wait-donation_64.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000067_science-faith.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000067_science-faith.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000067_science-faith_100.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000067_science-faith_100.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000067_science-faith_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000067_science-faith_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000067_science-faith_550.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000067_science-faith_550.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000067_science-faith_64.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000067_science-faith_64.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000068_fahrenheit-451-by-ray-bradbury.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000068_fahrenheit-451-by-ray-bradbury.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000068_fahrenheit-451-by-ray-bradbury_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000068_fahrenheit-451-by-ray-bradbury_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000069_first-prize-pies.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000069_first-prize-pies.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000069_first-prize-pies_100.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000069_first-prize-pies_100.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000069_first-prize-pies_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000069_first-prize-pies_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000069_first-prize-pies_550.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000069_first-prize-pies_550.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000069_first-prize-pies_64.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000069_first-prize-pies_64.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000070_pride-and-prejudice.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000070_pride-and-prejudice.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000070_pride-and-prejudice_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000070_pride-and-prejudice_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000071_elegant-gemstone-necklace-rental.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000071_elegant-gemstone-necklace-rental.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000071_elegant-gemstone-necklace-rental_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000071_elegant-gemstone-necklace-rental_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000072_flower-girl-bracelet.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000072_flower-girl-bracelet.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000072_flower-girl-bracelet_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000072_flower-girl-bracelet_415.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000073_vintage-style-engagement-ring.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000073_vintage-style-engagement-ring.jpeg"
+    },
+    {
+      "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000073_vintage-style-engagement-ring_415.jpeg",
+      "PackagePath": "staticwebassets\\images\\thumbs\\0000073_vintage-style-engagement-ring_415.jpeg"
     },
     {
       "Id": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\wwwroot\\images\\thumbs\\0000074_25-virtual-gift-card.jpeg",
