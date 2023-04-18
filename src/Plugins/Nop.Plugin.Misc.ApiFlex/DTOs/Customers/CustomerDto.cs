@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Nop.Web.Models.Customer;
 using Nop.Plugin.Misc.ApiFlex.DTO.Customers;
 
-namespace Nop.Plugin.Misc.FluidApi.DTO.Customers
+namespace Nop.Plugin.Misc.ApiFlex.DTO.Customers
 {
     [JsonObject(Title = "customer")]
     //[Validator(typeof(CustomerDtoValidator))]

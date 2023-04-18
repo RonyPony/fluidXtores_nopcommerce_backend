@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nop.Plugin.Misc.ApliFlex.Infrastructure
+namespace Nop.Plugin.Misc.ApiFlex.Infrastructure
 {
     internal class apiFlexPlugin:BasePlugin
     {

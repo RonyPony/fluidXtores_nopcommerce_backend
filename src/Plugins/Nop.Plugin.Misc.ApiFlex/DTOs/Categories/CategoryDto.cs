@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Nop.Plugin.Misc.ApiFlex.DTO.Base;
+using Nop.Plugin.Misc.ApiFlex.DTO.Images;
+using Nop.Plugin.Misc.ApiFlex.DTO.Languages;
 using System;
 using System.Collections.Generic;
 using Nop.Core.Domain.Catalog;
@@ -34,8 +36,8 @@ namespace Nop.Plugin.Misc.ApiFlex.DTO.Categories
             //category.SeName = "";
         }
 
-        private int _imageDto;
-        private List<int> _localizedNames;
+        private ImageDto _imageDto;
+        private List<LocalizedNameDto> _localizedNames;
         private List<int> _storeIds;
         private List<int> _discountIds;
         private List<int> _roleIds;
@@ -47,7 +49,7 @@ namespace Nop.Plugin.Misc.ApiFlex.DTO.Categories
         /// Gets or sets the localized names
         /// </summary>
         [JsonProperty("localized_names")]
-        public List<int> LocalizedNames
+        public List<LocalizedNameDto> LocalizedNames
         {
             get
             {
@@ -208,7 +210,7 @@ namespace Nop.Plugin.Misc.ApiFlex.DTO.Categories
         }
 
         [JsonProperty("image")]
-        public int Image {
+        public ImageDto Image {
             get
             {
                 return _imageDto;

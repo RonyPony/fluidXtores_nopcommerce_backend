@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Domain.Customers;
 using Nop.Plugin.Misc.ApiFlex.DTO.Customers;
-using Nop.Plugin.Misc.FluidApi.DTO.Customers;
+using Nop.Plugin.Misc.ApiFlex.DTO.Customers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

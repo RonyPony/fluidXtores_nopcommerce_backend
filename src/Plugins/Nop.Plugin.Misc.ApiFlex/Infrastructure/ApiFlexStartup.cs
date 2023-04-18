@@ -8,11 +8,17 @@ using Nop.Core.Infrastructure;
 using Nop.Plugin.Misc.ApiFlex.Controllers;
 using Nop.Plugin.Misc.ApiFlex.JSON.Serializers;
 using Nop.Plugin.Misc.ApiFlex.Services;
+using Nop.Plugin.Misc.ApiFlex.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Nop.Plugin.Misc.ApiFlex.Helpers;
+using Nop.Plugin.Misc.ApiFlex.Factories;
+using Nop.Core.Domain.Catalog;
+using Nop.Core.Domain.Directory;
+using Nop.Services.Directory;
 
 namespace Nop.Plugin.Misc.ApiFlex.Infrastructure
 {
@@ -82,6 +88,13 @@ namespace Nop.Plugin.Misc.ApiFlex.Infrastructure
             services.AddScoped<IJsonFieldsSerializer, JsonFieldsSerializer>();
             services.AddScoped<ICategoryApiService, CategoryApiService>();
             services.AddScoped<ICustomerApiService, CustomerApiService>();
+            services.AddScoped<IDTOHelper,DTOHelper>();
+            services.AddScoped<IManufacturerApiService,ManufacturerApiService>();
+            services.AddScoped<IObjectConverter,ObjectConverter>();
+            services.AddScoped<IApiTypeConverter,ApiTypeConverter>();
+            services.AddScoped<INewsLetterSubscriptionApiService,NewsLetterSubscriptionApiService>();
+            services.AddScoped<IProductApiService,ProductApiService>();
+            // services.AddScoped<Factory<Product>>();
         }
     }
 }

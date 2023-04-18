@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using Nop.Plugin.Misc.FluidApi.DTO.Customers;
+using Nop.Plugin.Misc.ApiFlex.DTO.Customers;
 
 namespace Nop.Plugin.Misc.ApiFlex.DTO.Customers
 {

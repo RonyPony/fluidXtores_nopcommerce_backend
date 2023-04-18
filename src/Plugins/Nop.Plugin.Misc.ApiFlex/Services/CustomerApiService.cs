@@ -21,7 +21,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Web.Models.Customer;
 using static Nop.Plugin.Misc.ApiFlex.Infrastructure.Constants;
 using Nop.Web.Factories;
-using Nop.Plugin.Misc.FluidApi.DTO.Customers;
+using Nop.Plugin.Misc.ApiFlex.DTO.Customers;
 using System.Threading.Tasks;
 
 namespace Nop.Plugin.Misc.ApiFlex.Services

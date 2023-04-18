@@ -1,30 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Plugins\\Nop.Plugin.Payments.Manual\\Nop.Plugin.Payments.Manual.csproj": {}
+    "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Payments.Manual/Nop.Plugin.Payments.Manual.csproj": {}
   },
   "projects": {
-    "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Core\\Nop.Core.csproj": {
+    "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Core/Nop.Core.csproj": {
       "version": "4.5.0",
       "restore": {
-        "projectUniqueName": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Core\\Nop.Core.csproj",
+        "projectUniqueName": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Core/Nop.Core.csproj",
         "projectName": "Nop.Core",
-        "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Core\\Nop.Core.csproj",
-        "packagesPath": "C:\\Users\\ronel\\.nuget\\packages\\",
-        "outputPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Core\\obj\\",
+        "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Core/Nop.Core.csproj",
+        "packagesPath": "/Users/ronel/.nuget/packages/",
+        "outputPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Core/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ronel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/ronel/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -120,39 +115,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.202/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Data\\Nop.Data.csproj": {
+    "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Data/Nop.Data.csproj": {
       "version": "4.5.0",
       "restore": {
-        "projectUniqueName": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Data\\Nop.Data.csproj",
+        "projectUniqueName": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Data/Nop.Data.csproj",
         "projectName": "Nop.Data",
-        "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Data\\Nop.Data.csproj",
-        "packagesPath": "C:\\Users\\ronel\\.nuget\\packages\\",
-        "outputPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Data\\obj\\",
+        "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Data/Nop.Data.csproj",
+        "packagesPath": "/Users/ronel/.nuget/packages/",
+        "outputPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Data/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ronel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/ronel/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Core\\Nop.Core.csproj": {
-                "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Core\\Nop.Core.csproj"
+              "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Core/Nop.Core.csproj": {
+                "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Core/Nop.Core.csproj"
               }
             }
           }
@@ -216,42 +206,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.202/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Services\\Nop.Services.csproj": {
+    "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Services/Nop.Services.csproj": {
       "version": "4.5.0",
       "restore": {
-        "projectUniqueName": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Services\\Nop.Services.csproj",
+        "projectUniqueName": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Services/Nop.Services.csproj",
         "projectName": "Nop.Services",
-        "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Services\\Nop.Services.csproj",
-        "packagesPath": "C:\\Users\\ronel\\.nuget\\packages\\",
-        "outputPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Services\\obj\\",
+        "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Services/Nop.Services.csproj",
+        "packagesPath": "/Users/ronel/.nuget/packages/",
+        "outputPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Services/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ronel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/ronel/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Core\\Nop.Core.csproj": {
-                "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Core\\Nop.Core.csproj"
+              "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Core/Nop.Core.csproj": {
+                "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Core/Nop.Core.csproj"
               },
-              "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Data\\Nop.Data.csproj": {
-                "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Data\\Nop.Data.csproj"
+              "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Data/Nop.Data.csproj": {
+                "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Data/Nop.Data.csproj"
               }
             }
           }
@@ -327,39 +312,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.202/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Plugins\\Nop.Plugin.Payments.Manual\\Nop.Plugin.Payments.Manual.csproj": {
+    "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Payments.Manual/Nop.Plugin.Payments.Manual.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Plugins\\Nop.Plugin.Payments.Manual\\Nop.Plugin.Payments.Manual.csproj",
+        "projectUniqueName": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Payments.Manual/Nop.Plugin.Payments.Manual.csproj",
         "projectName": "Nop.Plugin.Payments.Manual",
-        "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Plugins\\Nop.Plugin.Payments.Manual\\Nop.Plugin.Payments.Manual.csproj",
-        "packagesPath": "C:\\Users\\ronel\\.nuget\\packages\\",
-        "outputPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Plugins\\Nop.Plugin.Payments.Manual\\obj\\",
+        "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Payments.Manual/Nop.Plugin.Payments.Manual.csproj",
+        "packagesPath": "/Users/ronel/.nuget/packages/",
+        "outputPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Payments.Manual/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ronel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/ronel/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\Nop.Web.csproj": {
-                "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\Nop.Web.csproj"
+              "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Nop.Web.csproj": {
+                "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Nop.Web.csproj"
               }
             }
           }
@@ -389,45 +369,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.202/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web.Framework\\Nop.Web.Framework.csproj": {
+    "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web.Framework/Nop.Web.Framework.csproj": {
       "version": "4.5.0",
       "restore": {
-        "projectUniqueName": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web.Framework\\Nop.Web.Framework.csproj",
+        "projectUniqueName": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web.Framework/Nop.Web.Framework.csproj",
         "projectName": "Nop.Web.Framework",
-        "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web.Framework\\Nop.Web.Framework.csproj",
-        "packagesPath": "C:\\Users\\ronel\\.nuget\\packages\\",
-        "outputPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web.Framework\\obj\\",
+        "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web.Framework/Nop.Web.Framework.csproj",
+        "packagesPath": "/Users/ronel/.nuget/packages/",
+        "outputPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web.Framework/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ronel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/ronel/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Core\\Nop.Core.csproj": {
-                "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Core\\Nop.Core.csproj"
+              "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Core/Nop.Core.csproj": {
+                "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Core/Nop.Core.csproj"
               },
-              "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Data\\Nop.Data.csproj": {
-                "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Data\\Nop.Data.csproj"
+              "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Data/Nop.Data.csproj": {
+                "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Data/Nop.Data.csproj"
               },
-              "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Services\\Nop.Services.csproj": {
-                "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Services\\Nop.Services.csproj"
+              "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Services/Nop.Services.csproj": {
+                "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Services/Nop.Services.csproj"
               }
             }
           }
@@ -475,48 +450,43 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.202/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\Nop.Web.csproj": {
+    "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Nop.Web.csproj": {
       "version": "4.5.0",
       "restore": {
-        "projectUniqueName": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\Nop.Web.csproj",
+        "projectUniqueName": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Nop.Web.csproj",
         "projectName": "Nop.Web",
-        "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\Nop.Web.csproj",
-        "packagesPath": "C:\\Users\\ronel\\.nuget\\packages\\",
-        "outputPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web\\obj\\",
+        "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/Nop.Web.csproj",
+        "packagesPath": "/Users/ronel/.nuget/packages/",
+        "outputPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ronel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/ronel/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Core\\Nop.Core.csproj": {
-                "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Core\\Nop.Core.csproj"
+              "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Core/Nop.Core.csproj": {
+                "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Core/Nop.Core.csproj"
               },
-              "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Data\\Nop.Data.csproj": {
-                "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Data\\Nop.Data.csproj"
+              "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Data/Nop.Data.csproj": {
+                "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Data/Nop.Data.csproj"
               },
-              "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Services\\Nop.Services.csproj": {
-                "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Libraries\\Nop.Services\\Nop.Services.csproj"
+              "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Services/Nop.Services.csproj": {
+                "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Libraries/Nop.Services/Nop.Services.csproj"
               },
-              "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web.Framework\\Nop.Web.Framework.csproj": {
-                "projectPath": "C:\\proyectos\\fluidXtores_nopcommerce_backend\\src\\Presentation\\Nop.Web.Framework\\Nop.Web.Framework.csproj"
+              "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web.Framework/Nop.Web.Framework.csproj": {
+                "projectPath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web.Framework/Nop.Web.Framework.csproj"
               }
             }
           }
@@ -549,7 +519,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.202/RuntimeIdentifierGraph.json"
         }
       }
     }
