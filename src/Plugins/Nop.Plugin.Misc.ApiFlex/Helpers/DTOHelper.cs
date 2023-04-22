@@ -1,4 +1,5 @@
-﻿using Nop.Core.Domain.Catalog;
+﻿using Nop.Core.Domain;
+using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Localization;
@@ -65,6 +66,7 @@ namespace Nop.Plugin.Misc.ApiFlex.Helpers
         private readonly ISettingService _settingService;
         private readonly IStoreMappingService _storeMappingService;
         private readonly IStoreService _storeService;
+        private readonly StoreInformationSettings _storeSetting;
         private readonly ITaxCategoryService _taxCategoryService;
         private readonly IUrlRecordService _urlRecordService;
         private readonly IOrderService _orderService;
@@ -84,6 +86,7 @@ namespace Nop.Plugin.Misc.ApiFlex.Helpers
             ICurrencyService currencyService,
             IDiscountService discountService,
             IManufacturerService manufacturerService,
+            StoreInformationSettings storeSetting,
             CurrencySettings currencySettings,
             IStoreService storeService,
             ILocalizationService localizationService,
@@ -119,6 +122,7 @@ namespace Nop.Plugin.Misc.ApiFlex.Helpers
             _shipmentService = shipmentService;
             _addressService = addressService;
             _vendorService = vendorService;
+            _storeSetting = storeSetting;
         }
 
         public async Task<ProductDto> PrepareProductDTOAsync(Product product)
@@ -377,9 +381,17 @@ namespace Nop.Plugin.Misc.ApiFlex.Helpers
             {
                 storeDto.PrimaryCurrencyDisplayLocale = primaryCurrency.DisplayLocale;
             }
-
+            int logoPicId = _storeSetting.LogoPictureId;
+            Picture storeLogoPic =await _pictureService.GetPictureByIdAsync(logoPicId);
+            storeDto.DefaultProductPicture = await _pictureService.GetDefaultPictureUrlAsync();
+            storeDto.logo = await _pictureService.LoadPictureBinaryAsync(storeLogoPic);
+            storeDto.StoreClosed = _storeSetting.StoreClosed;
+            storeDto.FacebookLink = _storeSetting.FacebookLink;
+            storeDto.TwitterLink = _storeSetting.TwitterLink;
+            storeDto.YoutubeLink=_storeSetting.YoutubeLink;
+            storeDto.InstagramLink=_storeSetting.InstagramLink;
             storeDto.LanguageIds = _languageService.GetAllLanguages(false, store.Id).Select(x => x.Id).ToList();
-
+            
             return storeDto;
         }
 

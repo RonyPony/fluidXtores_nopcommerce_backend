@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using Nop.Plugin.Misc.ApiFlex.DTO.Base;
+using Nop.Core.Domain.Media;
 
 namespace Nop.Plugin.Misc.ApiFlex.DTO.Stores
 {
@@ -90,6 +91,31 @@ namespace Nop.Plugin.Misc.ApiFlex.DTO.Stores
         /// </summary>
         [JsonProperty("company_vat")]
         public string CompanyVat { get; set; }
+
+        /// <summary>
+        /// Gets or sets logo
+        /// </summary>
+        [JsonProperty("def_product_picture")]
+        public string DefaultProductPicture { get; set; }
+
+        [JsonProperty("logo")]
+        public byte[] logo { get; set; }
+
+        [JsonProperty("store_closed")]
+        public bool StoreClosed { get; set; }
+
+        [JsonProperty("facebook_link")]
+        public string FacebookLink { get; set; }
+
+        [JsonProperty("twitter_link")]
+        public string TwitterLink { get; set; }
+
+        [JsonProperty("youtube_link")]
+        public string YoutubeLink { get; set; }
+
+        [JsonProperty("instagram_link")]
+        public string InstagramLink { get; set; }
+
 
         /// <summary>
         /// Get or set the currency format
