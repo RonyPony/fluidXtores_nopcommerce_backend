@@ -240,8 +240,15 @@ namespace Nop.Plugin.Misc.ApiFlex.Services
             result.AddRange(customerWithAttributes.Select(o => CreateCustomerDto(o.Customer, o.Attributes)));
 
             //result.ForEach(SimpleCustomerinfoAsync());
+            foreach (var item in result)
+            {
+                SimpleCustomerinfoAsync(item);
+            }
 
-
+            foreach (var item in result)
+            {
+                Console.WriteLine(">>>" + item.Id);
+            }
 
             SetNewsletterSubscriptionStatus(result);
 

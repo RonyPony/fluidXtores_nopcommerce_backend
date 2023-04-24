@@ -88,7 +88,7 @@ namespace Nop.Plugin.Misc.ApiFlex.Controllers
         [ProducesResponseType(typeof(ErrorsRootObject), (int)HttpStatusCode.BadRequest)]
         [GetRequestsErrorInterceptorActionFilter]
         [AllowAnonymous]
-        public IActionResult GetProducts(ProductsParametersModel parameters)
+        public async Task<IActionResult> GetProducts(ProductsParametersModel parameters)
         {
             if (parameters.Limit < Configurations.MinLimit || parameters.Limit > Configurations.MaxLimit)
             {
@@ -100,22 +100,25 @@ namespace Nop.Plugin.Misc.ApiFlex.Controllers
                 return Error(HttpStatusCode.BadRequest, "page", "invalid page parameter");
             }
 
-            //var allProducts = _productApiService.GetProducts(parameters.Ids, parameters.CreatedAtMin, parameters.CreatedAtMax, parameters.UpdatedAtMin,
-            //                                                            parameters.UpdatedAtMax, parameters.Limit, parameters.Page, parameters.SinceId, parameters.CategoryId,
-            //                                                            parameters.VendorName, parameters.PublishedStatus)
-            //                                    .Where(async p => await StoreMappingService.AuthorizeAsync(p));
+            var allProducts = _productApiService.GetProducts(parameters.Ids, parameters.CreatedAtMin, parameters.CreatedAtMax, parameters.UpdatedAtMin,
+                                                                        parameters.UpdatedAtMax, parameters.Limit, parameters.Page, parameters.SinceId, parameters.CategoryId,
+                                                                        parameters.VendorName, parameters.PublishedStatus);
 
-            //IList<ProductDto> productsAsDtos = allProducts.Select(product => _dtoHelper.PrepareProductDTOAsync(product)).ToList();
+            IList<Task<ProductDto>> productsAsDtos = allProducts.Select(product => _dtoHelper.PrepareProductDTOAsync(product)).ToList();
+            IList<ProductDto> dto =new List<ProductDto>();
+            foreach (var item in productsAsDtos)
+            {
+                dto.Add(await item);
+            }
+            var productsRootObject = new ProductsRootObjectDto()
+            {
+                Products = dto
+            };
 
-            //var productsRootObject = new ProductsRootObjectDto()
-            //{
-            //    Products = productsAsDtos
-            //};
+            var json = JsonFieldsSerializer.Serialize(productsRootObject, parameters.Fields);
 
-            //var json = JsonFieldsSerializer.Serialize(productsRootObject, parameters.Fields);
-
-            //return new RawJsonActionResult(json);
-            return Ok("Error");
+            return new RawJsonActionResult(json);
+            //return Ok("Error");
         }
 
         /// <summary>

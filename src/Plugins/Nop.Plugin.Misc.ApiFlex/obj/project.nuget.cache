@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "J+CgUx4iBKRGBg85xO7e8c7BzAKpDNJDcrpjT7AAY6avPd+OfasBC7dfLPRk3oswlntuGRvT2PzdKWd4PbJHJA==",
+  "dgSpecHash": "qWTgz4+wJ36NXeZwsJGMDp/xqBSkvineCL3tgsiVKHtN81AqA/2AhyJTiASRmZRkscPYnALTyamXi+CZK0HNaw==",
   "success": true,
   "projectFilePath": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.ApiFlex/Nop.Plugin.Misc.ApiFlex.csproj",
   "expectedPackageFiles": [
@@ -103,6 +103,7 @@
     "/Users/ronel/.nuget/packages/mailkit/3.4.3/mailkit.3.4.3.nupkg.sha512",
     "/Users/ronel/.nuget/packages/maxmind.db/4.0.0/maxmind.db.4.0.0.nupkg.sha512",
     "/Users/ronel/.nuget/packages/maxmind.geoip2/5.1.0/maxmind.geoip2.5.1.0.nupkg.sha512",
+    "/Users/ronel/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.5/microsoft.aspnetcore.authentication.jwtbearer.7.0.5.nupkg.sha512",
     "/Users/ronel/.nuget/packages/microsoft.aspnetcore.cryptography.internal/3.1.28/microsoft.aspnetcore.cryptography.internal.3.1.28.nupkg.sha512",
     "/Users/ronel/.nuget/packages/microsoft.aspnetcore.dataprotection/3.1.28/microsoft.aspnetcore.dataprotection.3.1.28.nupkg.sha512",
     "/Users/ronel/.nuget/packages/microsoft.aspnetcore.dataprotection.abstractions/3.1.28/microsoft.aspnetcore.dataprotection.abstractions.3.1.28.nupkg.sha512",

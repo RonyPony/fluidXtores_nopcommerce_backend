@@ -1,42 +1,20 @@
 ﻿<Properties StartupConfiguration="{4F1F649C-1020-45BE-A487-F416D9297FF3}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/Controllers/TokenController.cs" relfile="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/TokenController.cs" line="58" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.Presentation.Nop.Web PreferredExecutionTarget="/Applications/Safari.app" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Plugins/Nop.Plugin.Misc.ApiFlex/Controllers/LanguagesController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Plugins/Nop.Plugin.Misc.ApiFlex/Controllers/ProductsController.cs">
     <Files>
-      <File FileName="Libraries/Nop.Services/Media/PictureService.cs" />
-      <File FileName="Presentation/Nop.Web/Views/Install/_Install.ConnectionString.cshtml" />
-      <File FileName="Libraries/Nop.Services/Logging/CustomerActivityService.cs" />
-      <File FileName="Libraries/Nop.Services/Logging/ICustomerActivityService.cs" />
-      <File FileName="Presentation/Nop.Web/Program.cs" Line="48" Column="1" />
-      <File FileName="Plugins/Nop.Plugin.Misc.ApiFlex/Controllers/LanguagesController.cs" Line="62" Column="55" />
-      <File FileName="Libraries/Nop.Services/Localization/ILanguageService.cs" Line="10" Column="30" />
+      <File FileName="Plugins/Nop.Plugin.Misc.ApiFlex/Controllers/TokenController.cs" Line="18" Column="30" />
+      <File FileName="Plugins/Nop.Plugin.Misc.ApiFlex/Authorization/Requirements/AuthorizationSchemeRequirement.cs" Line="3" Column="56" />
+      <File FileName="Plugins/Nop.Plugin.Misc.ApiFlex/Authorization/Requirements/CustomerRoleRequirement.cs" Line="12" Column="30" />
+      <File FileName="Plugins/Nop.Plugin.Misc.ApiFlex/Controllers/categoriesController.cs" Line="26" Column="1" />
+      <File FileName="Plugins/Nop.Plugin.Misc.ApiFlex/Controllers/ProductsController.cs" Line="364" Column="61" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="NopCommerce" expanded="True">
-            <Node name="Libraries" expanded="True" />
             <Node name="Plugins" expanded="True">
               <Node name="Nop.Plugin.Misc.ApiFlex" expanded="True">
-                <Node name="Controllers" expanded="True">
-                  <Node name="LanguagesController.cs" selected="True" />
-                </Node>
-              </Node>
-            </Node>
-            <Node name="Presentation" expanded="True">
-              <Node name="Nop.Web" expanded="True">
-                <Node name="Plugins" expanded="True">
-                  <Node name="Misc.Sendinblue" expanded="True" />
-                </Node>
-                <Node name="Views" expanded="True">
-                  <Node name="Install" expanded="True" />
-                </Node>
+                <Node name="Authorization" expanded="True" />
+                <Node name="Controllers" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -44,5 +22,13 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Plugins/Nop.Plugin.Misc.FluidApi/Controllers/TokenController.cs" relfile="Plugins/Nop.Plugin.Misc.FluidApi/Controllers/TokenController.cs" line="58" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Presentation.Nop.Web PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

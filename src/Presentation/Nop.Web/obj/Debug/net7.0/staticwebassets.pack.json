@@ -1685,6 +1685,10 @@
       "PackagePath": "staticwebassets/images/thumbs/0000020_build-your-own-computer_415.jpeg"
     },
     {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000021_build-your-own-computer.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000021_build-your-own-computer.jpeg"
+    },
+    {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000022_digital-storm-vanquish-3-custom-performance-pc.jpeg",
       "PackagePath": "staticwebassets/images/thumbs/0000022_digital-storm-vanquish-3-custom-performance-pc.jpeg"
     },
@@ -1721,12 +1725,48 @@
       "PackagePath": "staticwebassets/images/thumbs/0000024_apple-macbook-pro-13-inch_415.jpeg"
     },
     {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000025_apple-macbook-pro-13-inch.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000025_apple-macbook-pro-13-inch.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000026_asus-n551jk-xo076h-laptop.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000026_asus-n551jk-xo076h-laptop.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000027_samsung-series-9-np900x4c-premium-ultrabook.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000027_samsung-series-9-np900x4c-premium-ultrabook.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000028_hp-spectre-xt-pro-ultrabook.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000028_hp-spectre-xt-pro-ultrabook.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000029_hp-spectre-xt-pro-ultrabook.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000029_hp-spectre-xt-pro-ultrabook.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000030_hp-envy-6-1180ca-156-inch-sleekbook.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000030_hp-envy-6-1180ca-156-inch-sleekbook.jpeg"
+    },
+    {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000031_lenovo-thinkpad-x1-carbon-laptop.jpeg",
       "PackagePath": "staticwebassets/images/thumbs/0000031_lenovo-thinkpad-x1-carbon-laptop.jpeg"
     },
     {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000031_lenovo-thinkpad-x1-carbon-laptop_415.jpeg",
       "PackagePath": "staticwebassets/images/thumbs/0000031_lenovo-thinkpad-x1-carbon-laptop_415.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000032_adobe-photoshop-cs4.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000032_adobe-photoshop-cs4.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000033_windows-8-pro.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000033_windows-8-pro.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000034_sound-forge-pro-11-recurring.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000034_sound-forge-pro-11-recurring.jpeg"
     },
     {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000035_nikon-d5500-dslr.jpeg",
@@ -1829,6 +1869,10 @@
       "PackagePath": "staticwebassets/images/thumbs/0000042_htc-one-mini-blue_415.jpeg"
     },
     {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000043_htc-one-mini-blue.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000043_htc-one-mini-blue.jpeg"
+    },
+    {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000044_nokia-lumia-1020.jpeg",
       "PackagePath": "staticwebassets/images/thumbs/0000044_nokia-lumia-1020.jpeg"
     },
@@ -1845,12 +1889,44 @@
       "PackagePath": "staticwebassets/images/thumbs/0000045_beats-pill-20-wireless-speaker_415.jpeg"
     },
     {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000046_beats-pill-20-wireless-speaker.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000046_beats-pill-20-wireless-speaker.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000047_universal-7-8-inch-tablet-cover.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000047_universal-7-8-inch-tablet-cover.jpeg"
+    },
+    {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000048_portable-sound-speakers.jpeg",
       "PackagePath": "staticwebassets/images/thumbs/0000048_portable-sound-speakers.jpeg"
     },
     {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000048_portable-sound-speakers_415.jpeg",
       "PackagePath": "staticwebassets/images/thumbs/0000048_portable-sound-speakers_415.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000049_nike-floral-roshe-customized-running-shoes.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000049_nike-floral-roshe-customized-running-shoes.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000050_nike-floral-roshe-customized-running-shoes.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000050_nike-floral-roshe-customized-running-shoes.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000053_adidas-consortium-campus-80s-running-shoes.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000053_adidas-consortium-campus-80s-running-shoes.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000054_adidas-consortium-campus-80s-running-shoes.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000054_adidas-consortium-campus-80s-running-shoes.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000055_adidas-consortium-campus-80s-running-shoes.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000055_adidas-consortium-campus-80s-running-shoes.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000056_nike-sb-zoom-stefan-janoski-medium-mint.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000056_nike-sb-zoom-stefan-janoski-medium-mint.jpeg"
     },
     {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000057_nike-tailwind-loose-short-sleeve-running-shirt.jpeg",
@@ -1909,12 +1985,24 @@
       "PackagePath": "staticwebassets/images/thumbs/0000060_levis-511-jeans_415.jpeg"
     },
     {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000061_levis-511-jeans.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000061_levis-511-jeans.jpeg"
+    },
+    {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000062_obey-propaganda-hat.jpeg",
       "PackagePath": "staticwebassets/images/thumbs/0000062_obey-propaganda-hat.jpeg"
     },
     {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000062_obey-propaganda-hat_415.jpeg",
       "PackagePath": "staticwebassets/images/thumbs/0000062_obey-propaganda-hat_415.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000063_reversible-horseferry-check-belt.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000063_reversible-horseferry-check-belt.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000064_ray-ban-aviator-sunglasses.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000064_ray-ban-aviator-sunglasses.jpeg"
     },
     {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000065_night-visions.jpeg",
@@ -2045,12 +2133,32 @@
       "PackagePath": "staticwebassets/images/thumbs/0000074_25-virtual-gift-card_415.jpeg"
     },
     {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000075_50-physical-gift-card.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000075_50-physical-gift-card.jpeg"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000076_100-physical-gift-card.jpeg",
+      "PackagePath": "staticwebassets/images/thumbs/0000076_100-physical-gift-card.jpeg"
+    },
+    {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000077_banner_1.webp",
       "PackagePath": "staticwebassets/images/thumbs/0000077_banner_1.webp"
     },
     {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000078_banner_2.webp",
       "PackagePath": "staticwebassets/images/thumbs/0000078_banner_2.webp"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000079_Coca-Cola_logo.svg.png",
+      "PackagePath": "staticwebassets/images/thumbs/0000079_Coca-Cola_logo.svg.png"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/0000079_Coca-Cola_logo.svg_100.png",
+      "PackagePath": "staticwebassets/images/thumbs/0000079_Coca-Cola_logo.svg_100.png"
+    },
+    {
+      "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/default-image_100.png",
+      "PackagePath": "staticwebassets/images/thumbs/default-image_100.png"
     },
     {
       "Id": "/Users/ronel/proyectos/fluidXtores_nopcommerce_backend/src/Presentation/Nop.Web/wwwroot/images/thumbs/placeholder.txt",
