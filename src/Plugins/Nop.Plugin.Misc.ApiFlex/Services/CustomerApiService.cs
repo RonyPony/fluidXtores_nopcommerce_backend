@@ -23,6 +23,8 @@ using static Nop.Plugin.Misc.ApiFlex.Infrastructure.Constants;
 using Nop.Web.Factories;
 using Nop.Plugin.Misc.ApiFlex.DTO.Customers;
 using System.Threading.Tasks;
+using Nop.Plugin.Misc.ApiFlex.MappingExtensions;
+using Nop.Plugin.Misc.ApiFlex.Helpers;
 
 namespace Nop.Plugin.Misc.ApiFlex.Services
 {
@@ -264,7 +266,7 @@ namespace Nop.Plugin.Misc.ApiFlex.Services
 
         private CustomerDto CreateCustomerDto(Customer customer, IEnumerable<GenericAttribute> customerAttributes)
         {
-            var customerDto = new CustomerDto();// customer.ToDto();
+            var customerDto =  customer.ToDto();
             foreach (var attribute in customerAttributes)
             {
 
@@ -584,9 +586,70 @@ namespace Nop.Plugin.Misc.ApiFlex.Services
             });
         }
 
-        public IList<CustomerDto> Search(string query = "", string order = "Id", int page = 1, int limit = 50)
+        public IList<CustomerDto> Search(string para = "", string order = "Id", int page = 1, int limit = 50)
         {
-            throw new NotImplementedException();
+            IList<CustomerDto> result = new List<CustomerDto>();
+
+            var searchParams = EnsureSearchQueryIsValid(para, ParseSearchQuery);
+
+            if (searchParams != null)
+            {
+                var query = _customerRepository.Table.Where(customer => !customer.Deleted);
+
+                foreach (var searchParam in searchParams)
+                {
+                    // Skip non existing properties.
+                    if (ReflectionHelper.HasProperty(searchParam.Key, typeof(Customer)))
+                    {
+
+                        // @0 is a placeholder used by dynamic linq and it is used to prevent possible sql injections.
+                        query = query.Where(string.Format("{0} = @0 || {0}.Contains(@0)", searchParam.Key), searchParam.Value);
+
+
+                    }
+                    // The code bellow will search in customer addresses as well.
+                    //else if (HasProperty(searchParam.Key, typeof(Address)))
+                    //{
+                    //    query = query.Where(string.Format("Addresses.Where({0} == @0).Any()", searchParam.Key), searchParam.Value);
+                    //}
+                }
+
+                foreach (var item in query.ToList())
+                {
+                    var nameCustomerAttributes = _genericAttributeRepository.Table.FirstOrDefault(o => o.KeyGroup == nameof(Customer) && o.EntityId == item.Id && o.Key == "firstName");
+                    var lastNameCustomerAttributes = _genericAttributeRepository.Table.FirstOrDefault(o => o.KeyGroup == nameof(Customer) && o.EntityId == item.Id && o.Key == "lastName");
+                    var phoneNumberCustomer = _genericAttributeRepository.Table.FirstOrDefault(o => o.KeyGroup == nameof(Customer) && o.EntityId == item.Id && o.Key == "phone");
+
+                    result.Add(new CustomerDto
+                    {
+                        Username = item.Username,
+                        Email = item.Email,
+                        FirstName = item.FirstName,
+                        LastName = item.LastName,
+                        Id = item.Id,
+                        SystemName = item.SystemName,
+                        Active = item.Active,
+
+                        CustomerInfo = new CustomerInfoModel { }
+                    });
+                    //result.Add(new CustomerDto
+                    //{
+                    //    Username = item.Username,
+                    //    Email = item.Email,
+                    //    FirstName = nameCustomerAttributes.Value,
+                    //    LastName = lastNameCustomerAttributes.Value,
+                    //    Id = item.Id,
+                    //    SystemName = item.SystemName,
+                    //    Active = item.Active,
+
+                    //    CustomerInfo = new CustomerInfoModel { Phone = phoneNumberCustomer.Value }
+                    //});
+                }
+
+                //result = HandleCustomerGenericAttributes(searchParams, query, limit, page, order);
+            }
+
+            return result;
         }
     }
 }
